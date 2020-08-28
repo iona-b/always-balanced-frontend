@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch, Link, NavLink, withRouter} from 'react-router-dom'
+import {Route, Switch, NavLink, withRouter} from 'react-router-dom'
 import './App.css';
 import CreateScheduleContainer from './containers/CreateScheduleContainer'
 import Home from './containers/Home'
