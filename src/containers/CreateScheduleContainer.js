@@ -23,7 +23,6 @@ class CreateScheduleContainer extends React.Component {
   }
 
   render() {
-    // debugger
     return (
       <div id="CreateScheduleContainer">
         <CreateScheduleForm id="create-schedule-form" />

@@ -1,7 +1,5 @@
-import { v4 as uuidv4 } from 'uuid';
-
 const initialState = {
-  user: [],
+  user: {},
   userTasks: [],
   userSchedules: [],
   loading: false
@@ -14,7 +12,7 @@ const userReducer = (state=initialState,action) => {
       console.log(state)
       return {
         ...state,
-        user: [...state.user],
+        user: {...state.user},
         userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
         loading: true
@@ -34,22 +32,40 @@ const userReducer = (state=initialState,action) => {
       console.log(state)
       return {
         ...state,
-        user: [],
+        user: {},
         userTasks: [],
         userSchedules: [],
         loading: false
       }
       case 'ADD_TASK':
+        console.log('ADD_TASK')
+        console.log(state)
         const task = {
-          id: uuidv4(),
-          task_description: action.payload.text
+          id: action.task.id,
+          task_description: action.task.task_description,
+          task_notes: action.task.task_notes
         }
         return {
-          userTasks: state.userTasks.concat(task)
+          ...state,
+          user: {...state.user},
+          userTasks: state.userTasks.concat(task),
+          userSchedules: state.user.schedules,
+          loading: false
         }
       case 'ADD_SCHEDULE':
+        console.log('ADD_SCHEDULE')
+        console.log(state)
+        const schedule = {
+          id: action.schedule.id,
+          date: action.schedule.date,
+          user_id: action.schedule.user_id
+        }
         return {
-          userSchedules: state.userSchedules.concat(action.payload.text)
+          ...state,
+          user: {...state.user},
+          userTasks: state.user.tasks,
+          userSchedules: state.userSchedules.concat(schedule),
+          loading: false
         }
     default:
       return state;

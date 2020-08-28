@@ -12,8 +12,6 @@ export const loginUser = (user) => {
     .then(responseJSON => {
         if(!responseJSON.error){
             dispatch({ type: 'ADD_USER', user: responseJSON })
-            // this.props.history.push('/')
-            debugger
         } else {
             alert(responseJSON.error)
         }

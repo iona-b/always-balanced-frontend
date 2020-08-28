@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addTask } from '../actions/addTask'
+import { addSchedule } from '../actions/addSchedule'
  
 class CreateSchedule extends Component {
   state = {
-    task1: '',
-    task2: '',
-    task3: '',
-    task4: '',
-    task5: '',
-    task6: '',
+    task1Description: '',
+    task1Notes: '',
+    task2Description: '',
+    task2Notes: '',
+    task3Description: '',
+    task3Notes: '',
+    task4Description: '',
+    task4Notes: '',
+    task5Description: '',
+    task5Notes: '',
+    task6Description: '',
+    task6Notes: '',
   };
  
   handleChange = event => {
@@ -19,33 +27,69 @@ class CreateSchedule extends Component {
  
   handleSubmit = event => {
     event.preventDefault();
-    this.props.addTask(this.state);
+    let tasks = [
+      [this.state.task1Description, this.state.task1Notes, this.props.user.id], [this.state.task2Description, this.state.task2Notes, this.props.user.id], [this.state.task3Description, this.state.task3Notes, this.props.user.id], [this.state.task4Description, this.state.task4Notes, this.props.user.id], [this.state.task5Description, this.state.task5Notes, this.props.user.id], [this.state.task6Description, this.state.task6Notes, this.props.user.id]
+    ]
+    tasks.forEach((task) => {
+      if (task[0] !== '' && task[0] !== '') {
+        let taskToPost = {
+          task_description: task[0],
+          task_notes: task[1],
+          user_id: task[2],
+        }
+        this.props.addTask(taskToPost)
+      }
+    })
   };
+
+  handleCreateSchedule = () => {
+    this.props.addSchedule(this.props.user.id)
+  }
  
   render() {
     return (
       <div>
-        <form onSubmit={event => this.handleSubmit(event)}>
+        <form onSubmit={this.handleSubmit}>
           <p>
-            <label>Schedule Creator</label>
-              <input name="task1" onChange={event => this.handleChange(event)} value={this.state.task1}/>
-              <input name="task2" onChange={event => this.handleChange(event)} value={this.state.task2}/>
-              <input name="task3" onChange={event => this.handleChange(event)} value={this.state.task3}/>
-              <input name="task4" onChange={event => this.handleChange(event)} value={this.state.task4}/>
-              <input name="task5" onChange={event => this.handleChange(event)} value={this.state.task5}/>
-              <input name="task6" onChange={event => this.handleChange(event)} value={this.state.task6}/>
+            <label>Schedule Creator</label><br></br>
+            Task 1
+              <input name="task1Description" onChange={this.handleChange} value={this.state.task1Description}/>
+              <input name="task1Notes" onChange={this.handleChange} value={this.state.task1Notes}/><br></br>
+            Task 2
+              <input name="task2Description" onChange={this.handleChange} value={this.state.task2Description}/>
+              <input name="task2Notes" onChange={this.handleChange} value={this.state.task2Notes}/><br></br>
+            Task 3
+              <input name="task3Description" onChange={this.handleChange} value={this.state.task3Description}/>
+              <input name="task3Notes" onChange={this.handleChange} value={this.state.task3Notes}/><br></br>
+            Task 4
+              <input name="task4Description" onChange={this.handleChange} value={this.state.task4Description}/>
+              <input name="task4Notes" onChange={this.handleChange} value={this.state.task4Notes}/><br></br>
+            Task 5
+              <input name="task5Description" onChange={this.handleChange} value={this.state.task5Description}/>
+              <input name="task5Notes" onChange={this.handleChange} value={this.state.task5Notes}/><br></br>
+            Task 6
+              <input name="task6Description" onChange={this.handleChange} value={this.state.task6Description}/>
+              <input name="task6Notes" onChange={this.handleChange} value={this.state.task6Notes}/><br></br>
           </p>
           <input type="submit" />
         </form>
+        <button onClick={this.handleCreateSchedule}>Create Schedule</button>
       </div>
     );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    user: state.user,
   }
 }
  
 const mapDispatchToProps = dispatch => {
   return {
-    addSchedule: formData => dispatch({ type: 'ADD_SCHEDULE', payload: formData })
+    addTask: (task) => dispatch(addTask(task)),
+    addSchedule: (schedule) => dispatch(addSchedule(schedule))
   };
 };
  
-export default connect(null, mapDispatchToProps)(CreateSchedule);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateSchedule);

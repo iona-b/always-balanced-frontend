@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addTask } from '../actions/addTask'
  
 class CreateTask extends Component {
   state = {
@@ -8,26 +9,28 @@ class CreateTask extends Component {
  
   handleChange = event => {
     this.setState({
-      text: event.target.value
+      [event.target.name]: event.target.value
     });
   };
  
   handleSubmit = event => {
     event.preventDefault();
-    this.props.addTask(this.state);
+    let task = {
+      task_description: this.state.taskDescription,
+      task_notes: this.state.taskNotes,
+      user_id: this.props.user.id
+    }
+    this.props.addTask(task);
   };
  
   render() {
     return (
       <div>
-        <form onSubmit={event => this.handleSubmit(event)}>
+        <form onSubmit={this.handleSubmit}>
           <p>
             <label>add task</label>
-              <input
-                type="text"
-                onChange={event => this.handleChange(event)}
-                value={this.state.text}
-              />
+              <input type="text" name="taskDescription" value={this.state.taskDescription} onChange={this.handleChange}/>
+              <input type="text" name="taskNotes" value={this.state.taskNotes} onChange={this.handleChange}/>
           </p>
           <input type="submit" />
         </form>
@@ -35,11 +38,17 @@ class CreateTask extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+  }
+}
  
 const mapDispatchToProps = dispatch => {
   return {
-    addTask: formData => dispatch({ type: 'ADD_TASK', payload: formData })
+    addTask: (task) => dispatch(addTask(task))
   };
 };
  
-export default connect(null, mapDispatchToProps)(CreateTask);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateTask);

@@ -1,19 +1,21 @@
-export const signUpUser = (user) => {
+export const addSchedule = (userId) => {
+    // debugger
+    let data = {
+        user_id: userId
+    }
     return (dispatch) => {
     dispatch({ type: 'LOADING_USER'})
-    fetch('http://localhost:3000/users',{
+    fetch('http://localhost:3000/schedules',{
     method:"POST",
     headers:{
        'Content-Type':'application/json'
     },
-    body:JSON.stringify(user)
+    body:JSON.stringify(data)
     })
     .then(response => response.json())
     .then(responseJSON => {
         if(!responseJSON.error){
-            dispatch({ type: 'ADD_USER', user: responseJSON })
-            console.log("signUpUser")
-            console.log(responseJSON)
+            dispatch({ type: 'ADD_SCHEDULE', schedule: responseJSON })
         } else {
             alert(responseJSON.error)
         }
