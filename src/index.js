@@ -4,17 +4,18 @@ import {BrowserRouter} from 'react-router-dom'
 import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from './reducers/reducer'
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import userReducer from './reducers/userReducer'
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(reducer)
+const store = createStore(userReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
-    </BrowserRouter>,
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
