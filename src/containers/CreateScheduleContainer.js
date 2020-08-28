@@ -7,8 +7,11 @@ import { fetchUser } from '../actions/fetchUser'
 
 class CreateScheduleContainer extends React.Component {
 
+  // This isn't necessary here because the user is already logged in.
+  // Where should I add component did mount?
   componentDidMount() {
-    this.props.fetchUser()
+  //   this.props.fetchUser(this.props.user)
+    console.log(this.props.user)
   }
  
   handleLoading = () => {
@@ -20,6 +23,7 @@ class CreateScheduleContainer extends React.Component {
   }
 
   render() {
+    // debugger
     return (
       <div id="CreateScheduleContainer">
         <CreateScheduleForm id="create-schedule-form" />
@@ -40,7 +44,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUser: () => dispatch(fetchUser())
+    fetchUser: (user) => dispatch(fetchUser(user))
   }
 }
 
