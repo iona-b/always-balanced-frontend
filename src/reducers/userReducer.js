@@ -2,6 +2,7 @@ const initialState = {
   user: {},
   userTasks: [],
   userSchedules: [],
+  currentSchedule: {},
   loading: false
 }
 
@@ -15,6 +16,7 @@ const userReducer = (state=initialState,action) => {
         user: {...state.user},
         userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
+        currentSchedule: {...state.currentSchedule},
         loading: true
       }
     case 'ADD_USER':
@@ -25,6 +27,7 @@ const userReducer = (state=initialState,action) => {
         user: action.user,
         userTasks: action.user.tasks,
         userSchedules: action.user.schedules,
+        currentSchedule: {...state.currentSchedule},
         loading: false
       }
     case 'LOGOUT_USER':
@@ -34,7 +37,7 @@ const userReducer = (state=initialState,action) => {
         ...state,
         user: {},
         userTasks: [],
-        userSchedules: [],
+        currentSchedule: {},
         loading: false
       }
       case 'ADD_TASK':
@@ -49,7 +52,8 @@ const userReducer = (state=initialState,action) => {
           ...state,
           user: {...state.user},
           userTasks: state.userTasks.concat(task),
-          userSchedules: state.user.schedules,
+          userSchedules: [...state.user.schedules],
+          currentSchedule: {...state.currentSchedule},
           loading: false
         }
       case 'ADD_SCHEDULE':
@@ -63,8 +67,36 @@ const userReducer = (state=initialState,action) => {
         return {
           ...state,
           user: {...state.user},
-          userTasks: state.user.tasks,
+          userTasks: [...state.userTasks],
           userSchedules: state.userSchedules.concat(schedule),
+          currentSchedule: {...state.currentSchedule},
+          loading: false
+        }
+      case 'LOADING_SCHEDULE':
+        console.log('LOADING_SCHEDULE')
+        console.log(state)
+        return {
+          ...state,
+          user: {...state.user},
+          userTasks: [...state.userTasks],
+          userSchedules: [...state.userSchedules],
+          currentSchedule: {...state.currentSchedule},
+          loading: true
+        }
+      case 'FETCH_SCHEDULE':
+        console.log('FETCH_SCHEDULE')
+        console.log(state)
+        const currentSchedule = {
+          id: action.currentSchedule.id,
+          date: action.currentSchedule.date,
+          user_id: action.currentSchedule.user_id
+        }
+        return {
+          ...state,
+          user: {...state.user},
+          userTasks: state.user.tasks,
+          userSchedules: [...state.userSchedules],
+          currentSchedule: action.currentSchedule,
           loading: false
         }
     default:
