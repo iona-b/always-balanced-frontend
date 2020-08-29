@@ -4,16 +4,10 @@ import Tasks from '../components/Tasks'
 import CreateScheduleForm from '../components/CreateScheduleForm'
 import CreateTaskForm from '../components/CreateTaskForm'
 import { fetchUser } from '../actions/fetchUser'
+import ScheduleInProgress from '../components/ScheduleInProgress';
 
 class CreateScheduleContainer extends React.Component {
 
-  // This isn't necessary here because the user is already logged in.
-  // Where should I add component did mount?
-  componentDidMount() {
-  //   this.props.fetchUser(this.props.user)
-    console.log(this.props.user)
-  }
- 
   handleLoading = () => {
     if(this.props.loading === true) {
       return <div>Loading...</div>
@@ -26,8 +20,9 @@ class CreateScheduleContainer extends React.Component {
     return (
       <div id="CreateScheduleContainer">
         <CreateScheduleForm id="create-schedule-form" />
-        <CreateTaskForm id="create-task-form" />
-        <div id="task-list">{this.handleLoading()}</div>
+        {/* <CreateTaskForm id="create-task-form" /> */}
+        <ScheduleInProgress id="schedule-in-progress" />
+        {/* <div id="task-list">{this.handleLoading()}</div> */}
       </div>
     );
   }

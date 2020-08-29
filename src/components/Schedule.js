@@ -33,7 +33,6 @@ class Schedule extends React.Component {
     year = this.newDate.getFullYear()
 
     render() {
-        debugger
         return (
             <div className="schedule">
                 <p>Schedule for {this.day}, {this.month} {this.date}, {this.year}</p>
@@ -47,9 +46,9 @@ class Schedule extends React.Component {
   
 const mapStateToProps = state => {
     return {
-      user: state.user,
-      schedules: state.user.schedules,
-      currentSchedule: state.currentSchedule
+        user: state.user,
+        schedules: state.user.schedules,
+        currentSchedule: state.currentSchedule,
     }
 }
 

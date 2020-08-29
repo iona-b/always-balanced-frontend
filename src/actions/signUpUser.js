@@ -11,7 +11,7 @@ export const signUpUser = (user) => {
     .then(response => response.json())
     .then(responseJSON => {
         if(!responseJSON.error){
-            dispatch({ type: 'ADD_USER', user: responseJSON })
+            dispatch({ type: 'FETCH_USER', user: responseJSON })
             console.log("signUpUser")
             console.log(responseJSON)
         } else {
