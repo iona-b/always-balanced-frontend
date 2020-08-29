@@ -4,6 +4,11 @@ const initialState = {
   userSchedules: [],
   currentSchedule: {},
   scheduleInProgress: [],
+  postedSchedule: {
+    schedule: {},
+    tasks: [],
+    readyToPost: false
+  },
   loading: false
 }
 
@@ -20,6 +25,11 @@ const userReducer = (state=initialState,action) => {
         userSchedules: [...state.userSchedules],
         currentSchedule: {...state.currentSchedule},
         scheduleInProgress: [...state.scheduleInProgress],
+        postedSchedule: {
+          schedule: {...state.postedSchedule.schedule},
+          tasks: [...state.postedSchedule.tasks],
+          readyToPost: false
+        },
         loading: true
       }
     case 'FETCH_USER':
@@ -32,6 +42,11 @@ const userReducer = (state=initialState,action) => {
         userSchedules: action.user.schedules,
         currentSchedule: {...state.currentSchedule},
         scheduleInProgress: [...state.scheduleInProgress],
+        postedSchedule: {
+          schedule: {...state.postedSchedule.schedule},
+          tasks: [...state.postedSchedule.tasks],
+          readyToPost: false
+        },
         loading: false
       }
     case 'LOGOUT_USER':
@@ -42,7 +57,7 @@ const userReducer = (state=initialState,action) => {
     case 'ADD_TASK':
       console.log('ADD_TASK')
       console.log(state)
-      const task = {
+      let task = {
         id: action.task.id,
         task_description: action.task.task_description,
         task_notes: action.task.task_notes
@@ -54,13 +69,40 @@ const userReducer = (state=initialState,action) => {
         userSchedules: [...state.user.schedules],
         currentSchedule: {...state.currentSchedule},
         scheduleInProgress: [...state.scheduleInProgress],
+        postedSchedule: {
+          schedule: {...state.postedSchedule.schedule},
+          tasks: [...state.postedSchedule.tasks],
+          readyToPost: false
+        },
+        loading: false
+      }
+    case 'ADD_TASK_TO_POSTED_SCHEDULE':
+      console.log('ADD_TASK_TO_POSTED_SCHEDULE')
+      console.log(state)
+      let task2 = {
+        id: action.task.id,
+        task_description: action.task.task_description,
+        task_notes: action.task.task_notes
+      }
+      return {
+        ...state,
+        user: {...state.user},
+        userTasks: state.userTasks.concat(task2),
+        userSchedules: [...state.user.schedules],
+        currentSchedule: {...state.currentSchedule},
+        scheduleInProgress: [...state.scheduleInProgress],
+        postedSchedule: {
+          schedule: {...state.postedSchedule.schedule},
+          tasks: [...state.postedSchedule.tasks.concat(task2)],
+          readyToPost: false
+        },
         loading: false
       }
   // USER SCHEDULE CASES
     case 'ADD_SCHEDULE':
       console.log('ADD_SCHEDULE')
       console.log(state)
-      const schedule = {
+      let schedule = {
         id: action.schedule.id,
         date: action.schedule.date,
         user_id: action.schedule.user_id
@@ -72,6 +114,11 @@ const userReducer = (state=initialState,action) => {
         userSchedules: state.userSchedules.concat(schedule),
         currentSchedule: {...state.currentSchedule},
         scheduleInProgress: [...state.scheduleInProgress],
+        postedSchedule: {
+          schedule: {schedule},
+          tasks: [...state.postedSchedule.tasks],
+          readyToPost: true
+        },
         loading: false
       }
   // SCHEDULE CASES
@@ -85,6 +132,11 @@ const userReducer = (state=initialState,action) => {
         userSchedules: [...state.userSchedules],
         currentSchedule: {...state.currentSchedule},
         scheduleInProgress: [...state.scheduleInProgress],
+        postedSchedule: {
+          schedule: {...state.postedSchedule.schedule},
+          tasks: [...state.postedSchedule.tasks],
+          readyToPost: false
+        },
         loading: true
       }
     case 'FETCH_SCHEDULE':
@@ -97,12 +149,33 @@ const userReducer = (state=initialState,action) => {
         userSchedules: [...state.userSchedules],
         currentSchedule: action.currentSchedule,
         scheduleInProgress: [...state.scheduleInProgress],
+        postedSchedule: {
+          schedule: {...state.postedSchedule.schedule},
+          tasks: [...state.postedSchedule.tasks],
+          readyToPost: false
+        },
+        loading: false
+      }
+    case 'FINALISE_SCHEDULE':
+      console.log('FINALISE_SCHEDULE')
+      console.log(state)
+      return {
+        ...state,
+        user: {...state.user},
+        userTasks: state.user.tasks,
+        userSchedules: [...state.userSchedules],
+        currentSchedule: {...state.currentSchedule},
+        scheduleInProgress: [],
+        postedSchedule: {
+          schedule: {},
+          tasks: [],
+          readyToPost: false
+        },
         loading: false
       }
     case 'ADD_TASK_TO_SIP':
       console.log('ADD_TASK_TO_SIP')
       console.log(state)
-      // debugger
       return {
         ...state,
         user: {...state.user},
@@ -110,6 +183,11 @@ const userReducer = (state=initialState,action) => {
         userSchedules: [...state.userSchedules],
         currentSchedule: {...state.currentSchedule},
         scheduleInProgress: state.scheduleInProgress.concat(action.task),
+        postedSchedule: {
+          schedule: {...state.postedSchedule.schedule},
+          tasks: [...state.postedSchedule.tasks],
+          readyToPost: false
+        },
         loading: false
       }
   // DEFAULT CASES

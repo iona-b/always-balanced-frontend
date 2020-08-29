@@ -3,12 +3,20 @@ import { connect } from 'react-redux';
 import { addTask } from '../actions/addTask'
 import { addSchedule } from '../actions/addSchedule'
 import { addTaskToSIP } from '../actions/addTaskToSIP';
+import { addTaskToPostedSchedule } from '../actions/addTaskToPostedSchedule';
+import { finaliseSchedule } from '../actions/finaliseSchedule';
  
 class CreateSchedule extends Component {
   state = {
     taskDescription: '',
-    taskNotes: '',
+    taskNotes: ''
   };
+
+  componentDidUpdate() {
+    if (this.props.readyToPost === true && this.props.postedSchedule.tasks.length === this.props.scheduleInProgress.length) {
+      this.handleFinaliseSchedule()
+    }
+  }
  
   handleChange = event => {
     this.setState({
@@ -24,13 +32,21 @@ class CreateSchedule extends Component {
       user_id: this.props.user.id,
     }
     this.props.addTaskToSIP(task)
+    this.setState({
+      taskDescription: '',
+      taskNotes: ''
+    })
   };
 
   handleCreateSchedule = () => {
     this.props.addSchedule(this.props.user.id)
+    this.props.scheduleInProgress.forEach (task => this.props.addTaskToPostedSchedule(task))
   }
- 
+
+  handleFinaliseSchedule = () => {this.props.postedSchedule.tasks.forEach (task => {this.props.finaliseSchedule(this.props.postedSchedule.schedule.schedule.id, task.id)})}
+
   render() {
+    console.log(this.state)
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -48,7 +64,9 @@ class CreateSchedule extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    scheduleInProgress: state.scheduleInProgress
+    scheduleInProgress: state.scheduleInProgress,
+    postedSchedule: state.postedSchedule,
+    readyToPost: state.postedSchedule.readyToPost
   }
 }
  
@@ -56,7 +74,9 @@ const mapDispatchToProps = dispatch => {
   return {
     addTask: (task) => dispatch(addTask(task)),
     addSchedule: (schedule) => dispatch(addSchedule(schedule)),
-    addTaskToSIP: (task) => dispatch(addTaskToSIP(task))
+    addTaskToSIP: (task) => dispatch(addTaskToSIP(task)),
+    addTaskToPostedSchedule: (task) => dispatch(addTaskToPostedSchedule(task)),
+    finaliseSchedule: (scheduleId, taskId) => dispatch(finaliseSchedule(scheduleId, taskId))
   };
 };
  
