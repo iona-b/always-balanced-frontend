@@ -5,7 +5,7 @@ export const fetchUser = (user) => {
       return response.json()
     })
     .then(responseJSON => {
-      dispatch({ type: 'ADD_USER', user: responseJSON })
+      dispatch({ type: 'FETCH_USER', user: responseJSON })
     })
   }
 }

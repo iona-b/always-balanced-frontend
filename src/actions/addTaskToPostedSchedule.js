@@ -1,19 +1,17 @@
-export const signUpUser = (user) => {
+export const addTaskToPostedSchedule = (task) => {
     return (dispatch) => {
     dispatch({ type: 'LOADING_USER'})
-    fetch('http://localhost:3000/users',{
+    fetch('http://localhost:3000/tasks',{
     method:"POST",
     headers:{
        'Content-Type':'application/json'
     },
-    body:JSON.stringify(user)
+    body:JSON.stringify(task)
     })
     .then(response => response.json())
     .then(responseJSON => {
         if(!responseJSON.error){
-            dispatch({ type: 'FETCH_USER', user: responseJSON })
-            console.log("signUpUser")
-            console.log(responseJSON)
+            dispatch({ type: 'ADD_TASK_TO_POSTED_SCHEDULE', task: responseJSON })
         } else {
             alert(responseJSON.error)
         }

@@ -1,5 +1,4 @@
 export const addSchedule = (userId) => {
-    // debugger
     let data = {
         user_id: userId
     }

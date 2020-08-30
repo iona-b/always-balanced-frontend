@@ -2,22 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTask } from '../actions/addTask'
 import { addSchedule } from '../actions/addSchedule'
+import { addTaskToSIP } from '../actions/addTaskToSIP';
+import { addTaskToPostedSchedule } from '../actions/addTaskToPostedSchedule';
+import { finaliseSchedule } from '../actions/finaliseSchedule';
  
 class CreateSchedule extends Component {
   state = {
-    task1Description: '',
-    task1Notes: '',
-    task2Description: '',
-    task2Notes: '',
-    task3Description: '',
-    task3Notes: '',
-    task4Description: '',
-    task4Notes: '',
-    task5Description: '',
-    task5Notes: '',
-    task6Description: '',
-    task6Notes: '',
+    taskDescription: '',
+    taskNotes: '',
+    relaxationCategory1: this.props.relaxationCategories[0].category_name,
+    relaxationCategory2: this.props.relaxationCategories[0].category_name
   };
+  
+  componentDidUpdate() {
+    if (this.props.readyToPost === true && this.props.postedSchedule.tasks.length === this.props.scheduleInProgress.length) {
+      this.handleFinaliseSchedule()
+    }
+  }
  
   handleChange = event => {
     this.setState({
@@ -27,52 +28,38 @@ class CreateSchedule extends Component {
  
   handleSubmit = event => {
     event.preventDefault();
-    let tasks = [
-      [this.state.task1Description, this.state.task1Notes, this.props.user.id], [this.state.task2Description, this.state.task2Notes, this.props.user.id], [this.state.task3Description, this.state.task3Notes, this.props.user.id], [this.state.task4Description, this.state.task4Notes, this.props.user.id], [this.state.task5Description, this.state.task5Notes, this.props.user.id], [this.state.task6Description, this.state.task6Notes, this.props.user.id]
-    ]
-    tasks.forEach((task) => {
-      if (task[0] !== '' && task[0] !== '') {
-        let taskToPost = {
-          task_description: task[0],
-          task_notes: task[1],
-          user_id: task[2],
-        }
-        this.props.addTask(taskToPost)
-      }
+    let task = {
+      task_description: event.target.taskDescription.value,
+      task_notes: event.target.taskNotes.value,
+      user_id: this.props.user.id,
+    }
+    this.props.addTaskToSIP(task)
+    this.setState({
+      taskDescription: '',
+      taskNotes: ''
     })
   };
 
   handleCreateSchedule = () => {
+    let relaxationCategory1Id = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory1)[0].id
+    let relaxationCategory2Id = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory2)[0].id
     this.props.addSchedule(this.props.user.id)
+    this.props.scheduleInProgress.forEach (task => this.props.addTaskToPostedSchedule(task))
   }
- 
+
+  handleFinaliseSchedule = () => {this.props.postedSchedule.tasks.forEach (task => {this.props.finaliseSchedule(this.props.postedSchedule.schedule.schedule.id, task.id)})}
+
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <p>
             <label>Schedule Creator</label><br></br>
-            Task 1
-              <input name="task1Description" onChange={this.handleChange} value={this.state.task1Description}/>
-              <input name="task1Notes" onChange={this.handleChange} value={this.state.task1Notes}/><br></br>
-            Task 2
-              <input name="task2Description" onChange={this.handleChange} value={this.state.task2Description}/>
-              <input name="task2Notes" onChange={this.handleChange} value={this.state.task2Notes}/><br></br>
-            Task 3
-              <input name="task3Description" onChange={this.handleChange} value={this.state.task3Description}/>
-              <input name="task3Notes" onChange={this.handleChange} value={this.state.task3Notes}/><br></br>
-            Task 4
-              <input name="task4Description" onChange={this.handleChange} value={this.state.task4Description}/>
-              <input name="task4Notes" onChange={this.handleChange} value={this.state.task4Notes}/><br></br>
-            Task 5
-              <input name="task5Description" onChange={this.handleChange} value={this.state.task5Description}/>
-              <input name="task5Notes" onChange={this.handleChange} value={this.state.task5Notes}/><br></br>
-            Task 6
-              <input name="task6Description" onChange={this.handleChange} value={this.state.task6Description}/>
-              <input name="task6Notes" onChange={this.handleChange} value={this.state.task6Notes}/><br></br>
-          </p>
+              <input name="taskDescription" onChange={this.handleChange} value={this.state.taskDescription}/>
+              <input name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/><br></br>
           <input type="submit" />
         </form>
+        <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select>
+        <select name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
         <button onClick={this.handleCreateSchedule}>Create Schedule</button>
       </div>
     );
@@ -82,13 +69,20 @@ class CreateSchedule extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
+    scheduleInProgress: state.scheduleInProgress,
+    postedSchedule: state.postedSchedule,
+    readyToPost: state.postedSchedule.readyToPost,
+    relaxationCategories: state.relaxationCategories
   }
 }
  
 const mapDispatchToProps = dispatch => {
   return {
     addTask: (task) => dispatch(addTask(task)),
-    addSchedule: (schedule) => dispatch(addSchedule(schedule))
+    addSchedule: (schedule) => dispatch(addSchedule(schedule)),
+    addTaskToSIP: (task) => dispatch(addTaskToSIP(task)),
+    addTaskToPostedSchedule: (task) => dispatch(addTaskToPostedSchedule(task)),
+    finaliseSchedule: (scheduleId, taskId) => dispatch(finaliseSchedule(scheduleId, taskId))
   };
 };
  

@@ -42,7 +42,7 @@ class SignUpForm extends React.Component{
                 <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
                 <br/>
                 <label>Start Work Time</label>
-                <input type="number" name="startWorkTime" value={this.state.startWorkTime} onChange={this.handleChange}/>
+                <input type="time" name="startWorkTime" value={this.state.startWorkTime} onChange={this.handleChange}/>
                 <br/>
                 <label>Minimum Number of Hours</label>
                 <input type="number" name="minNumHours" value={this.state.minNumHours} onChange={this.handleChange}/>

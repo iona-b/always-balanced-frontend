@@ -1,19 +1,21 @@
-export const signUpUser = (user) => {
+export const finaliseSchedule = (scheduleId, taskId) => {
+    let data = {
+        schedule_id: scheduleId,
+        task_id: taskId
+    }
     return (dispatch) => {
     dispatch({ type: 'LOADING_USER'})
-    fetch('http://localhost:3000/users',{
+    fetch('http://localhost:3000/schedule_tasks',{
     method:"POST",
     headers:{
        'Content-Type':'application/json'
     },
-    body:JSON.stringify(user)
+    body:JSON.stringify(data)
     })
     .then(response => response.json())
     .then(responseJSON => {
         if(!responseJSON.error){
-            dispatch({ type: 'FETCH_USER', user: responseJSON })
-            console.log("signUpUser")
-            console.log(responseJSON)
+            dispatch({ type: 'FINALISE_SCHEDULE', schedule: responseJSON })
         } else {
             alert(responseJSON.error)
         }
