@@ -9,9 +9,11 @@ import { finaliseSchedule } from '../actions/finaliseSchedule';
 class CreateSchedule extends Component {
   state = {
     taskDescription: '',
-    taskNotes: ''
+    taskNotes: '',
+    relaxationCategory1: this.props.relaxationCategories[0].category_name,
+    relaxationCategory2: this.props.relaxationCategories[0].category_name
   };
-
+  
   componentDidUpdate() {
     if (this.props.readyToPost === true && this.props.postedSchedule.tasks.length === this.props.scheduleInProgress.length) {
       this.handleFinaliseSchedule()
@@ -39,6 +41,8 @@ class CreateSchedule extends Component {
   };
 
   handleCreateSchedule = () => {
+    let relaxationCategory1Id = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory1)[0].id
+    let relaxationCategory2Id = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory2)[0].id
     this.props.addSchedule(this.props.user.id)
     this.props.scheduleInProgress.forEach (task => this.props.addTaskToPostedSchedule(task))
   }
@@ -46,7 +50,6 @@ class CreateSchedule extends Component {
   handleFinaliseSchedule = () => {this.props.postedSchedule.tasks.forEach (task => {this.props.finaliseSchedule(this.props.postedSchedule.schedule.schedule.id, task.id)})}
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -55,6 +58,8 @@ class CreateSchedule extends Component {
               <input name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/><br></br>
           <input type="submit" />
         </form>
+        <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select>
+        <select name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
         <button onClick={this.handleCreateSchedule}>Create Schedule</button>
       </div>
     );
@@ -66,7 +71,8 @@ const mapStateToProps = state => {
     user: state.user,
     scheduleInProgress: state.scheduleInProgress,
     postedSchedule: state.postedSchedule,
-    readyToPost: state.postedSchedule.readyToPost
+    readyToPost: state.postedSchedule.readyToPost,
+    relaxationCategories: state.relaxationCategories
   }
 }
  

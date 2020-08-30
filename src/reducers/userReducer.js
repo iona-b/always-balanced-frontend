@@ -9,6 +9,7 @@ const initialState = {
     tasks: [],
     readyToPost: false
   },
+  relaxationCategories: [],
   loading: false
 }
 
@@ -30,6 +31,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: false
         },
+        relaxationCategories: [...state.relaxationCategories],
         loading: true
       }
     case 'FETCH_USER':
@@ -47,6 +49,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: false
         },
+        relaxationCategories: action.user.relaxation_categories,
         loading: false
       }
     case 'LOGOUT_USER':
@@ -74,6 +77,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: false
         },
+        relaxationCategories: [...state.relaxationCategories],
         loading: false
       }
     case 'ADD_TASK_TO_POSTED_SCHEDULE':
@@ -96,6 +100,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks.concat(task2)],
           readyToPost: false
         },
+        relaxationCategories: [...state.relaxationCategories],
         loading: false
       }
   // USER SCHEDULE CASES
@@ -119,6 +124,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: true
         },
+        relaxationCategories: [...state.relaxationCategories],
         loading: false
       }
   // SCHEDULE CASES
@@ -137,6 +143,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: false
         },
+        relaxationCategories: [...state.relaxationCategories],
         loading: true
       }
     case 'FETCH_SCHEDULE':
@@ -154,6 +161,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: false
         },
+        relaxationCategories: [...state.relaxationCategories],
         loading: false
       }
     case 'FINALISE_SCHEDULE':
@@ -171,6 +179,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [],
           readyToPost: false
         },
+        relaxationCategories: [...state.relaxationCategories],
         loading: false
       }
     case 'ADD_TASK_TO_SIP':
@@ -188,6 +197,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: false
         },
+        relaxationCategories: [...state.relaxationCategories],
         loading: false
       }
   // DEFAULT CASES
