@@ -11,6 +11,7 @@ import scheduleReducer from './reducers/scheduleReducer'
 import { combineReducers } from 'redux';
 import * as serviceWorker from './serviceWorker';
 
+
 const rootReducer = combineReducers({
   userReducer,
   scheduleReducer

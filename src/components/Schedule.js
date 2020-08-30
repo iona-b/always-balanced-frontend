@@ -32,22 +32,97 @@ class Schedule extends React.Component {
         return todaysSchedule
     }
 
+    beginBreakMinutes = (minutes) => {
+        if (minutes === 0) {
+            return minutes = 30
+        } else if (minutes === 30) {
+            return minutes = 0
+        } else if (minutes === 45) {
+            return minutes = 15
+        } else if (minutes = 15) {
+            return minutes = 45
+        }
+    }
+
+    beginTaskMinutes = (minutes) => {
+        if (minutes === 0) {
+            return minutes = 15
+        } else if (minutes === 45) {
+            return minutes = 0
+        } else {
+            return minutes = (minutes/60+0.25)*60
+        }
+    }
+
+    beginAfterLunchTaskMinutes = (minutes) => {
+        if (minutes === 0) {
+            return minutes = 45
+        } else if (minutes === 15) {
+            return minutes = 0
+        } else if (minutes === 30) {
+            return minutes = 15
+        } else if (minutes = 45) {
+            return minutes = 30
+        }
+    }
+
+    beginAfterLunchTaskHours = (hours, minutes) => {
+        if (minutes > 15) {
+            return hours += 2
+        } else {
+            return hours += 1
+        }
+    }
+
+    beginBreakHour = (hours, minutes) => {
+        if (minutes > 30) {
+            return hours += 2
+        } else {
+            return hours += 1
+        }
+    }
+
     getTasks = () => {
-        let hours = parseInt(this.props.user.start_work_time.slice(11, 13))-1
+        let hours = parseInt(this.props.user.start_work_time.slice(11, 13))
         let minutes = parseInt(this.props.user.start_work_time.slice(14, 16))
-        minutes === 0 ? minutes = 3 : minutes = 0
-        return this.props.tasks.map ((task) => {
-            hours += 1
-            minutes === 0 ? minutes = 3 : minutes = 0
-            return <p key={uuidv4()} > {hours}:{minutes}0 {task.task_description}: {task.task_notes} </p>
-        })
+        let tasks = this.props.currentSchedule.tasks
+        let activities = this.props.currentSchedule.activities
+        let schedule = []
+
+        for (let i=0; i< tasks.length; i ++) {
+            if (i>0 && i !=2 ) {
+                minutes = this.beginTaskMinutes(minutes)
+            }
+            if (i === 1) {
+                schedule.push(
+                    <div>
+                        <p key={uuidv4()} > {hours}:{minutes} {tasks[i].task_description}: {tasks[i].task_notes} </p>
+                        <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)} Lunch:{activities[0].activity_description} </p>
+                    </div>
+                )
+            } else if (i === 2) {
+                schedule.push(
+                    <div>
+                        <p key={uuidv4()} > {hours = this.beginAfterLunchTaskHours(hours, minutes)}:{minutes = this.beginAfterLunchTaskMinutes(minutes)} {tasks[i].task_description}: {tasks[i].task_notes} </p>
+                        <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)} {activities[0].activity_description} </p>
+                    </div>
+                )
+            } else {
+                schedule.push(
+                    <div>
+                        <p key={uuidv4()} > {hours}:{minutes} {tasks[i].task_description}: {tasks[i].task_notes} </p>
+                        <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)} {activities[0].activity_description} </p>
+                    </div>
+                )
+            }       
+        }
+        return schedule
     }
     
     render() {
-        console.log(this.props.currentSchedule)
         return (
             <div className="schedule">
-                <p>Schedule for {this.day}, {this.month} {this.date}, {this.year}</p>
+                <h2>Schedule for {this.day}, {this.month} {this.date}, {this.year}</h2>
                 {
                     this.props.currentSchedule.date ? this.getTasks() : "No Schedule"
                 }
@@ -61,7 +136,6 @@ const mapStateToProps = state => {
         user: state.user,
         schedules: state.userSchedules,
         currentSchedule: state.currentSchedule,
-        tasks: state.currentSchedule.tasks
     }
 }
 

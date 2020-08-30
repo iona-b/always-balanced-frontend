@@ -6,13 +6,10 @@ import { logOutUser } from '../actions/logOutUser'
 class LoginContainer extends React.Component {
 
   handleLogOut = () => {
-    console.log(this.props.user)
     this.props.logOutUser()
-    console.log("logout")
   }
 
   render() {
-    
     return (
       <div className="LoginContainer">
           <LoginForm />

@@ -72,14 +72,24 @@ class CreateSchedule extends Component {
       <div>
       {this.props.user.id ?
         <div>
-          <form onSubmit={this.handleSubmit}>
-              <label>Schedule Creator</label><br></br>
-                <input name="taskDescription" onChange={this.handleChange} value={this.state.taskDescription}/>
-                <input name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/><br></br>
-            <input type="submit" />
-          </form>
+          <h2>Select 2 Relaxation Categories</h2>
           <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select>
           <select name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
+          { this.props.scheduleInProgress.length < 6 ?
+            <div>
+              <h2>Add Up to 6 Tasks</h2>
+              <form onSubmit={this.handleSubmit}>
+                  <h3>Task Description</h3>
+                  <input name="taskDescription" onChange={this.handleChange} value={this.state.taskDescription}/>
+                  <h3>Task Notes</h3>
+                  <input name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/>
+                <input type="submit" value="Add Task"/>
+              </form>
+            </div>
+          :
+            null
+          }
+          <br></br>
           <button onClick={this.handleCreateSchedule}>Create Schedule</button>
         </div>
       :
