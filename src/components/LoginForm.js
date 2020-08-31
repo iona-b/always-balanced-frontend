@@ -49,7 +49,7 @@ const mapStateToProps = state => {
       userTasks: state.userTasks,
       loading: state.loading
     }
-  }
+}
   
 const mapDispatchToProps = dispatch => {
     return {

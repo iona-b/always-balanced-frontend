@@ -4,10 +4,6 @@ import Profile from '../components/Profile';
 
 class ProfileContainer extends React.Component {
 
-  componentDidMount() {
-    
-  }
-
   render() {
     return (
       <div className="ProfileContainer">

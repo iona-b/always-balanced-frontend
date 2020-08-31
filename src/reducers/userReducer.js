@@ -159,7 +159,7 @@ const userReducer = (state=initialState,action) => {
         user: {...state.user},
         userTasks: [...state.userTasks],
         userSchedules: state.userSchedules.concat(schedule),
-        currentSchedule: {...state.currentSchedule},
+        currentSchedule: {schedule},
         scheduleInProgress: [...state.scheduleInProgress],
         postedSchedule: {
           schedule: {schedule},
