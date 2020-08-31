@@ -25,6 +25,7 @@ class CreateSchedule extends Component {
         relaxationCategory2: this.props.relaxationCategories[0].category_name
       })
     }
+
   }
  
   handleChange = event => {
@@ -57,7 +58,6 @@ class CreateSchedule extends Component {
   handleFinaliseScheduleTasks = () => {this.props.postedSchedule.tasks.forEach (task => {this.props.finaliseScheduleTasks(this.props.postedSchedule.schedule.schedule.id, task.id)})}
 
   handleFinaliseScheduleActivities = () => {
-    console.log("HERE")
     let relaxationCategory1Id = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory1)[0].id
     let relaxationCategory2Id = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory2)[0].id
     this.props.finaliseScheduleActivities(this.props.postedSchedule.schedule.schedule.id, relaxationCategory1Id)
@@ -70,8 +70,8 @@ class CreateSchedule extends Component {
       {this.props.user.id ?
         <div>
           <h2>Select 2 Relaxation Categories</h2>
-          <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={uuidv4()}>{relaxationCategory.category_name}</option>)}</select>
-          <select name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={uuidv4()}>{relaxationCategory.category_name}</option>)}</select><br></br>
+          <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select>
+          <select name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
           { this.props.scheduleInProgress.length < 6 ?
             <div>
               <h2>Add Up to 6 Tasks</h2>
