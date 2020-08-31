@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTask } from '../actions/addTask'
+import { v4 as uuidv4 } from 'uuid';
  
 class CreateTask extends Component {
   state = {
@@ -29,8 +30,8 @@ class CreateTask extends Component {
         <form onSubmit={this.handleSubmit}>
           <p>
             <label>add task</label>
-              <input type="text" name="taskDescription" value={this.state.taskDescription} onChange={this.handleChange}/>
-              <input type="text" name="taskNotes" value={this.state.taskNotes} onChange={this.handleChange}/>
+              <input type="text" name="taskDescription" value={this.state.taskDescription} onChange={this.handleChange} key={uuidv4()}/>
+              <input type="text" name="taskNotes" value={this.state.taskNotes} onChange={this.handleChange} key={uuidv4()}/>
           </p>
           <input type="submit" />
         </form>

@@ -4,7 +4,6 @@ export const addUserRelaxationCategory = (userId, relaxationCategory) => {
         relaxation_category_id: relaxationCategory.id
     }
     return (dispatch) => {
-
         // dispatch({ type: 'LOADING_USER'})
         fetch('http://localhost:3000/user_relaxation_categories',{
         method:"POST",

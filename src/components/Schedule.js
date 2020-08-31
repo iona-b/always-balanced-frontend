@@ -8,7 +8,8 @@ class Schedule extends React.Component {
     weekDayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    componentDidMount() {
+    componentDidUpdate() {
+        debugger
         if (this.props.schedules.length > 0) {
             let currentSchedule = this.getCurrentSchedule()
             this.props.fetchSchedule(currentSchedule)
@@ -98,21 +99,21 @@ class Schedule extends React.Component {
             }
             if (i === 1) {
                 schedule.push(
-                    <div>
+                    <div key={uuidv4()}>
                         <p key={uuidv4()} > {hours}:{minutes} {tasks[i].task_description}: {tasks[i].task_notes} </p>
                         <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)} Lunch:{activities[0].activity_description} </p>
                     </div>
                 )
             } else if (i === 2) {
                 schedule.push(
-                    <div>
+                    <div key={uuidv4()}>
                         <p key={uuidv4()} > {hours = this.beginAfterLunchTaskHours(hours, minutes)}:{minutes = this.beginAfterLunchTaskMinutes(minutes)} {tasks[i].task_description}: {tasks[i].task_notes} </p>
                         <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)} {activities[0].activity_description} </p>
                     </div>
                 )
             } else {
                 schedule.push(
-                    <div>
+                    <div key={uuidv4()}>
                         <p key={uuidv4()} > {hours}:{minutes} {tasks[i].task_description}: {tasks[i].task_notes} </p>
                         <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)} {activities[0].activity_description} </p>
                     </div>

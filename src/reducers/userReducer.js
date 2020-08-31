@@ -117,6 +117,7 @@ const userReducer = (state=initialState,action) => {
         date: action.schedule.date,
         user_id: action.schedule.user_id
       }
+      debugger
       return {
         ...state,
         user: {...state.user},
