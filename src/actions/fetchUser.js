@@ -1,7 +1,7 @@
-export const fetchUser = (user) => {
+export const fetchUser = (userId) => {
   return (dispatch) => {
-    dispatch({ type: 'LOADING_USER'})
-    fetch(`http://localhost:3000/users/${user.id}`).then(response => {
+    // dispatch({ type: 'LOADING_USER'})
+    fetch(`http://localhost:3000/users/${userId}`).then(response => {
       return response.json()
     })
     .then(responseJSON => {

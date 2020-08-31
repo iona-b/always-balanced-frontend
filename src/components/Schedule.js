@@ -15,7 +15,6 @@ class Schedule extends React.Component {
     componentDidMount() {
         if (this.props.schedules.length > 0) {
             let currentSchedule = this.getCurrentSchedule()
-            debugger
             this.props.fetchSchedule(currentSchedule)
         }
     }
