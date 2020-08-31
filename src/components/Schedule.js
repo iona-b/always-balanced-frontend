@@ -5,13 +5,17 @@ import { v4 as uuidv4 } from 'uuid';
 
 class Schedule extends React.Component {
 
+    state = {
+        lastSchedule: 0
+    }
+
     weekDayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    componentDidUpdate() {
-        debugger
+    componentDidMount() {
         if (this.props.schedules.length > 0) {
             let currentSchedule = this.getCurrentSchedule()
+            debugger
             this.props.fetchSchedule(currentSchedule)
         }
     }
@@ -28,14 +32,11 @@ class Schedule extends React.Component {
                 let splitDate = schedule.date.split("-")
                 return parseInt(splitDate[0]) === this.newDate.getFullYear() && parseInt(splitDate[1]) === this.newDate.getMonth()+1 && parseInt(splitDate[2]) === this.newDate.getDate()
             }
-            return schedule
-            // If there's something wrong with schedule, it could be this
         })
         let todaysSchedule = schedule[schedule.length-1]
         return todaysSchedule
     }
 
-    // HERE
     beginBreakMinutes = (minutes) => {
         if (minutes === 0) {
             return minutes = 30
@@ -122,8 +123,6 @@ class Schedule extends React.Component {
         }
         return schedule
     }
-
-    // HERE
     
     render() {
         return (
