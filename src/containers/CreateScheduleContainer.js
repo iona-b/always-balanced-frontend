@@ -1,28 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import Tasks from '../components/Tasks'
 import CreateScheduleForm from '../components/CreateScheduleForm'
-import CreateTaskForm from '../components/CreateTaskForm'
 import { fetchUser } from '../actions/fetchUser'
 import ScheduleInProgress from '../components/ScheduleInProgress';
 
 class CreateScheduleContainer extends React.Component {
 
-  handleLoading = () => {
-    if(this.props.loading === true) {
-      return <div>Loading...</div>
-    } else {
-      return <Tasks tasks={this.props.userTasks} />
-    }
-  }
-
   render() {
     return (
       <div id="CreateScheduleContainer">
         <CreateScheduleForm id="create-schedule-form" />
-        {/* <CreateTaskForm id="create-task-form" /> */}
         <ScheduleInProgress id="schedule-in-progress" />
-        {/* <div id="task-list">{this.handleLoading()}</div> */}
       </div>
     );
   }
@@ -31,7 +19,6 @@ class CreateScheduleContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    userTasks: state.userTasks,
     loading: state.loading
   }
 }

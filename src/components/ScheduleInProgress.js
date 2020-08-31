@@ -7,8 +7,8 @@ class ScheduleInProgress extends React.Component {
     listScheduleTasks = () => {
         if (this.props.scheduleInProgress.length > 0) {
             return this.props.scheduleInProgress.map(task => <p key={uuidv4()}>{task.task_description}</p>)
-        } else {
-            return <h2> You haven't added any tasks yet </h2>
+        } else if (this.props.user.id) {
+            return <p> You haven't added any tasks yet </p>
         }
     }
 

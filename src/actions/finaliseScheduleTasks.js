@@ -1,4 +1,4 @@
-export const finaliseSchedule = (scheduleId, taskId) => {
+export const finaliseScheduleTasks = (scheduleId, taskId) => {
     let data = {
         schedule_id: scheduleId,
         task_id: taskId

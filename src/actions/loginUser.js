@@ -11,11 +11,12 @@ export const loginUser = (user) => {
     .then(response => response.json())
     .then(responseJSON => {
         if(!responseJSON.error){
-            dispatch({ type: 'FETCH_USER', user: responseJSON })
+            dispatch({ type: 'FETCH_USER', user: responseJSON }) 
         } else {
             alert(responseJSON.error)
         }
     })
     .catch(err => console.log('App.js Login Error:', err))
     }
+    
 }
