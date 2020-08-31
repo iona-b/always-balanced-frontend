@@ -3,7 +3,7 @@ export const finaliseScheduleActivities = (scheduleId, relaxationCategoryId) => 
         schedule_id: scheduleId,
         relaxation_category_id: relaxationCategoryId
     }
-    // return (dispatch) => {
+    return (dispatch) => {
         // dispatch({ type: 'LOADING_USER'})
         fetch('http://localhost:3000/schedule_activities',{
         method:"POST",
@@ -13,13 +13,13 @@ export const finaliseScheduleActivities = (scheduleId, relaxationCategoryId) => 
     body:JSON.stringify(data)
     })
     .then(response => response.json())
-    // .then(responseJSON => {
-    //     if(!responseJSON.error){
-    //         dispatch({ type: 'FINALISE_SCHEDULE', schedule: responseJSON })
-    //     } else {
-    //         alert(responseJSON.error)
-    //     }
-    // })
+    .then(responseJSON => {
+        if(!responseJSON.error){
+            dispatch({ type: 'FINALISE_SCHEDULE', schedule: responseJSON })
+        } else {
+            alert(responseJSON.error)
+        }
+    })
     .catch(err => console.log('App.js Login Error:', err))
-    // }
+    }
 }

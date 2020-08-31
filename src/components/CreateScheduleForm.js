@@ -17,7 +17,7 @@ class CreateSchedule extends Component {
   };
 
   componentDidMount() {
-    if (this.props.relaxationCategories.length>0) {
+    if (this.props.relaxationCategories.length>0 && this.state.relaxationCategory1 === '' && this.state.relaxationCategory2 === '') {
       this.setState({
         relaxationCategory1: this.props.relaxationCategories[0].category_name,
         relaxationCategory2: this.props.relaxationCategories[0].category_name
@@ -60,11 +60,10 @@ class CreateSchedule extends Component {
   handleFinaliseScheduleTasks = () => {this.props.postedSchedule.tasks.forEach (task => {this.props.finaliseScheduleTasks(this.props.postedSchedule.schedule.schedule.id, task.id)})}
 
   handleFinaliseScheduleActivities = () => {
-    console.log("handleFinaliseScheduleActivities")
     let relaxationCategory1Id = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory1)[0].id
     let relaxationCategory2Id = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory2)[0].id
-    finaliseScheduleActivities(this.props.postedSchedule.schedule.schedule.id, relaxationCategory1Id)
-    finaliseScheduleActivities(this.props.postedSchedule.schedule.schedule.id, relaxationCategory2Id)
+    this.props.finaliseScheduleActivities(this.props.postedSchedule.schedule.schedule.id, relaxationCategory1Id)
+    this.props.finaliseScheduleActivities(this.props.postedSchedule.schedule.schedule.id, relaxationCategory2Id)
   }
 
   render() {

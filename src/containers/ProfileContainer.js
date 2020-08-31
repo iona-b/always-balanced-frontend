@@ -1,11 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
-function NavBar() {
-  return (
-    <div className="NavBar">
-      
-    </div>
-  );
+class ProfileContainer extends React.Component {
+
+  render() {
+    return (
+      <div className="ProfileContainer">
+      </div>
+    );
+  }
+
 }
 
-export default NavBar;
+export default connect(null, null)(ProfileContainer);

@@ -1,5 +1,3 @@
-import { push } from 'react-router-redux';
-
 export const loginUser = (user) => {
     return (dispatch) => {
     dispatch({ type: 'LOADING_USER'})

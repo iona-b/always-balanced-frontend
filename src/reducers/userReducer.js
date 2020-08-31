@@ -9,6 +9,7 @@ const initialState = {
     tasks: [],
     readyToPost: false
   },
+  allRelaxationCategories: [],
   relaxationCategories: [],
   loading: false
 }
@@ -31,6 +32,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: false
         },
+        allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories],
         loading: true
       }
@@ -49,6 +51,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: false
         },
+        allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: action.user.relaxation_categories,
         loading: false
       }
@@ -77,6 +80,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: false
         },
+        allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories],
         loading: false
       }
@@ -100,6 +104,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks.concat(task2)],
           readyToPost: false
         },
+        allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories],
         loading: false
       }
@@ -124,6 +129,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: true
         },
+        allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories],
         loading: false
       }
@@ -143,6 +149,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: false
         },
+        allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories],
         loading: true
       }
@@ -161,6 +168,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: false
         },
+        allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories],
         loading: false
       }
@@ -179,6 +187,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [],
           readyToPost: false
         },
+        allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories],
         loading: false
       }
@@ -197,10 +206,50 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.postedSchedule.tasks],
           readyToPost: false
         },
+        allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories],
         loading: false
       }
-  // DEFAULT CASES
+      // RELAXATION CATEGORIES
+    case 'FETCH_RELAXATION_CATEGORIES':
+      console.log('FETCH_RELAXATION_CATEGORIES')
+      console.log(state)
+      return {
+        ...state,
+        user: {...state.user},
+        userTasks: state.user.tasks,
+        userSchedules: [...state.userSchedules],
+        currentSchedule: {...state.currentSchedule},
+        scheduleInProgress: [...state.scheduleInProgress],
+        postedSchedule: {
+          schedule: {...state.postedSchedule.schedule},
+          tasks: [...state.postedSchedule.tasks],
+          readyToPost: false
+        },
+        allRelaxationCategories: action.relaxationCategories,
+        relaxationCategories: [...state.relaxationCategories],
+        loading: false
+      }
+      case 'ADD_USER_RELAXATION_CATEGORY':
+        console.log('ADD_USER_RELAXATION_CATEGORY')
+        console.log(state)
+        return {
+          ...state,
+          user: {...state.user},
+          userTasks: state.user.tasks,
+          userSchedules: [...state.userSchedules],
+          currentSchedule: {...state.currentSchedule},
+          scheduleInProgress: [...state.scheduleInProgress],
+          postedSchedule: {
+            schedule: {...state.postedSchedule.schedule},
+            tasks: [...state.postedSchedule.tasks],
+            readyToPost: false
+          },
+          allRelaxationCategories: [...state.allRelaxationCategories],
+          relaxationCategories: state.relaxationCategories.concat(action.userRelaxationCategory),
+          loading: false
+        }
+      // DEFAULT CASES
     default:
       return state;
   }

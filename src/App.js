@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch, NavLink, withRouter} from 'react-router-dom'
+import {Route, Switch, NavLink} from 'react-router-dom'
 import { connect } from 'react-redux';
 import './App.css';
 import CreateScheduleContainer from './containers/CreateScheduleContainer'
@@ -30,6 +30,7 @@ class App extends React.Component {
         </div>
         :
         <div id="nav-bar">
+          <NavLink to='/' exact >Home</NavLink>
         </div>
         }
         <Switch>

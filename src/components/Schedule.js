@@ -27,11 +27,14 @@ class Schedule extends React.Component {
                 let splitDate = schedule.date.split("-")
                 return parseInt(splitDate[0]) === this.newDate.getFullYear() && parseInt(splitDate[1]) === this.newDate.getMonth()+1 && parseInt(splitDate[2]) === this.newDate.getDate()
             }
+            return schedule
+            // If there's something wrong with schedule, it could be this
         })
         let todaysSchedule = schedule[schedule.length-1]
         return todaysSchedule
     }
 
+    // HERE
     beginBreakMinutes = (minutes) => {
         if (minutes === 0) {
             return minutes = 30
@@ -39,7 +42,7 @@ class Schedule extends React.Component {
             return minutes = 0
         } else if (minutes === 45) {
             return minutes = 15
-        } else if (minutes = 15) {
+        } else if (minutes === 15) {
             return minutes = 45
         }
     }
@@ -61,7 +64,7 @@ class Schedule extends React.Component {
             return minutes = 0
         } else if (minutes === 30) {
             return minutes = 15
-        } else if (minutes = 45) {
+        } else if (minutes === 45) {
             return minutes = 30
         }
     }
@@ -90,7 +93,7 @@ class Schedule extends React.Component {
         let schedule = []
 
         for (let i=0; i< tasks.length; i ++) {
-            if (i>0 && i !=2 ) {
+            if (i>0 && i !==2 ) {
                 minutes = this.beginTaskMinutes(minutes)
             }
             if (i === 1) {
@@ -118,6 +121,8 @@ class Schedule extends React.Component {
         }
         return schedule
     }
+
+    // HERE
     
     render() {
         return (
