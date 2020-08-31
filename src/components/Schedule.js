@@ -5,6 +5,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 class Schedule extends React.Component {
 
+    state = {
+        lastSchedule: 0
+    }
+
     weekDayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -27,14 +31,11 @@ class Schedule extends React.Component {
                 let splitDate = schedule.date.split("-")
                 return parseInt(splitDate[0]) === this.newDate.getFullYear() && parseInt(splitDate[1]) === this.newDate.getMonth()+1 && parseInt(splitDate[2]) === this.newDate.getDate()
             }
-            return schedule
-            // If there's something wrong with schedule, it could be this
         })
         let todaysSchedule = schedule[schedule.length-1]
         return todaysSchedule
     }
 
-    // HERE
     beginBreakMinutes = (minutes) => {
         if (minutes === 0) {
             return minutes = 30
@@ -98,21 +99,21 @@ class Schedule extends React.Component {
             }
             if (i === 1) {
                 schedule.push(
-                    <div>
+                    <div key={uuidv4()}>
                         <p key={uuidv4()} > {hours}:{minutes} {tasks[i].task_description}: {tasks[i].task_notes} </p>
                         <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)} Lunch:{activities[0].activity_description} </p>
                     </div>
                 )
             } else if (i === 2) {
                 schedule.push(
-                    <div>
+                    <div key={uuidv4()}>
                         <p key={uuidv4()} > {hours = this.beginAfterLunchTaskHours(hours, minutes)}:{minutes = this.beginAfterLunchTaskMinutes(minutes)} {tasks[i].task_description}: {tasks[i].task_notes} </p>
                         <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)} {activities[0].activity_description} </p>
                     </div>
                 )
             } else {
                 schedule.push(
-                    <div>
+                    <div key={uuidv4()}>
                         <p key={uuidv4()} > {hours}:{minutes} {tasks[i].task_description}: {tasks[i].task_notes} </p>
                         <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)} {activities[0].activity_description} </p>
                     </div>
@@ -121,8 +122,6 @@ class Schedule extends React.Component {
         }
         return schedule
     }
-
-    // HERE
     
     render() {
         return (

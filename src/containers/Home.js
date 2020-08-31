@@ -7,7 +7,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        {this.props.user.id ?
+        {this.props.token ?
           <div className="Home">
             <NavLink to='/createschedule'>Create Schedule</NavLink>
             <NavLink to='/profile'>Profile</NavLink>
@@ -26,7 +26,8 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
   return {
-      user: state.user
+      user: state.user,
+      token: state.token
   }
 }
 

@@ -6,6 +6,8 @@ import { addTaskToSIP } from '../actions/addTaskToSIP';
 import { addTaskToPostedSchedule } from '../actions/addTaskToPostedSchedule';
 import { finaliseScheduleTasks } from '../actions/finaliseScheduleTasks';
 import { finaliseScheduleActivities } from '../actions/finaliseScheduleActivities';
+import { v4 as uuidv4 } from 'uuid';
+
  
 class CreateSchedule extends Component {
 
@@ -23,13 +25,7 @@ class CreateSchedule extends Component {
         relaxationCategory2: this.props.relaxationCategories[0].category_name
       })
     }
-  }
-  
-  componentDidUpdate() {
-    if (this.props.readyToPost === true && this.props.postedSchedule.tasks.length === this.props.scheduleInProgress.length) {
-      this.handleFinaliseScheduleTasks()
-      this.handleFinaliseScheduleActivities()
-    }
+
   }
  
   handleChange = event => {
@@ -55,6 +51,8 @@ class CreateSchedule extends Component {
   handleCreateSchedule = () => {
     this.props.addSchedule(this.props.user.id)
     this.props.scheduleInProgress.forEach (task => this.props.addTaskToPostedSchedule(task))
+    setTimeout(this.handleFinaliseScheduleTasks, 2000)
+    setTimeout(this.handleFinaliseScheduleActivities, 2000)
   }
 
   handleFinaliseScheduleTasks = () => {this.props.postedSchedule.tasks.forEach (task => {this.props.finaliseScheduleTasks(this.props.postedSchedule.schedule.schedule.id, task.id)})}

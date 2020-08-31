@@ -11,9 +11,12 @@ export const signUpUser = (user) => {
     .then(response => response.json())
     .then(responseJSON => {
         if(!responseJSON.error){
-            dispatch({ type: 'FETCH_USER', user: responseJSON })
-            console.log("signUpUser")
-            console.log(responseJSON)
+            if(responseJSON.user){
+                localStorage.token = responseJSON.token
+                dispatch({ type: 'SET_TOKEN_AND_USER_ID', user: responseJSON }) 
+            }else {
+                alert(responseJSON.error)
+            }
         } else {
             alert(responseJSON.error)
         }

@@ -1,4 +1,6 @@
 const initialState = {
+  token:'',
+  userId: '',
   user: {},
   userTasks: [],
   userSchedules: [],
@@ -17,12 +19,39 @@ const initialState = {
 const userReducer = (state=initialState,action) => {
   // USER CASES
   switch (action.type) {
+    case 'SET_TOKEN_AND_USER_ID':
+      console.log('SET_TOKEN_AND_USER_ID')
+      console.log(state)
+      let sliced = action.user.user.slice(1,action.user.user.length-2)
+      let split1 = sliced.split(',')
+      let split2 = split1[0].split(':')
+      let id = parseInt(split2[1])
+      return {
+        ...state,
+        token: action.user.token,
+        userId: id,
+        user: {...state.user},
+        userTasks: [...state.userTasks],
+        userSchedules: [...state.userSchedules],
+        currentSchedule: {...state.currentSchedule},
+        scheduleInProgress: [...state.scheduleInProgress],
+        postedSchedule: {
+          schedule: {...state.postedSchedule.schedule},
+          tasks: [...state.postedSchedule.tasks],
+          readyToPost: false
+        },
+        allRelaxationCategories: [...state.allRelaxationCategories],
+        relaxationCategories: action.user.relaxation_categories,
+        loading: false
+      }
     case 'LOADING_USER':
       console.log('LOADING_USER')
       console.log(state)
       return {
         ...state,
+        token: state.token,
         user: {...state.user},
+        userId: state.userId,
         userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
         currentSchedule: {...state.currentSchedule},
@@ -41,6 +70,8 @@ const userReducer = (state=initialState,action) => {
       console.log(state)
       return {
         ...state,
+        token: state.token,
+        userId: state.userId,
         user: action.user,
         userTasks: action.user.tasks,
         userSchedules: action.user.schedules,
@@ -70,6 +101,8 @@ const userReducer = (state=initialState,action) => {
       }
       return {
         ...state,
+        token: state.token,
+        userId: state.userId,
         user: {...state.user},
         userTasks: state.userTasks.concat(task),
         userSchedules: [...state.user.schedules],
@@ -94,6 +127,8 @@ const userReducer = (state=initialState,action) => {
       }
       return {
         ...state,
+        token: state.token,
+        userId: state.userId,
         user: {...state.user},
         userTasks: state.userTasks.concat(task2),
         userSchedules: [...state.user.schedules],
@@ -119,10 +154,12 @@ const userReducer = (state=initialState,action) => {
       }
       return {
         ...state,
+        token: state.token,
+        userId: state.userId,
         user: {...state.user},
         userTasks: [...state.userTasks],
         userSchedules: state.userSchedules.concat(schedule),
-        currentSchedule: {...state.currentSchedule},
+        currentSchedule: {schedule},
         scheduleInProgress: [...state.scheduleInProgress],
         postedSchedule: {
           schedule: {schedule},
@@ -139,6 +176,8 @@ const userReducer = (state=initialState,action) => {
       console.log(state)
       return {
         ...state,
+        token: state.token,
+        userId: state.userId,
         user: {...state.user},
         userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
@@ -158,6 +197,8 @@ const userReducer = (state=initialState,action) => {
       console.log(state)
       return {
         ...state,
+        token: state.token,
+        userId: state.userId,
         user: {...state.user},
         userTasks: state.user.tasks,
         userSchedules: [...state.userSchedules],
@@ -177,6 +218,8 @@ const userReducer = (state=initialState,action) => {
       console.log(state)
       return {
         ...state,
+        token: state.token,
+        userId: state.userId,
         user: {...state.user},
         userTasks: state.user.tasks,
         userSchedules: [...state.userSchedules],
@@ -196,6 +239,8 @@ const userReducer = (state=initialState,action) => {
       console.log(state)
       return {
         ...state,
+        token: state.token,
+        userId: state.userId,
         user: {...state.user},
         userTasks: state.user.tasks,
         userSchedules: [...state.userSchedules],
@@ -216,6 +261,8 @@ const userReducer = (state=initialState,action) => {
       console.log(state)
       return {
         ...state,
+        token: state.token,
+        userId: state.userId,
         user: {...state.user},
         userTasks: state.user.tasks,
         userSchedules: [...state.userSchedules],
@@ -235,6 +282,8 @@ const userReducer = (state=initialState,action) => {
         console.log(state)
         return {
           ...state,
+          token: state.token,
+          userId: state.userId,
           user: {...state.user},
           userTasks: state.user.tasks,
           userSchedules: [...state.userSchedules],

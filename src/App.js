@@ -10,8 +10,15 @@ import ProfileContainer from './containers/ProfileContainer'
 import ScheduleContainer from './containers/ScheduleContainer'
 import SignUpContainer from './containers/SignUpContainer'
 import { logOutUser } from './actions/logOutUser'
+import { fetchUser } from './actions/fetchUser';
 
 class App extends React.Component {
+
+  componentDidUpdate() {
+    if (this.props.token && !this.props.user.id) {
+      this.props.fetchUser(this.props.userId)
+    }
+  }
 
   handleLogOut = () => {
     this.props.logOutUser()
@@ -20,7 +27,7 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        {this.props.user.id ?
+        {this.props.token ?
         <div id="nav-bar">
           <NavLink to='/' exact >Home</NavLink>
           <NavLink to='/createschedule'>Create Schedule</NavLink>
@@ -49,12 +56,15 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-      user: state.user
+      userId: state.userId,
+      user: state.user,
+      token: state.token
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchUser: (userId) => dispatch(fetchUser(userId)),
     logOutUser: () => dispatch(logOutUser())
   }
 }
