@@ -15,6 +15,7 @@ export const signUpUser = (user) => {
                 localStorage.token = responseJSON.token
                 dispatch({ type: 'SET_TOKEN_AND_USER_ID', user: responseJSON }) 
             }else {
+    
                 alert(responseJSON.error)
             }
         } else {
