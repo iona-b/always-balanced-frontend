@@ -2,3 +2,11 @@
     height: 50px;
     background-color: red;
 }
+
+#show-existing-tasks {
+    float: right;
+}
+
+#create-schedule-form-container {
+    float: left;
+}

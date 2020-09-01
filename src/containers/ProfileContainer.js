@@ -6,11 +6,24 @@ class ProfileContainer extends React.Component {
 
   render() {
     return (
-      <div className="ProfileContainer">
+      <div>
+        {this.props.user.id ?
+          <div className="ProfileContainer">
+            <Profile />
+          </div>
+        :
+          <h2> You are not logged in + add button to log in </h2>
+        }
       </div>
     );
   }
 
 }
 
-export default connect(null, null)(ProfileContainer);
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, null)(ProfileContainer);

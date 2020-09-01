@@ -64,8 +64,6 @@ class CreateSchedule extends Component {
   render() {
     return (
       <div>
-      {this.props.user.id ?
-        <div>
           <h2>Select 2 Relaxation Categories</h2>
           <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select>
           <select name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
@@ -85,11 +83,7 @@ class CreateSchedule extends Component {
           }
           <br></br>
           <button onClick={this.handleCreateSchedule}>Create Schedule</button>
-        </div>
-      :
-      "You are not logged in"
-    }
-          </div>
+      </div>
     );
   }
 }
