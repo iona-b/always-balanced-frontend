@@ -14,6 +14,26 @@ import { fetchUser } from './actions/fetchUser';
 
 class App extends React.Component {
 
+  componentDidMount() {
+    if(localStorage.token) {
+      fetch('http://localhost:3000/persist',{
+        headers:{
+          "Authorization": `Bearer ${localStorage.token}`
+        }
+      })
+      .then(response => response.json())
+      .then(json =>{
+        this.handleAuthResponse(json)
+      })
+    }
+  }
+  
+  handleAuthResponse = (json) => {
+    if (json.user){
+      localStorage.token = json.token
+    } 
+  }
+
   componentDidUpdate() {
     if (this.props.token && !this.props.user.id) {
       this.props.fetchUser(this.props.userId)
@@ -22,6 +42,7 @@ class App extends React.Component {
 
   handleLogOut = () => {
     this.props.logOutUser()
+    localStorage.clear();
   }
 
   render(){

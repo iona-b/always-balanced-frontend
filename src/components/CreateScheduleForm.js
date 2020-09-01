@@ -6,11 +6,8 @@ import { addTaskToSIP } from '../actions/addTaskToSIP';
 import { addTaskToPostedSchedule } from '../actions/addTaskToPostedSchedule';
 import { finaliseScheduleTasks } from '../actions/finaliseScheduleTasks';
 import { finaliseScheduleActivities } from '../actions/finaliseScheduleActivities';
-import { v4 as uuidv4 } from 'uuid';
-
  
 class CreateSchedule extends Component {
-
   state = {
     taskDescription: '',
     taskNotes: '',
@@ -49,7 +46,7 @@ class CreateSchedule extends Component {
   };
 
   handleCreateSchedule = () => {
-    this.props.addSchedule(this.props.user.id)
+    this.props.addSchedule(this.props.user.id, this.props.token)
     this.props.scheduleInProgress.forEach (task => this.props.addTaskToPostedSchedule(task))
     setTimeout(this.handleFinaliseScheduleTasks, 2000)
     setTimeout(this.handleFinaliseScheduleActivities, 2000)
@@ -103,14 +100,15 @@ const mapStateToProps = state => {
     scheduleInProgress: state.scheduleInProgress,
     postedSchedule: state.postedSchedule,
     readyToPost: state.postedSchedule.readyToPost,
-    relaxationCategories: state.relaxationCategories
+    relaxationCategories: state.relaxationCategories,
+    token: state.token
   }
 }
  
 const mapDispatchToProps = dispatch => {
   return {
     addTask: (task) => dispatch(addTask(task)),
-    addSchedule: (schedule) => dispatch(addSchedule(schedule)),
+    addSchedule: (schedule, token) => dispatch(addSchedule(schedule, token)),
     addTaskToSIP: (task) => dispatch(addTaskToSIP(task)),
     addTaskToPostedSchedule: (task) => dispatch(addTaskToPostedSchedule(task)),
     finaliseScheduleTasks: (scheduleId, taskId) => dispatch(finaliseScheduleTasks(scheduleId, taskId)),

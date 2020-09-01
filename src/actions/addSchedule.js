@@ -1,4 +1,4 @@
-export const addSchedule = (userId) => {
+export const addSchedule = (userId, token) => {
     let data = {
         user_id: userId
     }
@@ -7,7 +7,8 @@ export const addSchedule = (userId) => {
     fetch('http://localhost:3000/schedules',{
     method:"POST",
     headers:{
-       'Content-Type':'application/json'
+       'Content-Type':'application/json',
+       'Authorization': `Bearer ${token}`
     },
     body:JSON.stringify(data)
     })
