@@ -4,6 +4,13 @@ import Profile from '../components/Profile';
 
 class ProfileContainer extends React.Component {
 
+  componentDidUpdate() {
+    if (!this.props.userId) {
+      debugger
+      this.props.history.push('/')
+    }
+  }
+
   render() {
     return (
       <div>

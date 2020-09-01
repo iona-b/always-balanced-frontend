@@ -1,3 +1,7 @@
+body {
+    font-family: Palatino, URW Palladio L, serif;
+}
+
 #nav-bar {
     height: 50px;
     background-color: red;
@@ -9,4 +13,38 @@
 
 #create-schedule-form-container {
     float: left;
+}
+
+#modal {
+    width: 400px;
+    height: 400px;
+    background-color: powderblue;
+    border: solid;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.profile-logos {
+    width: 200px;
+}
+
+.profile-divs {
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.profile-headers {
+    cursor: pointer;
+}
+
+#tasks-modal {
+    overflow: scroll;
+}
+
+#show-existing-tasks {
+    height: 400px;
+    overflow: scroll;
 }

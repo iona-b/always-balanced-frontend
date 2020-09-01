@@ -1,12 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import Schedule from '../components/Schedule'
 
-function ScheduleContainer() {
-  return (
-    <div className="ScheduleContainer">
-      <Schedule />
-    </div>
-  );
+class ScheduleContainer extends React.Component {
+
+  render() {
+    return (
+      <div className="ScheduleContainer">
+        <Schedule />
+      </div>
+    );
+  }
+
 }
 
-export default ScheduleContainer;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, null)(ScheduleContainer);

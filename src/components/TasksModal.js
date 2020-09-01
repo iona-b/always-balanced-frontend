@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import { connect } from 'react-redux'
-import { addTaskToSIP } from '../actions/addTaskToSIP';
+import { removeTask } from '../actions/removeTask';
 
-class ShowExisitingTasks extends React.Component {
+class TasksModal extends React.Component {
 
     listTasks = () => {
         if (this.props.tasks) {
@@ -10,7 +10,7 @@ class ShowExisitingTasks extends React.Component {
                 return (
                     <div>
                         <p key={task.id}>{task.task_description}</p>
-                        <button name={task.id} onClick={this.handleAddTask}>Add To Schedule</button>
+                        <button name={task.id} onClick={this.handleRemoveTask}>Remove</button>
                     </div>
                 ) 
             })
@@ -19,18 +19,20 @@ class ShowExisitingTasks extends React.Component {
         }
     }
 
-    handleAddTask = event => {
-        let task = this.props.tasks.filter(task => task.id === parseInt(event.target.name))
-        this.props.addTaskToSIP(task)
+    handleRemoveTask = event => {
+        debugger
+        this.props.removeTask(event.target.name)
     }
 
     render() {
+
         return (
-            <div id="show-existing-tasks">
+            <div id="tasks-modal">TasksModal
                 <h2> Existing Tasks </h2>
                 {this.listTasks()}
             </div>
-        );
+        )
+    
     }
 
 }
@@ -43,8 +45,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-      addTaskToSIP: (task) => dispatch(addTaskToSIP(task))
+      removeTask: (taskId) => dispatch(removeTask(taskId))
     };
   };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowExisitingTasks);
+export default connect(mapStateToProps, mapDispatchToProps)(TasksModal);
