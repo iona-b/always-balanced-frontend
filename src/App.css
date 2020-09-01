@@ -4,11 +4,13 @@ body {
 
 #nav-bar {
     height: 50px;
-    background-color: red;
+    background-color: #4a8553;
 }
 
 #show-existing-tasks {
     float: right;
+    background: #4a8553;
+    width: 300px;
 }
 
 #create-schedule-form-container {

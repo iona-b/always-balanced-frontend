@@ -20,7 +20,6 @@ class TasksModal extends React.Component {
     }
 
     handleRemoveTask = event => {
-        debugger
         this.props.removeTask(event.target.name)
     }
 

@@ -6,7 +6,6 @@ class ProfileContainer extends React.Component {
 
   componentDidUpdate() {
     if (!this.props.userId) {
-      debugger
       this.props.history.push('/')
     }
   }
