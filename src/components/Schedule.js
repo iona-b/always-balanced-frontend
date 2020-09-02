@@ -6,6 +6,14 @@ import { Link} from 'react-router-dom'
 
 class Schedule extends React.Component {
 
+    componentDidMount() {
+        return this.props.currentSchedule.id !== "" ? this.props.fetchSchedule(this.props.currentSchedule.id) : null
+    }
+
+    componentDidUpdate() {
+        return this.props.currentSchedule.id !== "" && this.props.currentSchedule.activities.length === 0 ? this.props.fetchSchedule(this.props.currentSchedule.id) : null
+    }
+
     weekDayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -66,39 +74,43 @@ class Schedule extends React.Component {
     }
 
     getTasks = () => {
-        let hours = parseInt(this.props.user.start_work_time.slice(11, 13))
-        let minutes = parseInt(this.props.user.start_work_time.slice(14, 16))
-        let tasks = this.props.currentSchedule.tasks
-        let activities = this.props.currentSchedule.activities
-        let schedule = []
-        for (let i=0; i< tasks.length; i ++) {
-            if (i>0 && i !==2 ) {
-                minutes = this.beginTaskMinutes(minutes)
+        if (this.props.currentSchedule.activities.length > 0) {
+            let hours = parseInt(this.props.user.start_work_time.slice(11, 13))
+            let minutes = parseInt(this.props.user.start_work_time.slice(14, 16))
+            let tasks = this.props.currentSchedule.tasks
+            let activities = this.props.currentSchedule.activities
+            let schedule = []
+            for (let i=0; i< tasks.length; i ++) {
+                if (i>0 && i !==2 ) {
+                    minutes = this.beginTaskMinutes(minutes)
+                }
+                if (i === 1) {
+                    schedule.push(
+                        <div key={uuidv4()}>
+                            <p key={uuidv4()} > {hours}:{minutes}{minutes === 0 ? 0 : null }: {tasks[i].task_description}: {tasks[i].task_notes} </p>
+                            <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)}{minutes === 0 ? 0 : null } Enjoy a healthy, nutritious lunch before you {activities[0].activity_description} </p>
+                        </div>
+                    )
+                } else if (i === 2) {
+                    schedule.push(
+                        <div key={uuidv4()}>
+                            <p key={uuidv4()} > {hours = this.beginAfterLunchTaskHours(hours, minutes)}{minutes === 0 ? 0 : null }:{minutes = this.beginAfterLunchTaskMinutes(minutes)}: {tasks[i].task_description}: {tasks[i].task_notes} </p>
+                            <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}{minutes === 0 ? 0 : null }:{minutes = this.beginBreakMinutes(minutes)} {activities[0].activity_description} </p>
+                        </div>
+                    )
+                } else {
+                    schedule.push(
+                        <div key={uuidv4()}>
+                            <p key={uuidv4()} > {hours}:{minutes}{minutes === 0 ? 0 : null }: {tasks[i].task_description}: {tasks[i].task_notes} </p>
+                            <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)}{minutes === 0 ? 0 : null }: {activities[0].activity_description} </p>
+                        </div>
+                    )
+                }       
             }
-            if (i === 1) {
-                schedule.push(
-                    <div key={uuidv4()}>
-                        <p key={uuidv4()} > {hours}:{minutes}{minutes === 0 ? 0 : null }: {tasks[i].task_description}: {tasks[i].task_notes} </p>
-                        <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)}{minutes === 0 ? 0 : null } Enjoy a healthy, nutritious lunch before you {activities[0].activity_description} </p>
-                    </div>
-                )
-            } else if (i === 2) {
-                schedule.push(
-                    <div key={uuidv4()}>
-                        <p key={uuidv4()} > {hours = this.beginAfterLunchTaskHours(hours, minutes)}{minutes === 0 ? 0 : null }:{minutes = this.beginAfterLunchTaskMinutes(minutes)}: {tasks[i].task_description}: {tasks[i].task_notes} </p>
-                        <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}{minutes === 0 ? 0 : null }:{minutes = this.beginBreakMinutes(minutes)} {activities[0].activity_description} </p>
-                    </div>
-                )
-            } else {
-                schedule.push(
-                    <div key={uuidv4()}>
-                        <p key={uuidv4()} > {hours}:{minutes}{minutes === 0 ? 0 : null }: {tasks[i].task_description}: {tasks[i].task_notes} </p>
-                        <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)}{minutes === 0 ? 0 : null }: {activities[0].activity_description} </p>
-                    </div>
-                )
-            }       
-        }
         return schedule
+        } else {
+            return this.props.fetchSchedule(this.props.currentSchedule.id)
+        }
     }
     
     render() {

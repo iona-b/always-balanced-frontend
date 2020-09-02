@@ -12,6 +12,10 @@ class CreateScheduleContainer extends React.Component {
     this.props.deleteCurrentSchedule(this.props.currentSchedule.id)
   }
 
+  fetchSchedule = () => {
+    this.props.fetchSchedule(this.props.currentSchedule.id)
+  }
+
   render() {
     return (
       <div> 
@@ -44,7 +48,7 @@ class CreateScheduleContainer extends React.Component {
           <div className="form-containers">
             <h2> Please log in to create your schedule </h2>
             <Link to='/' >
-              <button>Home</button>
+              <button onClick={this.fetchSchedule}>Home</button>
             </Link>
           </div>
           :
