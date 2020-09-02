@@ -34,21 +34,22 @@ class SignUpForm extends React.Component{
     render(){
         return (
             <div id="SignUpForm">
+            <h2 className="form-headers">Create Your Profile</h2>
             <form onSubmit={(event) => this.handleSignUp(event)}>
-                <label>UserName</label>
-                <input type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
+                <h4 className="form-labels">User Name</h4>
+                <input type="text" name="username" value={this.state.username} className="input-fields" onChange={this.handleChange}/>
                 <br/>
-                <label>Password</label>
-                <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
+                <h4 className="form-labels">Password</h4>
+                <input type="password" name="password" value={this.state.password} className="input-fields" onChange={this.handleChange}/>
                 <br/>
-                <label>Start Work Time</label>
-                <input type="time" name="startWorkTime" value={this.state.startWorkTime} onChange={this.handleChange}/>
+                <h4 className="form-labels">At what time do you like to begin work? </h4>
+                <input type="time" name="startWorkTime" value={this.state.startWorkTime} className="input-fields" onChange={this.handleChange}/>
                 <br/>
-                <label>Minimum Number of Hours</label>
-                <input type="number" name="minNumHours" value={this.state.minNumHours} onChange={this.handleChange}/>
+                <h4 className="form-labels">What is the minimum number of hours you need to work per day? </h4>
+                <input type="number" name="minNumHours" value={this.state.minNumHours} className="input-fields" onChange={this.handleChange}/>
                 <br/>
-                <label>Maximum Number of Hours</label>
-                <input type="number" name="maxNumHours" value={this.state.maxNumHours} onChange={this.handleChange}/>
+                <h4 className="form-labels">And what's the maximum number of hours you like to work? </h4>
+                <input type="number" name="maxNumHours" value={this.state.maxNumHours} className="input-fields" onChange={this.handleChange}/>
                 <br/>
                 <input type="submit" value="Submit" />
             </form>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import {Link} from 'react-router-dom'
 import CreateScheduleFormContainer from '../containers/CreateScheduleFormContainer'
 import ShowExistingTasks from '../components/ShowExistingTasks';
 
@@ -7,14 +8,19 @@ class CreateScheduleContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="form-containers">
         {this.props.user.id ?
           <div id="CreateScheduleContainer">
               <CreateScheduleFormContainer />
               <ShowExistingTasks />
         </div>
         :
-          <h2> You are not logged in + add button to log in </h2>
+          <div>
+            <h2> Please log in to create your schedule </h2>
+            <Link to='/' >
+              <button>Home</button>
+            </Link>
+          </div>
         }
       </div>
     );

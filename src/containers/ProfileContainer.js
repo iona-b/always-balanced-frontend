@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import Profile from '../components/Profile';
 
@@ -14,11 +15,16 @@ class ProfileContainer extends React.Component {
     return (
       <div>
         {this.props.user.id ?
-          <div className="ProfileContainer">
+          <div className="profile-container">
             <Profile />
           </div>
         :
-          <h2> You are not logged in + add button to log in </h2>
+          <div>
+            <h2> Please log in to view your profile </h2>
+            <Link to='/' >
+              <button>Home</button>
+            </Link>
+          </div>
         }
       </div>
     );

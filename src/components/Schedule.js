@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchSchedule } from '../actions/fetchSchedule'
 import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom'
 
 class Schedule extends React.Component {
 
@@ -92,7 +93,6 @@ class Schedule extends React.Component {
         let tasks = this.props.currentSchedule.tasks
         let activities = this.props.currentSchedule.activities
         let schedule = []
-        debugger
         for (let i=0; i< tasks.length; i ++) {
             if (i>0 && i !==2 ) {
                 minutes = this.beginTaskMinutes(minutes)
@@ -126,9 +126,20 @@ class Schedule extends React.Component {
     render() {
         return (
             <div className="schedule">
-                <h2>Schedule for {this.day}, {this.month} {this.date}, {this.year}</h2>
                 {
-                    this.props.currentSchedule.date ? this.getTasks() : "No Schedule"
+                    this.props.currentSchedule.date
+                    ?
+                        <div>
+                            <h2 className="form-headers">Schedule for {this.day}, {this.month} {this.date}, {this.year}</h2>
+                            {this.getTasks()}
+                        </div>
+                    :
+                        <div>
+                            <h2> You haven't created a schedule yet </h2>
+                            <Link to='/createschedule' >
+                                <button>Create a Schedule</button>
+                            </Link>
+                        </div>
                 }
             </div>
         );

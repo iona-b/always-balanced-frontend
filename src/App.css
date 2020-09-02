@@ -1,16 +1,99 @@
 body {
     font-family: Palatino, URW Palladio L, serif;
+    position: relative;
 }
 
+
+/* Nav Bar Styling  */
+
 #nav-bar {
+    height: 120px;
+    background-color: #95C8AB;
+}
+
+#lower-nav-bar {
     height: 50px;
-    background-color: #4a8553;
+    background-color: #95C8AB;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+#clock {
+    float: right;
+    font-size: 30px;
+    text-align: right;
+    margin-right: 20px;
+    color: white;
+}
+
+#always-balanced-navbar-logo {
+    height: 120px;
+    padding-left: 20px;
+}
+
+.nav-bar-divs {
+    float: left;
+}
+
+.back-button {
+    position: absolute;
+    left: 0%;
+    margin: 10px;
+}
+
+/* Home Styling */
+
+#home-div {
+    margin-top: 20px;
+}
+
+/* Sign Up and Login Styling  */
+
+.form-containers {
+    margin-top: 20px;
+    text-align: center;
+    width: 500px;
+    position: absolute;
+    left: 33%;
+    overflow: scroll;
+    overflow-y: auto;
+}
+
+.form-headers {
+    margin-bottom: 40px;
+}
+
+.form-labels {
+    margin-bottom: 10px;
+}
+
+.forms {
+    overflow: scroll;
+}
+
+.input-fields {
+    margin-bottom: 10px;
 }
 
 #show-existing-tasks {
-    float: right;
-    background: #4a8553;
-    width: 300px;
+    margin-top: 10px;
+    position: absolute;
+    left: 100%;
+    background-color: #95C8AB;
+    width: 400px;
+    text-align: center;
+}
+
+/* Schedule Styling  */
+
+#schedule-container {
+    margin-top: 20px;
+    text-align: center;
+    width: 500px;
+    position: absolute;
+    left: 33%;
 }
 
 #create-schedule-form-container {
@@ -48,5 +131,9 @@ body {
 
 #show-existing-tasks {
     height: 400px;
+    overflow: scroll;
+}
+
+#task-list {
     overflow: scroll;
 }

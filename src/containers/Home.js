@@ -8,13 +8,13 @@ class Home extends React.Component {
     return (
       <div>
         {this.props.token ?
-          <div className="Home">
+          <div id="home-div">
             <NavLink to='/createschedule'>Create Schedule</NavLink>
             <NavLink to='/profile'>Profile</NavLink>
             <NavLink to='/schedule'>Schedule</NavLink>
           </div>
         :
-          <div className="Home">
+          <div id="home-div">
             <NavLink to='/login'>Login</NavLink>
             <NavLink to='/signup'>Sign Up</NavLink>
           </div>

@@ -3,16 +3,17 @@ import React from 'react';
 class Tasks extends React.Component {
 
   listTasks = () => {
-    if (this.props.tasks) {
+    if (this.props.tasks.length>0) {
       return this.props.tasks.map(task => <p key={task.id}>{task.task_description}</p>)
     } else {
-      return <h2> You don't have any tasks yet </h2>
+      return <p> You don't have any tasks yet </p>
     }
   }
 
   render() {
     return (
-      <div id="tasks">
+      <div id="task-list">
+        <h2 className="form-headers">Your Tasks</h2>
         {this.listTasks()}
       </div>
     );

@@ -64,16 +64,17 @@ class CreateSchedule extends Component {
   render() {
     return (
       <div>
-          <h2>Select 2 Relaxation Categories</h2>
+          <h1 className="form-headers">Create Today's Schedule</h1>
+          <h2 className="form-headers">Select 2 Relaxation Categories</h2>
           <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select>
           <select name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
           { this.props.scheduleInProgress.length < 6 ?
             <div>
-              <h2>Add Up to 6 Tasks</h2>
+              <h2 className="form-headers">Add Up to 6 Tasks</h2>
               <form onSubmit={this.handleSubmit}>
-                  <h3>Task Description</h3>
+                  <h4 className="form-labels">Task Description</h4>
                   <input name="taskDescription" onChange={this.handleChange} value={this.state.taskDescription}/>
-                  <h3>Task Notes</h3>
+                  <h4 className="form-labels">Task Notes</h4>
                   <input name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/>
                 <input type="submit" value="Add Task"/>
               </form>
