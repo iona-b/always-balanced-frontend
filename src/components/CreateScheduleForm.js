@@ -6,11 +6,8 @@ import { addTaskToSIP } from '../actions/addTaskToSIP';
 import { addTaskToPostedSchedule } from '../actions/addTaskToPostedSchedule';
 import { finaliseScheduleTasks } from '../actions/finaliseScheduleTasks';
 import { finaliseScheduleActivities } from '../actions/finaliseScheduleActivities';
-import { v4 as uuidv4 } from 'uuid';
-
  
 class CreateSchedule extends Component {
-
   state = {
     taskDescription: '',
     taskNotes: '',
@@ -49,7 +46,7 @@ class CreateSchedule extends Component {
   };
 
   handleCreateSchedule = () => {
-    this.props.addSchedule(this.props.user.id)
+    this.props.addSchedule(this.props.user.id, this.props.token)
     this.props.scheduleInProgress.forEach (task => this.props.addTaskToPostedSchedule(task))
     setTimeout(this.handleFinaliseScheduleTasks, 2000)
     setTimeout(this.handleFinaliseScheduleActivities, 2000)
@@ -67,18 +64,17 @@ class CreateSchedule extends Component {
   render() {
     return (
       <div>
-      {this.props.user.id ?
-        <div>
-          <h2>Select 2 Relaxation Categories</h2>
+          <h1 className="form-headers">Create Today's Schedule</h1>
+          <h2 className="form-headers">Select 2 Relaxation Categories</h2>
           <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select>
           <select name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
           { this.props.scheduleInProgress.length < 6 ?
             <div>
-              <h2>Add Up to 6 Tasks</h2>
+              <h2 className="form-headers">Add Up to 6 Tasks</h2>
               <form onSubmit={this.handleSubmit}>
-                  <h3>Task Description</h3>
+                  <h4 className="form-labels">Task Description</h4>
                   <input name="taskDescription" onChange={this.handleChange} value={this.state.taskDescription}/>
-                  <h3>Task Notes</h3>
+                  <h4 className="form-labels">Task Notes</h4>
                   <input name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/>
                 <input type="submit" value="Add Task"/>
               </form>
@@ -88,11 +84,7 @@ class CreateSchedule extends Component {
           }
           <br></br>
           <button onClick={this.handleCreateSchedule}>Create Schedule</button>
-        </div>
-      :
-      "You are not logged in"
-    }
-          </div>
+      </div>
     );
   }
 }
@@ -103,14 +95,15 @@ const mapStateToProps = state => {
     scheduleInProgress: state.scheduleInProgress,
     postedSchedule: state.postedSchedule,
     readyToPost: state.postedSchedule.readyToPost,
-    relaxationCategories: state.relaxationCategories
+    relaxationCategories: state.relaxationCategories,
+    token: state.token
   }
 }
  
 const mapDispatchToProps = dispatch => {
   return {
     addTask: (task) => dispatch(addTask(task)),
-    addSchedule: (schedule) => dispatch(addSchedule(schedule)),
+    addSchedule: (schedule, token) => dispatch(addSchedule(schedule, token)),
     addTaskToSIP: (task) => dispatch(addTaskToSIP(task)),
     addTaskToPostedSchedule: (task) => dispatch(addTaskToPostedSchedule(task)),
     finaliseScheduleTasks: (scheduleId, taskId) => dispatch(finaliseScheduleTasks(scheduleId, taskId)),

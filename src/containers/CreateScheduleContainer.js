@@ -1,19 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import CreateScheduleForm from '../components/CreateScheduleForm'
-import { fetchUser } from '../actions/fetchUser'
-import ScheduleInProgress from '../components/ScheduleInProgress';
+import {Link} from 'react-router-dom'
+import CreateScheduleFormContainer from '../containers/CreateScheduleFormContainer'
+import ShowExistingTasks from '../components/ShowExistingTasks';
 
 class CreateScheduleContainer extends React.Component {
 
   render() {
     return (
-      <div id="CreateScheduleContainer">
-        <CreateScheduleForm id="create-schedule-form" />
-        <ScheduleInProgress id="schedule-in-progress" />
+      <div className="form-containers">
+        {this.props.user.id ?
+          <div id="CreateScheduleContainer">
+              <CreateScheduleFormContainer />
+              <ShowExistingTasks />
+        </div>
+        :
+          <div>
+            <h2> Please log in to create your schedule </h2>
+            <Link to='/' >
+              <button>Home</button>
+            </Link>
+          </div>
+        }
       </div>
     );
   }
+
 }
 
 const mapStateToProps = state => {
@@ -23,10 +35,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchUser: (user) => dispatch(fetchUser(user))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateScheduleContainer);
+export default connect(mapStateToProps, null)(CreateScheduleContainer);

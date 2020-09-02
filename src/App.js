@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch, NavLink} from 'react-router-dom'
+import {Route, Switch, NavLink, Link} from 'react-router-dom'
 import { connect } from 'react-redux';
 import './App.css';
 import CreateScheduleContainer from './containers/CreateScheduleContainer'
@@ -9,10 +9,31 @@ import NotFound from './containers/NotFound'
 import ProfileContainer from './containers/ProfileContainer'
 import ScheduleContainer from './containers/ScheduleContainer'
 import SignUpContainer from './containers/SignUpContainer'
+import Clock from './components/Clock';
 import { logOutUser } from './actions/logOutUser'
 import { fetchUser } from './actions/fetchUser';
 
 class App extends React.Component {
+
+  componentDidMount() {
+    if(localStorage.token) {
+      fetch('http://localhost:3000/persist',{
+        headers:{
+          "Authorization": `Bearer ${localStorage.token}`
+        }
+      })
+      .then(response => response.json())
+      .then(json =>{
+        this.handleAuthResponse(json)
+      })
+    }
+  }
+  
+  handleAuthResponse = (json) => {
+    if (json.user){
+      localStorage.token = json.token
+    } 
+  }
 
   componentDidUpdate() {
     if (this.props.token && !this.props.user.id) {
@@ -22,22 +43,54 @@ class App extends React.Component {
 
   handleLogOut = () => {
     this.props.logOutUser()
+    localStorage.clear();
   }
 
   render(){
     return (
       <div className="App">
         {this.props.token ?
-        <div id="nav-bar">
-          <NavLink to='/' exact >Home</NavLink>
-          <NavLink to='/createschedule'>Create Schedule</NavLink>
-          <NavLink to='/profile'>Profile</NavLink>
-          <NavLink to='/schedule'>Schedule</NavLink>
-          <NavLink to='/' onClick={this.handleLogOut}>Log Out</NavLink>
+        <div>
+          <div id="nav-bar">
+            <div className="nav-bar-divs">
+              <Link to='/' >
+                <img src={require("./images/always-balanced-navbar-logo.png")} alt='' id="always-balanced-navbar-logo" />
+              </Link>
+            </div>
+            <div className="nav-bar-divs">
+              <NavLink to='/' exact >Home</NavLink>
+            </div>
+            <div className="nav-bar-divs">
+              <NavLink to='/createschedule'>Create Schedule</NavLink>
+            </div>
+            <div className="nav-bar-divs">
+              <NavLink to='/profile'>Profile</NavLink>
+            </div>
+            <div className="nav-bar-divs">
+              <NavLink to='/schedule'>Schedule</NavLink>
+            </div>
+            <div className="nav-bar-divs">
+              <NavLink to='/' onClick={this.handleLogOut}>Log Out</NavLink>
+            </div>
+            <Clock />
+          </div>
+          <div id="lower-nav-bar">
+          </div>
         </div>
         :
-        <div id="nav-bar">
-          <NavLink to='/' exact >Home</NavLink>
+        <div>
+          <div id="nav-bar">
+            <div>
+              <div className="nav-bar-divs">
+                <Link to='/' >
+                  <img src={require("./images/always-balanced-navbar-logo.png")} alt='' id="always-balanced-navbar-logo" />
+                </Link>
+              </div>
+            </div>
+            <Clock />
+          </div>
+          <div id="lower-nav-bar">
+          </div>
         </div>
         }
         <Switch>

@@ -34,7 +34,7 @@ class SignUpContainer extends React.Component {
 
   render() {
     return (
-      <div className="SignUpContainer">
+      <div className="form-containers">
         { this.state.profileCreated === false ? <SignUpForm /> : null }
         { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === false ? <ChooseRelaxationCategories /> : null }
         { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === true && this.state.initialToDosCreated === false ?

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchSchedule } from '../actions/fetchSchedule'
 import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom'
 
 class Schedule extends React.Component {
 
@@ -92,7 +93,6 @@ class Schedule extends React.Component {
         let tasks = this.props.currentSchedule.tasks
         let activities = this.props.currentSchedule.activities
         let schedule = []
-
         for (let i=0; i< tasks.length; i ++) {
             if (i>0 && i !==2 ) {
                 minutes = this.beginTaskMinutes(minutes)
@@ -100,22 +100,22 @@ class Schedule extends React.Component {
             if (i === 1) {
                 schedule.push(
                     <div key={uuidv4()}>
-                        <p key={uuidv4()} > {hours}:{minutes} {tasks[i].task_description}: {tasks[i].task_notes} </p>
-                        <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)} Lunch:{activities[0].activity_description} </p>
+                        <p key={uuidv4()} > {hours}:{minutes}{minutes === 0 ? 0 : null }: {tasks[i].task_description}: {tasks[i].task_notes} </p>
+                        <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)}{minutes === 0 ? 0 : null } Enjoy a healthy, nutritious lunch before you {activities[0].activity_description} </p>
                     </div>
                 )
             } else if (i === 2) {
                 schedule.push(
                     <div key={uuidv4()}>
-                        <p key={uuidv4()} > {hours = this.beginAfterLunchTaskHours(hours, minutes)}:{minutes = this.beginAfterLunchTaskMinutes(minutes)} {tasks[i].task_description}: {tasks[i].task_notes} </p>
-                        <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)} {activities[0].activity_description} </p>
+                        <p key={uuidv4()} > {hours = this.beginAfterLunchTaskHours(hours, minutes)}{minutes === 0 ? 0 : null }:{minutes = this.beginAfterLunchTaskMinutes(minutes)}: {tasks[i].task_description}: {tasks[i].task_notes} </p>
+                        <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}{minutes === 0 ? 0 : null }:{minutes = this.beginBreakMinutes(minutes)} {activities[0].activity_description} </p>
                     </div>
                 )
             } else {
                 schedule.push(
                     <div key={uuidv4()}>
-                        <p key={uuidv4()} > {hours}:{minutes} {tasks[i].task_description}: {tasks[i].task_notes} </p>
-                        <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)} {activities[0].activity_description} </p>
+                        <p key={uuidv4()} > {hours}:{minutes}{minutes === 0 ? 0 : null }: {tasks[i].task_description}: {tasks[i].task_notes} </p>
+                        <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)}{minutes === 0 ? 0 : null }: {activities[0].activity_description} </p>
                     </div>
                 )
             }       
@@ -126,9 +126,20 @@ class Schedule extends React.Component {
     render() {
         return (
             <div className="schedule">
-                <h2>Schedule for {this.day}, {this.month} {this.date}, {this.year}</h2>
                 {
-                    this.props.currentSchedule.date ? this.getTasks() : "No Schedule"
+                    this.props.currentSchedule.date
+                    ?
+                        <div>
+                            <h2 className="form-headers">Schedule for {this.day}, {this.month} {this.date}, {this.year}</h2>
+                            {this.getTasks()}
+                        </div>
+                    :
+                        <div>
+                            <h2> You haven't created a schedule yet </h2>
+                            <Link to='/createschedule' >
+                                <button>Create a Schedule</button>
+                            </Link>
+                        </div>
                 }
             </div>
         );
