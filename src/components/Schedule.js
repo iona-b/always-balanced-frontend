@@ -2,40 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchSchedule } from '../actions/fetchSchedule'
 import { v4 as uuidv4 } from 'uuid';
-import { Link } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 
 class Schedule extends React.Component {
 
-    state = {
-        lastSchedule: 0
-    }
-
     weekDayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-    componentDidMount() {
-        if (this.props.schedules.length > 0) {
-            let currentSchedule = this.getCurrentSchedule()
-            this.props.fetchSchedule(currentSchedule)
-        }
-    }
 
     newDate = new Date()
     day = this.weekDayNames[this.newDate.getDay()]
     date = this.newDate.getDate()
     month = this.monthNames[this.newDate.getMonth()]
     year = this.newDate.getFullYear()
-    
-    getCurrentSchedule = () => {
-        let schedule = this.props.schedules.filter((schedule) => {
-            if (schedule.date) {
-                let splitDate = schedule.date.split("-")
-                return parseInt(splitDate[0]) === this.newDate.getFullYear() && parseInt(splitDate[1]) === this.newDate.getMonth()+1 && parseInt(splitDate[2]) === this.newDate.getDate()
-            }
-        })
-        let todaysSchedule = schedule[schedule.length-1]
-        return todaysSchedule
-    }
 
     beginBreakMinutes = (minutes) => {
         if (minutes === 0) {
@@ -127,7 +105,7 @@ class Schedule extends React.Component {
         return (
             <div className="schedule">
                 {
-                    this.props.currentSchedule.date
+                    this.props.currentSchedule.id !== ""
                     ?
                         <div>
                             <h2 className="form-headers">Schedule for {this.day}, {this.month} {this.date}, {this.year}</h2>
@@ -156,7 +134,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-      fetchSchedule: (schedule) => dispatch(fetchSchedule(schedule)),
+      fetchSchedule: (schedule) => dispatch(fetchSchedule(schedule))
     };
   };
 

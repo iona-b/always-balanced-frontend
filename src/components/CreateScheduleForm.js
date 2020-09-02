@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import { addTask } from '../actions/addTask'
 import { addSchedule } from '../actions/addSchedule'
 import { addTaskToSIP } from '../actions/addTaskToSIP';
 import { addTaskToPostedSchedule } from '../actions/addTaskToPostedSchedule';
+import { fetchSchedule } from '../actions/fetchSchedule'
 import { finaliseScheduleTasks } from '../actions/finaliseScheduleTasks';
 import { finaliseScheduleActivities } from '../actions/finaliseScheduleActivities';
  
@@ -22,7 +24,6 @@ class CreateSchedule extends Component {
         relaxationCategory2: this.props.relaxationCategories[0].category_name
       })
     }
-
   }
  
   handleChange = event => {
@@ -48,43 +49,44 @@ class CreateSchedule extends Component {
   handleCreateSchedule = () => {
     this.props.addSchedule(this.props.user.id, this.props.token)
     this.props.scheduleInProgress.forEach (task => this.props.addTaskToPostedSchedule(task))
-    setTimeout(this.handleFinaliseScheduleTasks, 2000)
-    setTimeout(this.handleFinaliseScheduleActivities, 2000)
+    setTimeout(this.handleFinaliseScheduleTasks, 3000)
+    setTimeout(this.handleFinaliseScheduleActivities, 3000)
   }
 
-  handleFinaliseScheduleTasks = () => {this.props.postedSchedule.tasks.forEach (task => {this.props.finaliseScheduleTasks(this.props.postedSchedule.schedule.schedule.id, task.id)})}
+  handleFinaliseScheduleTasks = () => {this.props.postedSchedule.tasks.forEach ((task) => { 
+    this.props.finaliseScheduleTasks(this.props.postedSchedule.schedule.id, task.id)})}
 
   handleFinaliseScheduleActivities = () => {
     let relaxationCategory1Id = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory1)[0].id
     let relaxationCategory2Id = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory2)[0].id
-    this.props.finaliseScheduleActivities(this.props.postedSchedule.schedule.schedule.id, relaxationCategory1Id)
-    this.props.finaliseScheduleActivities(this.props.postedSchedule.schedule.schedule.id, relaxationCategory2Id)
+    this.props.finaliseScheduleActivities(this.props.postedSchedule.schedule.id, relaxationCategory1Id)
+    this.props.finaliseScheduleActivities(this.props.postedSchedule.schedule.id, relaxationCategory2Id)
   }
 
   render() {
     return (
-      <div>
-          <h1 className="form-headers">Create Today's Schedule</h1>
-          <h2 className="form-headers">Select 2 Relaxation Categories</h2>
-          <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select>
-          <select name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
-          { this.props.scheduleInProgress.length < 6 ?
-            <div>
-              <h2 className="form-headers">Add Up to 6 Tasks</h2>
-              <form onSubmit={this.handleSubmit}>
-                  <h4 className="form-labels">Task Description</h4>
-                  <input name="taskDescription" onChange={this.handleChange} value={this.state.taskDescription}/>
-                  <h4 className="form-labels">Task Notes</h4>
-                  <input name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/>
-                <input type="submit" value="Add Task"/>
-              </form>
-            </div>
-          :
-            null
-          }
-          <br></br>
-          <button onClick={this.handleCreateSchedule}>Create Schedule</button>
-      </div>
+        <div>
+            <h1 className="form-headers">Create Today's Schedule</h1>
+            <h2 className="form-headers">Select 2 Relaxation Categories</h2>
+            <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select>
+            <select name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
+            { this.props.scheduleInProgress.length < 6 ?
+              <div>
+                <h2 className="form-headers">Add Up to 6 Tasks</h2>
+                <form onSubmit={this.handleSubmit}>
+                    <h4 className="form-labels">Task Description</h4>
+                    <input name="taskDescription" onChange={this.handleChange} value={this.state.taskDescription}/>
+                    <h4 className="form-labels">Task Notes</h4>
+                    <input name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/>
+                  <input type="submit" value="Add Task"/>
+                </form>
+              </div>
+            :
+              null
+            }
+            <br></br>
+            <button onClick={this.handleCreateSchedule}>Create Schedule</button>
+        </div>
     );
   }
 }
@@ -92,6 +94,7 @@ class CreateSchedule extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
+    currentSchedule: state.currentSchedule,
     scheduleInProgress: state.scheduleInProgress,
     postedSchedule: state.postedSchedule,
     readyToPost: state.postedSchedule.readyToPost,
@@ -107,7 +110,8 @@ const mapDispatchToProps = dispatch => {
     addTaskToSIP: (task) => dispatch(addTaskToSIP(task)),
     addTaskToPostedSchedule: (task) => dispatch(addTaskToPostedSchedule(task)),
     finaliseScheduleTasks: (scheduleId, taskId) => dispatch(finaliseScheduleTasks(scheduleId, taskId)),
-    finaliseScheduleActivities: (scheduleId, activityId) => dispatch(finaliseScheduleActivities(scheduleId, activityId))
+    finaliseScheduleActivities: (scheduleId, activityId) => dispatch(finaliseScheduleActivities(scheduleId, activityId)),
+    fetchSchedule: (schedule) => dispatch(fetchSchedule(schedule))
   };
 };
  

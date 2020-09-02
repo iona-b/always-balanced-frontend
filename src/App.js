@@ -12,6 +12,7 @@ import SignUpContainer from './containers/SignUpContainer'
 import Clock from './components/Clock';
 import { logOutUser } from './actions/logOutUser'
 import { fetchUser } from './actions/fetchUser';
+import { fetchSchedule } from './actions/fetchSchedule'
 
 class App extends React.Component {
 
@@ -38,6 +39,9 @@ class App extends React.Component {
   componentDidUpdate() {
     if (this.props.token && !this.props.user.id) {
       this.props.fetchUser(this.props.userId)
+    }
+    if (this.props.currentSchedule.loaded === false && this.props.currentSchedule.id !== "") {
+      this.props.fetchSchedule(this.props.currentSchedule.id)
     }
   }
 
@@ -111,14 +115,16 @@ const mapStateToProps = state => {
   return {
       userId: state.userId,
       user: state.user,
-      token: state.token
+      token: state.token,
+      currentSchedule: state.currentSchedule
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchUser: (userId) => dispatch(fetchUser(userId)),
-    logOutUser: () => dispatch(logOutUser())
+    logOutUser: () => dispatch(logOutUser()),
+    fetchSchedule: (schedule) => dispatch(fetchSchedule(schedule))
   }
 }
 
