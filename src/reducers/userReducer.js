@@ -4,7 +4,16 @@ const initialState = {
   user: {},
   userTasks: [],
   userSchedules: [],
-  currentSchedule: {},
+  currentSchedule: {
+    id: '',
+    date: '',
+    user_id: '',
+    schedule_activities: [],
+    activities: [],
+    schedule_tasks: [],
+    tasks: [],
+    loaded: false
+  },
   scheduleInProgress: [],
   postedSchedule: {
     schedule: {},
@@ -33,7 +42,16 @@ const userReducer = (state=initialState,action) => {
         user: {...state.user},
         userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
-        currentSchedule: {...state.currentSchedule},
+        currentSchedule: {
+            id: state.currentSchedule.id,
+            date: state.currentSchedule.date,
+            user_id: state.currentSchedule.user_id,
+            schedule_activities: [...state.currentSchedule.schedule_activities],
+            activities: [...state.currentSchedule.activities],
+            schedule_tasks: [...state.currentSchedule.schedule_tasks],
+            tasks: [...state.currentSchedule.tasks],
+            loaded: false
+          },
         scheduleInProgress: [...state.scheduleInProgress],
         postedSchedule: {
           schedule: {...state.postedSchedule.schedule},
@@ -54,7 +72,16 @@ const userReducer = (state=initialState,action) => {
         userId: state.userId,
         userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
-        currentSchedule: {...state.currentSchedule},
+        currentSchedule: {
+          id: state.currentSchedule.id,
+          date: state.currentSchedule.date,
+          user_id: state.currentSchedule.user_id,
+          schedule_activities: [...state.currentSchedule.schedule_activities],
+          activities: [...state.currentSchedule.activities],
+          schedule_tasks: [...state.currentSchedule.schedule_tasks],
+          tasks: [...state.currentSchedule.tasks],
+          loaded: state.currentSchedule.loaded
+        },
         scheduleInProgress: [...state.scheduleInProgress],
         postedSchedule: {
           schedule: {...state.postedSchedule.schedule},
@@ -68,6 +95,28 @@ const userReducer = (state=initialState,action) => {
     case 'FETCH_USER':
       console.log('FETCH_USER')
       console.log(state)
+      let findSchedule = action.user.schedules.filter((schedule) => {
+        if (schedule.date) {
+            let splitDate = schedule.date.split("-")
+            return parseInt(splitDate[0]) === new Date().getFullYear() && parseInt(splitDate[1]) === new Date().getMonth()+1 && parseInt(splitDate[2]) === new Date().getDate()
+        }
+      })
+      let thisSchedule = ''
+      if (findSchedule.length > 0) {
+        let foundSchedule = findSchedule[findSchedule.length-1]
+        thisSchedule = {
+          id: foundSchedule.id,
+          date: foundSchedule.date,
+          user_id: foundSchedule.user_id,
+          schedule_activities: [state.currentSchedule.schedule_activities],
+          activities: [state.currentSchedule.activities],
+          schedule_tasks: [state.currentSchedule.schedule_tasks],
+          tasks: [state.currentSchedule.tasks],
+          loaded: state.currentSchedule.loaded
+        }
+      } else {
+        thisSchedule = initialState.currentSchedule
+      }
       return {
         ...state,
         token: state.token,
@@ -75,7 +124,7 @@ const userReducer = (state=initialState,action) => {
         user: action.user,
         userTasks: action.user.tasks,
         userSchedules: action.user.schedules,
-        currentSchedule: {...state.currentSchedule},
+        currentSchedule: thisSchedule,
         scheduleInProgress: [...state.scheduleInProgress],
         postedSchedule: {
           schedule: {...state.postedSchedule.schedule},
@@ -106,7 +155,16 @@ const userReducer = (state=initialState,action) => {
         user: {...state.user},
         userTasks: state.userTasks.concat(task),
         userSchedules: [...state.user.schedules],
-        currentSchedule: {...state.currentSchedule},
+        currentSchedule: {
+          id: state.currentSchedule.id,
+          date: state.currentSchedule.date,
+          user_id: state.currentSchedule.user_id,
+          schedule_activities: [...state.currentSchedule.schedule_activities],
+          activities: [...state.currentSchedule.activities],
+          schedule_tasks: [...state.currentSchedule.schedule_tasks],
+          tasks: [...state.currentSchedule.tasks],
+          loaded: state.currentSchedule.loaded
+        },
         scheduleInProgress: [...state.scheduleInProgress],
         postedSchedule: {
           schedule: {...state.postedSchedule.schedule},
@@ -132,7 +190,16 @@ const userReducer = (state=initialState,action) => {
         user: {...state.user},
         userTasks: state.userTasks.concat(task2),
         userSchedules: [...state.user.schedules],
-        currentSchedule: {...state.currentSchedule},
+        currentSchedule: {
+          id: state.currentSchedule.id,
+          date: state.currentSchedule.date,
+          user_id: state.currentSchedule.user_id,
+          schedule_activities: [...state.currentSchedule.schedule_activities],
+          activities: [...state.currentSchedule.activities],
+          schedule_tasks: [...state.currentSchedule.schedule_tasks],
+          tasks: [...state.currentSchedule.tasks],
+          loaded: state.currentSchedule.loaded
+        },
         scheduleInProgress: [...state.scheduleInProgress],
         postedSchedule: {
           schedule: {...state.postedSchedule.schedule},
@@ -147,7 +214,7 @@ const userReducer = (state=initialState,action) => {
     case 'ADD_SCHEDULE':
       console.log('ADD_SCHEDULE')
       console.log(state)
-      let schedule = {
+      let newSchedule = {
         id: action.schedule.id,
         date: action.schedule.date,
         user_id: action.schedule.user_id
@@ -158,11 +225,20 @@ const userReducer = (state=initialState,action) => {
         userId: state.userId,
         user: {...state.user},
         userTasks: [...state.userTasks],
-        userSchedules: state.userSchedules.concat(schedule),
-        currentSchedule: {schedule},
+        userSchedules: state.userSchedules.concat(newSchedule),
+        currentSchedule: {
+          id: newSchedule.id,
+          date: newSchedule.date,
+          user_id: newSchedule.user_id,
+          schedule_activities: [...state.currentSchedule.schedule_activities],
+          activities: [...state.currentSchedule.activities],
+          schedule_tasks: [...state.currentSchedule.schedule_tasks],
+          tasks: [...state.currentSchedule.tasks],
+          loaded: state.currentSchedule.loaded
+        },
         scheduleInProgress: [...state.scheduleInProgress],
         postedSchedule: {
-          schedule: {schedule},
+          schedule: action.schedule,
           tasks: [...state.postedSchedule.tasks],
           readyToPost: true
         },
@@ -181,7 +257,16 @@ const userReducer = (state=initialState,action) => {
         user: {...state.user},
         userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
-        currentSchedule: {...state.currentSchedule},
+        currentSchedule: {
+          id: state.currentSchedule.id,
+          date: state.currentSchedule.date,
+          user_id: state.currentSchedule.user_id,
+          schedule_activities: [...state.currentSchedule.schedule_activities],
+          activities: [...state.currentSchedule.activities],
+          schedule_tasks: [...state.currentSchedule.schedule_tasks],
+          tasks: [...state.currentSchedule.tasks],
+          loaded: state.currentSchedule.loaded
+        },
         scheduleInProgress: [...state.scheduleInProgress],
         postedSchedule: {
           schedule: {...state.postedSchedule.schedule},
@@ -202,6 +287,16 @@ const userReducer = (state=initialState,action) => {
         user: {...state.user},
         userTasks: state.user.tasks,
         userSchedules: [...state.userSchedules],
+        currentSchedule: {
+          id: action.currentSchedule.id,
+          date: action.currentSchedule.date,
+          user_id: action.currentSchedule.user_id,
+          schedule_activities: [...action.currentSchedule.schedule_activities],
+          activities: [...action.currentSchedule.activities],
+          schedule_tasks: [...action.currentSchedule.schedule_tasks],
+          tasks: [...action.currentSchedule.tasks],
+          loaded: true
+        },
         currentSchedule: action.currentSchedule,
         scheduleInProgress: [...state.scheduleInProgress],
         postedSchedule: {
@@ -223,7 +318,16 @@ const userReducer = (state=initialState,action) => {
         user: {...state.user},
         userTasks: state.user.tasks,
         userSchedules: [...state.userSchedules],
-        currentSchedule: {...state.currentSchedule},
+        currentSchedule: {
+          id: state.currentSchedule.id,
+          date: state.currentSchedule.date,
+          user_id: state.currentSchedule.user_id,
+          schedule_activities: [...state.currentSchedule.schedule_activities],
+          activities: [...state.currentSchedule.activities],
+          schedule_tasks: [...state.currentSchedule.schedule_tasks],
+          tasks: [...state.currentSchedule.tasks],
+          loaded: state.currentSchedule.loaded
+        },
         scheduleInProgress: [],
         postedSchedule: {
           schedule: {},
@@ -244,7 +348,16 @@ const userReducer = (state=initialState,action) => {
         user: {...state.user},
         userTasks: state.user.tasks,
         userSchedules: [...state.userSchedules],
-        currentSchedule: {...state.currentSchedule},
+        currentSchedule: {
+          id: state.currentSchedule.id,
+          date: state.currentSchedule.date,
+          user_id: state.currentSchedule.user_id,
+          schedule_activities: [...state.currentSchedule.schedule_activities],
+          activities: [...state.currentSchedule.activities],
+          schedule_tasks: [...state.currentSchedule.schedule_tasks],
+          tasks: [...state.currentSchedule.tasks],
+          loaded: state.currentSchedule.loaded
+        },
         scheduleInProgress: state.scheduleInProgress.concat(action.task),
         postedSchedule: {
           schedule: {...state.postedSchedule.schedule},
@@ -254,6 +367,27 @@ const userReducer = (state=initialState,action) => {
         allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories],
         loading: false
+      }
+    case 'DELETE_CURRENT_SCHEDULE':
+        console.log('DELETE_CURRENT_SCHEDULE')
+        console.log(state)
+        let updatedSchedules = state.user.schedules.filter (schedule => schedule.id !== action.currentSchedule.id)
+        return {
+          ...state,
+          token: state.token,
+          userId: state.userId,
+          user: {...state.user},
+          userTasks: state.user.tasks,
+          userSchedules: updatedSchedules,
+          currentSchedule: initialState.currentSchedule,
+          scheduleInProgress: [...state.scheduleInProgress],
+          postedSchedule: {
+            schedule: {...state.postedSchedule.schedule},
+            tasks: [...state.postedSchedule.tasks],
+            readyToPost: false
+          },
+          allRelaxationCategories: [...state.allRelaxationCategories],
+          relaxationCategories: [...state.relaxationCategories],
       }
       // RELAXATION CATEGORIES
     case 'FETCH_RELAXATION_CATEGORIES':
@@ -266,7 +400,16 @@ const userReducer = (state=initialState,action) => {
         user: {...state.user},
         userTasks: state.user.tasks,
         userSchedules: [...state.userSchedules],
-        currentSchedule: {...state.currentSchedule},
+        currentSchedule: {
+          id: state.currentSchedule.id,
+          date: state.currentSchedule.date,
+          user_id: state.currentSchedule.user_id,
+          schedule_activities: [...state.currentSchedule.schedule_activities],
+          activities: [...state.currentSchedule.activities],
+          schedule_tasks: [...state.currentSchedule.schedule_tasks],
+          tasks: [...state.currentSchedule.tasks],
+          loaded: state.currentSchedule.loaded
+        },
         scheduleInProgress: [...state.scheduleInProgress],
         postedSchedule: {
           schedule: {...state.postedSchedule.schedule},
@@ -287,7 +430,16 @@ const userReducer = (state=initialState,action) => {
           user: {...state.user},
           userTasks: state.user.tasks,
           userSchedules: [...state.userSchedules],
-          currentSchedule: {...state.currentSchedule},
+          currentSchedule: {
+            id: state.currentSchedule.id,
+            date: state.currentSchedule.date,
+            user_id: state.currentSchedule.user_id,
+            schedule_activities: [...state.currentSchedule.schedule_activities],
+            activities: [...state.currentSchedule.activities],
+            schedule_tasks: [...state.currentSchedule.schedule_tasks],
+            tasks: [...state.currentSchedule.tasks],
+            loaded: state.currentSchedule.loaded
+          },
           scheduleInProgress: [...state.scheduleInProgress],
           postedSchedule: {
             schedule: {...state.postedSchedule.schedule},

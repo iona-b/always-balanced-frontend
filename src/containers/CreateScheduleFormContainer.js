@@ -9,7 +9,7 @@ class CreateScheduleContainer extends React.Component {
   render() {
     return (
         <div id="create-schedule-form-container">
-              <CreateScheduleForm />
+              <CreateScheduleForm updateCurrentSchedule={this.props.updateCurrentSchedule}/>
               <ScheduleInProgress />
         </div>
     );

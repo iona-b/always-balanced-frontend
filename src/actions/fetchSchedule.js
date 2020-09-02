@@ -1,7 +1,6 @@
-export const fetchSchedule = (schedule) => {
+export const fetchSchedule = (scheduleId) => {
     return (dispatch) => {
-      dispatch({ type: 'LOADING_SCHEDULE'})
-      fetch(`http://localhost:3000/schedules/${schedule.id}`).then(response => {
+      fetch(`http://localhost:3000/schedules/${scheduleId}`).then(response => {
         return response.json()
       })
       .then(responseJSON => {
