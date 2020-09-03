@@ -46,6 +46,12 @@ class Schedule extends React.Component {
     month = this.monthNames[this.newDate.getMonth()]
     year = this.newDate.getFullYear()
 
+    convertToHoursAndMinutes = (totalMinutes) => {
+        let hours = Math.floor(totalMinutes/60)
+        let minutes = totalMinutes%60
+        return `${hours < 10 ? 0 : ""}${hours}:${minutes < 10 ? 0 : ""}${minutes}`
+    }
+
     getTasks = () => {
         if (this.props.currentSchedule.activities.length > 0) {
             let startTime = (parseInt(this.props.user.start_work_time.slice(11, 13)) * 60) + parseInt(this.props.user.start_work_time.slice(14, 16))
@@ -60,9 +66,11 @@ class Schedule extends React.Component {
                 } else {
                     startTime += 45
                 }
-                if (startTime >= 720 &&  startTime < 780) {
-                    scheduleSlot.push({break: startTime}, activities[0])
+                if (startTime >= 700 &&  startTime < 760) {
+                    scheduleSlot.push({break: startTime}, {activity_description: "Enjoy a healthy, nutritious lunch"})
                     startTime += 45
+                } else if (i === tasks.length - 1) {
+                    scheduleSlot.push({break: startTime}, {activity_description: "Time to wind down and enjoy your evening"})
                 } else if (i % 2 === 0) {
                     // Create array of short break instructions? e.g. get a coffee, etc.
                     scheduleSlot.push({break: startTime}, {activity_description: "Take a short break"})
@@ -76,11 +84,11 @@ class Schedule extends React.Component {
             // update state with break times
             let completeSchedule = []
             return completeSchedule = schedule.map ((scheduleSlot) => {
-
+                
                 return (
                     <div>
-                        <p key={uuidv4()} > {scheduleSlot[0].task}: {scheduleSlot[1].task_description}: {scheduleSlot[1].task_notes} </p>
-                        <p key={uuidv4()} > {scheduleSlot[2].break}: {scheduleSlot[3].activity_description} </p>
+                        <p key={uuidv4()} > {this.convertToHoursAndMinutes(scheduleSlot[0].task)}: {scheduleSlot[1].task_description}: {scheduleSlot[1].task_notes} </p>
+                        <p key={uuidv4()} > {this.convertToHoursAndMinutes(scheduleSlot[2].break)}: {scheduleSlot[3].activity_description} </p>
                     </div>
                 )
             })
