@@ -4,7 +4,7 @@ class Tasks extends React.Component {
 
   listTasks = () => {
     if (this.props.tasks.length>0) {
-      return this.props.tasks.map(task => <p key={task.id}>{task.task_description}</p>)
+      return this.props.tasks.map(task => <p key={task.id}>{task.task_description}: {task.task_notes}</p>)
     } else {
       return <p> You don't have any tasks yet </p>
     }
