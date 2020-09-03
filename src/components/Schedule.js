@@ -46,91 +46,44 @@ class Schedule extends React.Component {
     month = this.monthNames[this.newDate.getMonth()]
     year = this.newDate.getFullYear()
 
-    beginBreakMinutes = (minutes) => {
-        if (minutes === 0) {
-            return minutes = 30
-        } else if (minutes === 30) {
-            return minutes = 0
-        } else if (minutes === 45) {
-            return minutes = 15
-        } else if (minutes === 15) {
-            return minutes = 45
-        }
-    }
-
-    beginTaskMinutes = (minutes) => {
-        if (minutes === 0) {
-            return minutes = 15
-        } else if (minutes === 45) {
-            return minutes = 0
-        } else {
-            return minutes = (minutes/60+0.25)*60
-        }
-    }
-
-    beginAfterLunchTaskMinutes = (minutes) => {
-        if (minutes === 0) {
-            return minutes = 45
-        } else if (minutes === 15) {
-            return minutes = 0
-        } else if (minutes === 30) {
-            return minutes = 15
-        } else if (minutes === 45) {
-            return minutes = 30
-        }
-    }
-
-    beginAfterLunchTaskHours = (hours, minutes) => {
-        if (minutes > 15) {
-            return hours += 2
-        } else {
-            return hours += 1
-        }
-    }
-
-    beginBreakHour = (hours, minutes) => {
-        if (minutes > 30) {
-            return hours += 2
-        } else {
-            return hours += 1
-        }
-    }
-
     getTasks = () => {
         if (this.props.currentSchedule.activities.length > 0) {
-            let hours = parseInt(this.props.user.start_work_time.slice(11, 13))
-            let minutes = parseInt(this.props.user.start_work_time.slice(14, 16))
+            let startTime = (parseInt(this.props.user.start_work_time.slice(11, 13)) * 60) + parseInt(this.props.user.start_work_time.slice(14, 16))
             let tasks = this.props.currentSchedule.tasks
             let activities = this.props.currentSchedule.activities
             let schedule = []
-            for (let i=0; i< tasks.length; i ++) {
-                if (i>0 && i !==2 ) {
-                    minutes = this.beginTaskMinutes(minutes)
-                }
-                if (i === 1) {
-                    schedule.push(
-                        <div key={uuidv4()}>
-                            <p key={uuidv4()} > {hours}:{minutes}{minutes === 0 ? 0 : null }: {tasks[i].task_description}: {tasks[i].task_notes} </p>
-                            <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)}{minutes === 0 ? 0 : null } Enjoy a healthy, nutritious lunch before you {activities[0].activity_description} </p>
-                        </div>
-                    )
-                } else if (i === 2) {
-                    schedule.push(
-                        <div key={uuidv4()}>
-                            <p key={uuidv4()} > {hours = this.beginAfterLunchTaskHours(hours, minutes)}{minutes === 0 ? 0 : null }:{minutes = this.beginAfterLunchTaskMinutes(minutes)}: {tasks[i].task_description}: {tasks[i].task_notes} </p>
-                            <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}{minutes === 0 ? 0 : null }:{minutes = this.beginBreakMinutes(minutes)} {activities[0].activity_description} </p>
-                        </div>
-                    )
+            for (let i = 0; i < tasks.length; i++) {
+                let scheduleSlot = []
+                scheduleSlot.push({task: startTime}, tasks[i])
+                if (i % 2 === 0) {
+                    startTime += 55
                 } else {
-                    schedule.push(
-                        <div key={uuidv4()}>
-                            <p key={uuidv4()} > {hours}:{minutes}{minutes === 0 ? 0 : null }: {tasks[i].task_description}: {tasks[i].task_notes} </p>
-                            <p key={uuidv4()} > {hours = this.beginBreakHour(hours, minutes)}:{minutes = this.beginBreakMinutes(minutes)}{minutes === 0 ? 0 : null }: {activities[0].activity_description} </p>
-                        </div>
-                    )
-                }       
+                    startTime += 45
+                }
+                if (startTime >= 720 &&  startTime < 780) {
+                    scheduleSlot.push({break: startTime}, activities[0])
+                    startTime += 45
+                } else if (i % 2 === 0) {
+                    // Create array of short break instructions? e.g. get a coffee, etc.
+                    scheduleSlot.push({break: startTime}, {activity_description: "Take a short break"})
+                    startTime += 5
+                } else {
+                    scheduleSlot.push({break: startTime}, activities[0])
+                    startTime += 15
+                }
+                schedule.push(scheduleSlot)
             }
-        return schedule
+            // update state with break times
+            let completeSchedule = []
+            return completeSchedule = schedule.map ((scheduleSlot) => {
+
+                return (
+                    <div>
+                        <p key={uuidv4()} > {scheduleSlot[0].task}: {scheduleSlot[1].task_description}: {scheduleSlot[1].task_notes} </p>
+                        <p key={uuidv4()} > {scheduleSlot[2].break}: {scheduleSlot[3].activity_description} </p>
+                    </div>
+                )
+            })
         } else {
             return this.props.fetchSchedule(this.props.currentSchedule.id)
         }
@@ -160,7 +113,7 @@ class Schedule extends React.Component {
                     {/* {
                         this.state.minutes === 57
                         ? */}
-                            <AlertModal />
+                            {/* <AlertModal /> */}
                         {/* :
                         null
                     } */}
