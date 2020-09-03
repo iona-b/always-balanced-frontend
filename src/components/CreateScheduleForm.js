@@ -48,7 +48,8 @@ class CreateSchedule extends Component {
 
   handleCreateSchedule = () => {
     this.props.addSchedule(this.props.user.id, this.props.token)
-    this.props.scheduleInProgress.forEach (task => this.props.addTaskToPostedSchedule(task))
+    this.props.scheduleInProgress.forEach ((task) => { 
+      this.props.addTaskToPostedSchedule(task)})
     setTimeout(this.handleFinaliseScheduleTasks, 3000)
     setTimeout(this.handleFinaliseScheduleActivities, 3000)
   }

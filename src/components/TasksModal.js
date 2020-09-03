@@ -9,7 +9,7 @@ class TasksModal extends React.Component {
             return this.props.tasks.map((task) => {
                 return (
                     <div>
-                        <p key={task.id}>{task.task_description}</p>
+                        <p key={task.id}>{task.task_description}: {task.task_notes}</p>
                         <button name={task.id} onClick={this.handleRemoveTask}>Remove</button>
                     </div>
                 ) 
@@ -26,7 +26,7 @@ class TasksModal extends React.Component {
     render() {
 
         return (
-            <div id="tasks-modal">TasksModal
+            <div className="modal">
                 <h2> Existing Tasks </h2>
                 {this.listTasks()}
             </div>

@@ -19,7 +19,7 @@ class CreateScheduleContainer extends React.Component {
   render() {
     return (
       <div> 
-        <div className="form-containers">
+        <div id="create-schedule-container">
           {this.props.user.id && this.props.currentSchedule.id === ""?
             <div id="CreateScheduleContainer">
                 <CreateScheduleFormContainer updateCurrentSchedule={this.handleChangeInState}/>
