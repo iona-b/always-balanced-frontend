@@ -4,6 +4,7 @@ export const fetchSchedule = (scheduleId) => {
         return response.json()
       })
       .then(responseJSON => {
+
         dispatch({ type: 'FETCH_SCHEDULE', currentSchedule: responseJSON })
       })
     }

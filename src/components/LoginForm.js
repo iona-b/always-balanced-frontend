@@ -37,7 +37,7 @@ class Login extends React.Component{
                 <h4 className="form-labels">Password</h4>
                 <input type="password" name="password" value={this.state.password} className="input-fields" onChange={this.handleChange}/>
                 <br/>
-                <input type="submit" value="Submit" />
+                <input className="buttons" type="submit" value="Submit" />
             </form>
             </div>
         );
@@ -47,8 +47,7 @@ class Login extends React.Component{
 const mapStateToProps = state => {
     return {
       user: state.user,
-      userTasks: state.userTasks,
-      loading: state.loading
+      userTasks: state.userTasks
     }
 }
   

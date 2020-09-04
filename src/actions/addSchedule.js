@@ -15,7 +15,7 @@ export const addSchedule = (userId, token) => {
     .then(response => response.json())
     .then(responseJSON => {
         if(!responseJSON.error){
-            dispatch({ type: 'ADD_SCHEDULE', schedule: responseJSON })
+            // dispatch(({ type: 'ADD_SCHEDULE', schedule: responseJSON }))
         } else {
             alert(responseJSON.error)
         }

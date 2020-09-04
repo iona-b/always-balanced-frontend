@@ -11,7 +11,7 @@ class DeleteProfileModal extends React.Component {
 
     render() {
         return (
-            <div id="modal">
+            <div className="modal">
                 <h2> Are you sure you'd like to delete your profile?</h2>
                 <button onClick={this.handleClick}>Yes</button>
                 <button name="showDeleteProfile" onClick={this.props.handleClick}>No</button>

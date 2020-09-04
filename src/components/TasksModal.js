@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { removeTask } from '../actions/removeTask';
+import { deleteTask } from '../actions/deleteTask';
 
 class TasksModal extends React.Component {
 
@@ -20,18 +21,20 @@ class TasksModal extends React.Component {
     }
 
     handleRemoveTask = event => {
-        this.props.removeTask(event.target.name)
+        this.props.deleteTask(event.target.name)
     }
 
     render() {
 
         return (
             <div className="modal">
-                <h2> Existing Tasks </h2>
-                {this.listTasks()}
+                <button className="buttons" id="back-button" name="showTasks" onClick={this.props.handleClick}>Go Back</button>
+                <div>
+                    <h2> Your Tasks </h2>
+                    {this.listTasks()}
+                </div>
             </div>
         )
-    
     }
 
 }
@@ -44,7 +47,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-      removeTask: (taskId) => dispatch(removeTask(taskId))
+      deleteTask: (taskId) => dispatch(deleteTask(taskId))
     };
   };
 

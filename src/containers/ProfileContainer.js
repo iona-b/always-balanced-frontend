@@ -5,11 +5,11 @@ import Profile from '../components/Profile';
 
 class ProfileContainer extends React.Component {
 
-  componentDidUpdate() {
-    if (!this.props.userId) {
-      this.props.history.push('/')
-    }
-  }
+  // componentDidUpdate() {
+  //   if (!this.props.userId) {
+  //     this.props.history.push('/')
+  //   }
+  // }
 
   render() {
     return (

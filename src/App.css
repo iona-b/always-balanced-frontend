@@ -2,6 +2,8 @@ body {
     font-family: Palatino, URW Palladio L, serif;
     position: relative;
     font-weight: bold;
+    background-color: #FFFAF0;
+    color: #2F4F4F;
 }
 
 
@@ -19,6 +21,7 @@ body {
     bottom: 0;
     width: 100%;
     overflow: hidden;
+    z-index: 9999;
 }
 
 #clock {
@@ -38,10 +41,10 @@ body {
     float: left;
 }
 
-.back-button {
+#back-button {
     position: absolute;
     left: 0%;
-    margin: 10px;
+    margin: 20px;
 }
 
 /* Home Styling */
@@ -60,10 +63,14 @@ body {
     left: 33%;
     overflow: scroll;
     overflow-y: auto;
+    border: solid;
+    border-radius: 5px;
+    border-color: #95C8AB;
+    height: 500px;
 }
 
 .form-headers {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .form-labels {
@@ -76,23 +83,75 @@ body {
 
 .input-fields {
     margin-bottom: 10px;
+    height: 30px;
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    border: solid;
+    border-radius: 5px;
+    border-color: #95C8AB;     
+}
+
+.signup-and-login-divs {
+    background-color: #95C8AB;
+    width: 150px;
+    border-radius: 5px;
+    right: 400px;
+}
+
+.signup-and-login-buttons {
+    height: 300px;
+}
+
+.buttons {
+    height: 35px;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    border: solid;
+    border-color: #95C8AB;
+    font-family: Palatino, URW Palladio L, serif;
+    background-color: #DDEBE4;
+    font-size: 15px;
+    opacity: 100%;
 }
 
 #create-schedule-container {
     margin-top: 10px;
     position: absolute;
-    left: 33%;
+    left: 37%;
     width: 1000px;
     text-align: center;
 }
 
 #show-existing-tasks {
-    margin-top: 10px;
+    margin-top: 20px;
     position: absolute;
-    left: 50%;
-    background-color: #95C8AB;
+    right: 1%;
     width: 400px;
     text-align: center;
+    height: 480px;
+    border-radius: 5px;
+    height: 500px;
+    overflow: scroll;
+    border: solid;
+    border-color: #DDEBE4;
+    border-width: 5px;
+}
+
+#schedule-in-progress{
+    margin-top: 20px;
+    position: absolute;
+    left: 1%;
+    width: 400px;
+    text-align: center;
+    height: 500px;
+    border-radius: 5px;
+    border: solid;
+    border-color: #DDEBE4;
+    border-width: 5px;
 }
 
 /* Schedule Styling  */
@@ -111,16 +170,17 @@ body {
 }
 
 .modal {
-    width: 600px;
-    height: 400px;
-    background-color: #95C8AB;
-    border: solid;
+    width: 100%;
+    height: 500px;
+    background-color: #FFFAF0;
     position: absolute;
     left: 50%;
-    top: 66%;
+    top: 86%;
     transform: translate(-50%, -50%);
     overflow: scroll;
     padding: 20px;
+    justify-content: center;
+    text-align: center;
 }
 
 #alert-modal {
@@ -135,8 +195,8 @@ body {
     font-weight: bold;
     color: white;
     display: flex;
-  justify-content: center;
-  flex-direction: column;
+    justify-content: center;
+    flex-direction: column;
 }
 
 
@@ -149,8 +209,6 @@ body {
     font-size: 80px;
 }
 
-
-
 .profile-logos {
     width: 200px;
 }
@@ -159,15 +217,11 @@ body {
     justify-content: center;
     text-align: center;
     cursor: pointer;
+    
 }
 
 .profile-headers {
     cursor: pointer;
-}
-
-#show-existing-tasks {
-    height: 400px;
-    overflow: scroll;
 }
 
 #task-list {

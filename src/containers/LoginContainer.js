@@ -15,7 +15,7 @@ class LoginContainer extends React.Component {
     return (
       <div>
         <Link to='/' >
-          <button className="back-button">Go Back</button>
+          <button className="buttons"  id="back-button">Go Back</button>
         </Link>
         <div className="form-containers">
             <LoginForm />
