@@ -1,6 +1,5 @@
-export const finaliseScheduleActivities = (scheduleId, relaxationCategoryId) => {
+export const finaliseScheduleActivities = (relaxationCategoryId) => {
     let data = {
-        schedule_id: scheduleId,
         relaxation_category_id: relaxationCategoryId
     }
     return (dispatch) => {

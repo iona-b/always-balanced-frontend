@@ -58,6 +58,7 @@ class Schedule extends React.Component {
             let tasks = this.props.currentSchedule.tasks
             let activities = this.props.currentSchedule.activities
             let schedule = []
+            let timePeriod = ""
             for (let i = 0; i < tasks.length; i++) {
                 let scheduleSlot = []
                 scheduleSlot.push({task: startTime}, tasks[i])
@@ -70,7 +71,15 @@ class Schedule extends React.Component {
                     scheduleSlot.push({break: startTime}, {activity_description: "Enjoy a healthy, nutritious lunch"})
                     startTime += 45
                 } else if (i === tasks.length - 1) {
-                    scheduleSlot.push({break: startTime}, {activity_description: "Time to wind down and enjoy your evening"})
+                    if (startTime >= 720 && startTime < 1020) {
+                        timePeriod = "afternoon"
+                    } else if (startTime >= 1020) {
+                        timePeriod = "evening"
+                    }
+                    else {
+                        timePeriod = "morning"
+                    }
+                    scheduleSlot.push({break: startTime}, {activity_description: `Time to wind down and enjoy the rest of your ${timePeriod}`})
                 } else if (i % 2 === 0) {
                     // Create array of short break instructions? e.g. get a coffee, etc.
                     scheduleSlot.push({break: startTime}, {activity_description: "Take a short break"})
@@ -141,7 +150,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-      fetchSchedule: (schedule) => dispatch(fetchSchedule(schedule))
+      fetchSchedule: (scheduleId) => dispatch(fetchSchedule(scheduleId))
     };
   };
 

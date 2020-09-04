@@ -66,8 +66,7 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     relaxationCategories: state.relaxationCategories,
-    tasks: state.userTasks,
-    loading: state.loading
+    tasks: state.userTasks
   }
 }
 

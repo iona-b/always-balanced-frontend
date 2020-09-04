@@ -47,8 +47,7 @@ class Login extends React.Component{
 const mapStateToProps = state => {
     return {
       user: state.user,
-      userTasks: state.userTasks,
-      loading: state.loading
+      userTasks: state.userTasks
     }
 }
   

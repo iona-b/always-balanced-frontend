@@ -18,8 +18,7 @@ class CreateScheduleContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
-    loading: state.loading
+    user: state.user
   }
 }
 
