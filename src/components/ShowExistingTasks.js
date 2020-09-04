@@ -8,9 +8,10 @@ class ShowExisitingTasks extends React.Component {
         if (this.props.tasks) {
             return this.props.tasks.map((task) => {
                 return (
-                    <div>
-                        <p key={task.id}>{task.task_description}: {task.task_notes} Labs</p>
-                        <button name={task.id} onClick={this.handleAddTask}>Add</button>
+                    <div id="existing-tasks-items">
+                        <p id="existing-task" key={task.id}>{task.task_description}: {task.task_notes} </p>
+                        <button id="existing-task-button" name={task.id} onClick={this.handleAddTask}>+</button>
+                        <br></br>
                     </div>
                 ) 
             })

@@ -98,7 +98,7 @@ class CreateSchedule extends Component {
               null
             }
             <br></br>
-            <button onClick={this.handleCreateSchedule}>Create Schedule</button>
+            <button className="buttons" onClick={this.handleCreateSchedule}>Create Schedule</button>
         </div>
     );
   }

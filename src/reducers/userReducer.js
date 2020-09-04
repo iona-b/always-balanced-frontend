@@ -433,7 +433,19 @@ const userReducer = (state=initialState,action) => {
           ...state,
           token: state.token,
           userId: state.userId,
-          user: {...state.user},
+          user: {
+            id: state.user.id,
+            username: state.user.username,
+            start_work_time: state.user.start_work_time,
+            min_num_hours: state.user.min_num_hours,
+            max_num_hours: state.user.max_num_hours,
+            relaxation_categories: state.user.relaxation_categories.concat(action.userRelaxationCategory),
+            schedule_activities: [...state.user.schedule_activities],
+            schedule_tasks: [...state.user.schedule_tasks],
+            schedules: [...state.user.schedules],
+            tasks: [...state.user.tasks],
+            user_relaxation_categories: [...state.user.user_relaxation_categories],
+          },
           userTasks: state.user.tasks,
           userSchedules: [...state.userSchedules],
           currentSchedule: {
@@ -452,6 +464,47 @@ const userReducer = (state=initialState,action) => {
           },
           allRelaxationCategories: [...state.allRelaxationCategories],
           relaxationCategories: state.relaxationCategories.concat(action.userRelaxationCategory)
+        }
+      case 'DELETE_OLD_RELAXATION_PREFERENCES':
+        let updatedUserRelaxationCategories =  state.user.user_relaxation_categories.filter (category => category.id !== action.relaxationCategory.id)
+        let updatedRelaxationCategories = state.relaxationCategories.filter (category => category.id != action.relaxationCategory.relaxation_category_id)
+        console.log('DELETE_OLD_RELAXATION_PREFERENCES')
+        console.log(state)
+        return {
+          ...state,
+          token: state.token,
+          userId: state.userId,
+          user: {
+            id: state.user.id,
+            username: state.user.username,
+            start_work_time: state.user.start_work_time,
+            min_num_hours: state.user.min_num_hours,
+            max_num_hours: state.user.max_num_hours,
+            relaxation_categories: updatedRelaxationCategories,
+            schedule_activities: [...state.user.schedule_activities],
+            schedule_tasks: [...state.user.schedule_tasks],
+            schedules: [...state.user.schedules],
+            tasks: [...state.user.tasks],
+            user_relaxation_categories: updatedUserRelaxationCategories,
+          },
+          userTasks: state.user.tasks,
+          userSchedules: [...state.userSchedules],
+          currentSchedule: {
+            id: state.currentSchedule.id,
+            date: state.currentSchedule.date,
+            user_id: state.currentSchedule.user_id,
+            schedule_activities: [...state.currentSchedule.schedule_activities],
+            activities: [...state.currentSchedule.activities],
+            schedule_tasks: [...state.currentSchedule.schedule_tasks],
+            tasks: [...state.currentSchedule.tasks]
+          },
+          scheduleInProgress: [...state.scheduleInProgress],
+          postedSchedule: {
+
+            tasks: [...state.postedSchedule.tasks]
+          },
+          allRelaxationCategories: [...state.allRelaxationCategories],
+          relaxationCategories: updatedRelaxationCategories
         }
       // DEFAULT CASES
     default:

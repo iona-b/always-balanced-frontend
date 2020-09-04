@@ -141,6 +141,22 @@ body {
     border-width: 5px;
 }
 
+#existing-tasks-items {
+    margin: 15px;
+}
+
+#existing-task {
+    display: inline;
+    /* position: relative;
+    left: 0%; */
+}
+
+#existing-task-button {
+    float: right;
+    /* position: relative;
+    right: 0%; */
+}
+
 #schedule-in-progress{
     margin-top: 20px;
     position: absolute;
