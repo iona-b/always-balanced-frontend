@@ -20,10 +20,14 @@ class Profile extends React.Component {
     })
   }
 
+  handleUpdateSubmit = () => {
+    this.setState({showUpdateProfile: false})
+  }
+
   render() {
     return (
       <div id="profile">
-        {this.state.showUpdateProfile === true ? <UpdateProfileModal handleClick={this.handleClick} /> : null }
+        {this.state.showUpdateProfile === true ? <UpdateProfileModal handleClick={this.handleClick} handleUpdateSubmit={this.handleUpdateSubmit} /> : null }
         {this.state.showUpdateRelaxationCategoryPreferences === true ? <UpdateRelaxationCategoryPreferencesModal handleClick={this.handleClick} /> : null }
         {this.state.showTasks === true ? <TasksModal handleClick={this.handleClick} /> : null }
         {this.state.showDeleteProfile === true ? <DeleteProfileModal handleClick={this.handleClick} /> : null }

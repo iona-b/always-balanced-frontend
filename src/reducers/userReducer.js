@@ -120,6 +120,44 @@ const userReducer = (state=initialState,action) => {
         allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: action.user.relaxation_categories
       }
+    case 'UPDATE_USER':
+      console.log('UPDATE_USER')
+      console.log(state)
+      return {
+        ...state,
+        token: state.token,
+        userId: state.userId,
+        user: {
+          id: state.user.id,
+          username: action.user.username,
+          start_work_time: action.user.start_work_time,
+          min_num_hours: action.user.min_num_hours,
+          max_num_hours: action.user.max_num_hours,
+          relaxation_categories: [...state.user.relaxation_categories],
+          schedule_activities: [...state.user.schedule_activities],
+          schedule_tasks: [...state.user.schedule_tasks],
+          schedules: [...state.user.schedules],
+          tasks: [...state.user.tasks],
+          user_relaxation_categories: [...state.user.user_relaxation_categories],
+        },
+        userTasks: state.userTasks,
+        userSchedules: state.userSchedules,
+        currentSchedule: {
+          id: state.currentSchedule.id,
+          date: state.currentSchedule.date,
+          user_id: state.currentSchedule.user_id,
+          schedule_activities: [...state.currentSchedule.schedule_activities],
+          activities: [...state.currentSchedule.activities],
+          schedule_tasks: [...state.currentSchedule.schedule_tasks],
+          tasks: [...state.currentSchedule.tasks]
+        },
+        scheduleInProgress: [...state.scheduleInProgress],
+        postedSchedule: {
+          tasks: [...state.postedSchedule.tasks]
+        },
+        allRelaxationCategories: [...state.allRelaxationCategories],
+        relaxationCategories: [...state.relaxationCategories]
+      }
     case 'LOGOUT_USER':
       console.log('LOGOUT_USER')
       console.log(state)
