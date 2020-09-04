@@ -23,9 +23,9 @@ class Profile extends React.Component {
   render() {
     return (
       <div id="profile">
-        {this.state.showUpdateProfile === true ? <UpdateProfileModal /> : null }
-        {this.state.showUpdateRelaxationCategoryPreferences === true ? <UpdateRelaxationCategoryPreferencesModal /> : null }
-        {this.state.showTasks === true ? <TasksModal /> : null }
+        {this.state.showUpdateProfile === true ? <UpdateProfileModal handleClick={this.handleClick} /> : null }
+        {this.state.showUpdateRelaxationCategoryPreferences === true ? <UpdateRelaxationCategoryPreferencesModal handleClick={this.handleClick} /> : null }
+        {this.state.showTasks === true ? <TasksModal handleClick={this.handleClick} /> : null }
         {this.state.showDeleteProfile === true ? <DeleteProfileModal handleClick={this.handleClick} /> : null }
           <h2>Hi there, {this.props.user.username}!</h2>
           <div>

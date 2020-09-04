@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {NavLink} from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 
 class Home extends React.Component {
 
@@ -15,6 +15,11 @@ class Home extends React.Component {
           </div>
         :
           <div id="home-div">
+            <div className="signup-and-login-divs">
+              <Link to='/login' >
+                <img src={require("../images/login-button.png")} alt='' className="signup-and-login-divs" />
+              </Link>
+            </div>
             <NavLink to='/login'>Login</NavLink>
             <NavLink to='/signup'>Sign Up</NavLink>
           </div>

@@ -34,28 +34,33 @@ class SignUpContainer extends React.Component {
 
   render() {
     return (
-      <div className="form-containers">
-        { this.state.profileCreated === false ? <SignUpForm /> : null }
-        { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === false ? <ChooseRelaxationCategories /> : null }
-        { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === true && this.state.initialToDosCreated === false ?
-          <div>           
+      <div>
+        <Link to='/' >
+          <button className="buttons" id="back-button">Go Back</button>
+        </Link>
+        <div className="form-containers">
+          { this.state.profileCreated === false ? <SignUpForm /> : null }
+          { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === false ? <ChooseRelaxationCategories /> : null }
+          { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === true && this.state.initialToDosCreated === false ?
+            <div>           
+                <CreateTaskForm id="create-task-form" />
+                <div id="task-list">{this.handleLoading()}</div>
+            </div>
+          : 
+            null
+          }
+          { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === true && this.state.initialToDosCreated === true ? 
+            <div>
               <CreateTaskForm id="create-task-form" />
               <div id="task-list">{this.handleLoading()}</div>
-          </div>
-        : 
-          null
-        }
-        { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === true && this.state.initialToDosCreated === true ? 
-          <div>
-            <CreateTaskForm id="create-task-form" />
-            <div id="task-list">{this.handleLoading()}</div>
-            <Link to='/' >
-                <button>Go to Home</button>
-            </Link>
-          </div>
-        :
-          null
-        }
+              <Link to='/' >
+                  <button className="buttons">Go to Home</button>
+              </Link>
+            </div>
+          :
+            null
+          }
+        </div>
       </div>
     );
   }

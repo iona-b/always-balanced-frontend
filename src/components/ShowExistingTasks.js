@@ -10,7 +10,7 @@ class ShowExisitingTasks extends React.Component {
                 return (
                     <div>
                         <p key={task.id}>{task.task_description}: {task.task_notes} Labs</p>
-                        <button name={task.id} onClick={this.handleAddTask}>Add To Schedule</button>
+                        <button name={task.id} onClick={this.handleAddTask}>Add</button>
                     </div>
                 ) 
             })

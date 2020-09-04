@@ -315,6 +315,33 @@ const userReducer = (state=initialState,action) => {
         allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories]
       }
+    case 'DELETE_TASK':
+      console.log('DELETE_TASK')
+      console.log(state)
+      let updatedTasks = state.user.tasks.filter (task => task.id !== action.task.id)
+      return {
+        ...state,
+        token: state.token,
+        userId: state.userId,
+        user: {...state.user},
+        userTasks: updatedTasks,
+        userSchedules: [...state.userSchedules],
+        currentSchedule: {
+          id: state.currentSchedule.id,
+          date: state.currentSchedule.date,
+          user_id: state.currentSchedule.user_id,
+          schedule_activities: [...state.currentSchedule.schedule_activities],
+          activities: [...state.currentSchedule.activities],
+          schedule_tasks: [...state.currentSchedule.schedule_tasks],
+          tasks: [...state.currentSchedule.tasks]
+        },
+        scheduleInProgress: state.scheduleInProgress.concat(action.task),
+        postedSchedule: {
+          tasks: [...state.postedSchedule.tasks]
+        },
+        allRelaxationCategories: [...state.allRelaxationCategories],
+        relaxationCategories: [...state.relaxationCategories]
+      }
     case 'DELETE_CURRENT_SCHEDULE':
         console.log('DELETE_CURRENT_SCHEDULE')
         console.log(state)

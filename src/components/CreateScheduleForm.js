@@ -78,7 +78,7 @@ class CreateSchedule extends Component {
 
   render() {
     return (
-        <div>
+        <div className="form-containers">
             <h1 className="form-headers">Create Today's Schedule</h1>
             <h2 className="form-headers">Select 2 Relaxation Categories</h2>
             <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select>
@@ -90,8 +90,8 @@ class CreateSchedule extends Component {
                     <h4 className="form-labels">Task Description</h4>
                     <input name="taskDescription" onChange={this.handleChange} value={this.state.taskDescription}/>
                     <h4 className="form-labels">Task Notes</h4>
-                    <input name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/>
-                  <input type="submit" value="Add Task"/>
+                    <input name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/><br></br>
+                  <input  className="buttons" type="submit" value="Add Task"/>
                 </form>
               </div>
             :

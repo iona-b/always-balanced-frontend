@@ -5,6 +5,8 @@ import { deleteCurrentSchedule } from '../actions/deleteCurrentSchedule'
 import { fetchSchedule } from '../actions/fetchSchedule'
 import CreateScheduleFormContainer from '../containers/CreateScheduleFormContainer'
 import ShowExistingTasks from '../components/ShowExistingTasks';
+import ScheduleInProgress from '../components/ScheduleInProgress';
+import CreateScheduleForm from '../components/CreateScheduleForm'
 
 class CreateScheduleContainer extends React.Component {
 
@@ -19,17 +21,18 @@ class CreateScheduleContainer extends React.Component {
   render() {
     return (
       <div> 
-        <div id="create-schedule-container">
+        <div className="">
           {this.props.user.id && this.props.currentSchedule.id === ""?
-            <div id="CreateScheduleContainer">
-                <CreateScheduleFormContainer updateCurrentSchedule={this.handleChangeInState}/>
+            <div>
+                <ScheduleInProgress />
+                <CreateScheduleForm updateCurrentSchedule={this.props.updateCurrentSchedule}/>
                 <ShowExistingTasks />
             </div>
           :
             null
           }
         </div>
-        <div className="form-containers">
+        <div >
           {this.props.user.id && this.props.currentSchedule.id !== "" ?
             <div>
               <h2>You've already created a schedule for today.</h2>
@@ -45,7 +48,7 @@ class CreateScheduleContainer extends React.Component {
         </div>
         <div> 
           {!this.props.user.id ?   
-          <div className="form-containers">
+          <div >
             <h2> Please log in to create your schedule </h2>
             <Link to='/' >
               <button onClick={this.fetchSchedule}>Home</button>

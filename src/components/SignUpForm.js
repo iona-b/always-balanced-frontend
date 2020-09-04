@@ -51,7 +51,7 @@ class SignUpForm extends React.Component{
                 <h4 className="form-labels">And what's the maximum number of hours you like to work? </h4>
                 <input type="number" name="maxNumHours" value={this.state.maxNumHours} className="input-fields" onChange={this.handleChange}/>
                 <br/>
-                <input type="submit" value="Submit" />
+                <input className="buttons" type="submit" value="Submit" />
             </form>
             </div>
         );
