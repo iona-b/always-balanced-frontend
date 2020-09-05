@@ -1,6 +1,7 @@
-export const finaliseScheduleActivities = (relaxationCategoryId) => {
+export const finaliseScheduleActivities = (relaxationCategoryId, activityLength) => {
     let data = {
-        relaxation_category_id: relaxationCategoryId
+        relaxation_category_id: relaxationCategoryId,
+        activity_length: activityLength
     }
     return (dispatch) => {
         // dispatch({ type: 'LOADING_USER'})

@@ -356,7 +356,7 @@ const userReducer = (state=initialState,action) => {
     case 'REMOVE_TASK_FROM_SIP':
       console.log('REMOVE_TASK_FROM_SIP')
       console.log(state)
-      let updatedSIP = state.scheduleInProgress.filter (task => task.id != action.task)
+      let updatedSIP = state.scheduleInProgress.filter (task => task.id !== action.task)
       return {
         ...state,
         token: state.token,
@@ -494,7 +494,7 @@ const userReducer = (state=initialState,action) => {
         }
       case 'DELETE_OLD_RELAXATION_PREFERENCES':
         let updatedUserRelaxationCategories =  state.user.user_relaxation_categories.filter (category => category.id !== action.relaxationCategory.id)
-        let updatedRelaxationCategories = state.relaxationCategories.filter (category => category.id != action.relaxationCategory.relaxation_category_id)
+        let updatedRelaxationCategories = state.relaxationCategories.filter (category => category.id !== action.relaxationCategory.relaxation_category_id)
         console.log('DELETE_OLD_RELAXATION_PREFERENCES')
         console.log(state)
         return {

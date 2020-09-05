@@ -72,8 +72,11 @@ class CreateSchedule extends Component {
   handleFinaliseScheduleActivities = () => {
     let relaxationCategory1Id = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory1)[0].id
     let relaxationCategory2Id = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory2)[0].id
-    this.props.finaliseScheduleActivities(relaxationCategory1Id)
-    this.props.finaliseScheduleActivities(relaxationCategory2Id)
+    this.props.finaliseScheduleActivities(relaxationCategory1Id, "short")
+    this.props.finaliseScheduleActivities(relaxationCategory1Id, "short")
+    this.props.finaliseScheduleActivities(relaxationCategory2Id, "short")
+    this.props.finaliseScheduleActivities(relaxationCategory2Id, "short")
+    this.props.finaliseScheduleActivities(relaxationCategory1Id, "long")
   }
 
   render() {
@@ -121,7 +124,7 @@ const mapDispatchToProps = dispatch => {
     addTaskToSIP: (task) => dispatch(addTaskToSIP(task)),
     addTaskToPostedSchedule: (task) => dispatch(addTaskToPostedSchedule(task)),
     finaliseScheduleTasks: (taskId) => dispatch(finaliseScheduleTasks(taskId)),
-    finaliseScheduleActivities: (activityId) => dispatch(finaliseScheduleActivities(activityId)),
+    finaliseScheduleActivities: (relaxationCategoryId, activityLength) => dispatch(finaliseScheduleActivities(relaxationCategoryId, activityLength)),
   };
 };
  
