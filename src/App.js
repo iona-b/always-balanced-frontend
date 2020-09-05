@@ -55,43 +55,47 @@ class App extends React.Component {
       <div className="App">
         {this.props.token ?
         <div>
+          <div id="top-nav-bar">
+            <Link to='/' >
+              <img src={require("./images/always-balanced-long.png")} alt='' id="always-balanced-long" />
+            </Link>
+            <Clock />
+          </div>
           <div id="nav-bar">
             <div className="nav-bar-divs">
-              <Link to='/' >
-                <img src={require("./images/always-balanced-navbar-logo.png")} alt='' id="always-balanced-navbar-logo" />
-              </Link>
+              <NavLink to='/' exact className="nav-bar-headings" >Home</NavLink>
             </div>
             <div className="nav-bar-divs">
-              <NavLink to='/' exact >Home</NavLink>
+              <NavLink to='/createschedule' className="nav-bar-headings" >Create Schedule</NavLink>
             </div>
             <div className="nav-bar-divs">
-              <NavLink to='/createschedule'>Create Schedule</NavLink>
+              <NavLink to='/profile' className="nav-bar-headings" >Profile</NavLink>
             </div>
             <div className="nav-bar-divs">
-              <NavLink to='/profile'>Profile</NavLink>
+              <NavLink to='/schedule' className="nav-bar-headings" >Schedule</NavLink>
             </div>
             <div className="nav-bar-divs">
-              <NavLink to='/schedule'>Schedule</NavLink>
+              <NavLink to='/' onClick={this.handleLogOut} className="nav-bar-headings" >Log Out</NavLink>
             </div>
-            <div className="nav-bar-divs">
-              <NavLink to='/' onClick={this.handleLogOut}>Log Out</NavLink>
-            </div>
-            <Clock />
           </div>
           <div id="lower-nav-bar">
           </div>
         </div>
         :
         <div>
-          <div id="nav-bar">
-            <div>
-              <div className="nav-bar-divs">
-                <Link to='/' >
-                  <img src={require("./images/always-balanced-navbar-logo.png")} alt='' id="always-balanced-navbar-logo" />
-                </Link>
-              </div>
-            </div>
+          <div id="top-nav-bar">
+            <Link to='/' >
+              <img src={require("./images/always-balanced-long.png")} alt='' id="always-balanced-long" />
+            </Link>
             <Clock />
+          </div>
+          <div id="nav-bar">
+            <div className="nav-bar-divs">
+              <NavLink to='/login' exact className="nav-bar-headings  login-nav-bar-heading" >Login</NavLink>
+            </div>
+            <div className="nav-bar-divs">
+              <NavLink to='/signup' exact className="nav-bar-headings signup-nav-bar-heading" >Sign Up</NavLink>
+            </div>
           </div>
           <div id="lower-nav-bar">
           </div>

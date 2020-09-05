@@ -46,7 +46,7 @@ class UpdateRelaxationPreferencesModal extends React.Component {
         return (
             <div className="modal">
                 <button className="buttons" id="back-button" name="showUpdateRelaxationCategoryPreferences" onClick={this.props.handleClick}>Go Back</button>
-                <div className="choose-relaxation-categories-div">
+                <div className="choose-relaxation-categories-form">
                     <h2 className="form-headers">Select 3 Relaxation Categories</h2>
                     <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
                     <select name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>

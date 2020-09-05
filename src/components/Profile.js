@@ -31,7 +31,7 @@ class Profile extends React.Component {
         {this.state.showUpdateRelaxationCategoryPreferences === true ? <UpdateRelaxationCategoryPreferencesModal handleClick={this.handleClick} /> : null }
         {this.state.showTasks === true ? <TasksModal handleClick={this.handleClick} /> : null }
         {this.state.showDeleteProfile === true ? <DeleteProfileModal handleClick={this.handleClick} /> : null }
-          <h2>Hi there, {this.props.user.username}!</h2>
+          <h2>Welcome, {this.props.user.username}</h2>
           <div>
             <button name="showUpdateProfile" onClick={this.handleClick}>Update Profile</button>
             <button name="showUpdateRelaxationCategoryPreferences" onClick={this.handleClick}>Update Relaxation Preferences</button>

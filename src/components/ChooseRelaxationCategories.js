@@ -43,7 +43,7 @@ class ChooseRelaxationCategories extends React.Component {
 
     render() {
         return (
-            <div className="choose-relaxation-categories-div">
+            <div className="choose-relaxation-categories-form">
               <h2 className="form-headers">Select 3 Relaxation Categories</h2>
               <p>In order to help us create a schedule which truly suits your needs, please let us know what type of activities help you relax.</p>
               <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>

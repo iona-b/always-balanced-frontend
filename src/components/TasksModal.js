@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import CreateTaskForm from '../components/CreateTaskForm'
 import { connect } from 'react-redux'
 import { deleteTask } from '../actions/deleteTask';
 
@@ -30,9 +30,27 @@ class TasksModal extends React.Component {
             <div className="modal">
                 <button className="buttons" id="back-button" name="showTasks" onClick={this.props.handleClick}>Go Back</button>
                 <div>
-                    <h2> Your Tasks </h2>
-                    {this.listTasks()}
+                    {this.props.tasks.length > 0 ?
+                        <div>
+                            <div>
+                                <h2> Your Tasks </h2>
+                                {this.listTasks()}
+                            </div>
+                            <div id="create-task-form-div">
+                                <CreateTaskForm id="create-task-form"/>
+                            </div>
+                        </div>
+                    :
+                        <div>
+                            <h2> Your Tasks </h2>
+                            <p> You haven't added any tasks yet </p>
+                            <div class="form-containers" id="create-task-form-div">
+                                <CreateTaskForm />
+                            </div>
+                        </div>
+                    }
                 </div>
+                
             </div>
         )
     }
