@@ -32,26 +32,30 @@ class CreateScheduleContainer extends React.Component {
             null
           }
         </div>
-        <div >
+        <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left" onClick={this.handleClick} />
+        
+        <img src={require("../images/background-top-right.png")} alt='' id="background-top-right" onClick={this.handleClick} />
+        <div className="info-divs">
           {this.props.user.id && this.props.currentSchedule.id !== "" ?
             <div>
               <h2>You've already created a schedule for today.</h2>
               <p>You can either view today's schedule or delete your current schedule and create a new one</p>
               <Link to='/schedule' >
-                <button>View Current Schedule</button>
+                <button className="buttons">View Current Schedule</button>
               </Link>
-              <button onClick={this.handleClick}>Delete Current Schedule</button>
+              <button className="buttons" onClick={this.handleClick}>Delete Current Schedule</button>
             </div>
           :
             null
           }  
         </div>
-        <div> 
+        <div className="info-divs"> 
           {!this.props.user.id ?   
           <div >
             <h2> Please log in to create your schedule </h2>
             <Link to='/' >
-              <button onClick={this.fetchSchedule}>Home</button>
+              <button className="buttons" 
+              onClick={this.fetchSchedule}>Home</button>
             </Link>
           </div>
           :

@@ -1,9 +1,13 @@
-body {
+html, body {
     font-family: Palatino, URW Palladio L, serif;
     position: relative;
     font-weight: bold;
     background-color: #FFFAF0;
     color: #2F4F4F;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 /* Nav Bar Styling  */
@@ -17,7 +21,7 @@ body {
     height: 80px;
     margin-top: 10px;
     position: absolute;
-    left: 38%
+    left: 38%;
 }
 
 #nav-bar {
@@ -93,7 +97,23 @@ body {
 /* Home Styling */
 
 #home-div {
-    margin-top: 20px;
+    text-align: center;
+    height: 110%;
+    width: 100%;
+    position: relative;
+}
+
+#background-bottom-left {
+    position: fixed;
+    left: 0%;
+    width: 450px;
+    top: 35%
+}
+
+#background-top-right {
+    position: absolute;
+    right: 0%;
+    width: 500px;
 }
 
 /* Sign Up and Login Styling  */
@@ -250,21 +270,20 @@ body {
 }
 
 #alert-modal {
-    width: 80vw;
-    position: relative;
-    margin-left: -40vw;
-    margin-top: -50vw;
-    height: 100vw;
+    width: 101vw;
+    position: absolute;
+    margin-left: -740px;
+    /* margin-top: -54vw; */
+    margin-top: -775px;
+    height: 51vw;
     left: 50%;
     background-color:#2F4F4F;
     opacity: 80%;
     font-weight: bold;
     color: white;
-    display: flex;
     justify-content: center;
-    flex-direction: column;
+    padding-top: 50px;
 }
-
 
 .countdown-header {
     font-size: 50px;
@@ -273,6 +292,7 @@ body {
 
 .countdown-timer {
     font-size: 80px;
+    margin-top: 0px;
 }
 
 .profile-logos {
@@ -296,4 +316,11 @@ body {
 
 .slotActive {
     color: #6495ED;
+}
+
+.info-divs {
+    text-align: center;
+    width: 400px;
+    position: relative;
+    left: 37%;
 }

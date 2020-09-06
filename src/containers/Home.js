@@ -12,10 +12,13 @@ class Home extends React.Component {
             <NavLink to='/createschedule'>Create Schedule</NavLink>
             <NavLink to='/profile'>Profile</NavLink>
             <NavLink to='/schedule'>Schedule</NavLink>
+            <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left" onClick={this.handleClick} />
+            <img src={require("../images/background-top-right.png")} alt='' id="background-top-right" onClick={this.handleClick} />
           </div>
         :
           <div id="home-div">
-            <p></p>
+            <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left" onClick={this.handleClick} />
+            <img src={require("../images/background-top-right.png")} alt='' id="background-top-right" onClick={this.handleClick} />
           </div>
         }
     </div>
