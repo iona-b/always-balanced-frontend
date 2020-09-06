@@ -11,10 +11,10 @@ class DeleteProfileModal extends React.Component {
 
     render() {
         return (
-            <div className="modal">
+            <div className="form-containers">
                 <h2> Are you sure you'd like to delete your profile?</h2>
-                <button onClick={this.handleClick}>Yes</button>
-                <button name="showDeleteProfile" onClick={this.props.handleClick}>No</button>
+                <button className="buttons" onClick={this.handleClick}>Yes</button>
+                <button className="buttons" name="showDeleteProfile" onClick={this.props.handleClick}>No</button>
             </div>
         )
     }

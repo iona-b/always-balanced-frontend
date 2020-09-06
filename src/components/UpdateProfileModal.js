@@ -26,7 +26,7 @@ class UpdateProfileModal extends React.Component {
 
     render() {
         return (
-            <div className="modal">
+            <div className="form-containers">
                 <button className="buttons" id="back-button" name="showUpdateProfile" onClick={this.props.handleClick}>Go Back</button>
                 <div>
                     <h2 className="form-headers">Update Your Profile</h2>

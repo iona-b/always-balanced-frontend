@@ -27,7 +27,7 @@ class TasksModal extends React.Component {
     render() {
 
         return (
-            <div className="modal">
+            <div className="form-containers">
                 <button className="buttons" id="back-button" name="showTasks" onClick={this.props.handleClick}>Go Back</button>
                 <div>
                     {this.props.tasks.length > 0 ?

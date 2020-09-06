@@ -44,14 +44,14 @@ class UpdateRelaxationPreferencesModal extends React.Component {
 
     render() {
         return (
-            <div className="modal">
+            <div className="form-containers">
                 <button className="buttons" id="back-button" name="showUpdateRelaxationCategoryPreferences" onClick={this.props.handleClick}>Go Back</button>
                 <div className="choose-relaxation-categories-form">
                     <h2 className="form-headers">Select 3 Relaxation Categories</h2>
-                    <select name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
-                    <select name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
-                    <select name="relaxationCategory3" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
-                    <button onClick={this.handleSubmit}>Update Relaxation Categories</button>
+                    <select name="relaxationCategory1" className="input-fields" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
+                    <select name="relaxationCategory2" className="input-fields" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
+                    <select name="relaxationCategory3" className="input-fields" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
+                    <button className="buttons" onClick={this.handleSubmit}>Confirm</button>
                 </div>
             </div>
         )
