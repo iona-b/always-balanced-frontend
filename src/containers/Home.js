@@ -9,11 +9,19 @@ class Home extends React.Component {
       <div>
         {this.props.token ?
           <div id="home-div">
-            <NavLink to='/createschedule'>Create Schedule</NavLink>
-            <NavLink to='/profile'>Profile</NavLink>
-            <NavLink to='/schedule'>Schedule</NavLink>
             <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left" onClick={this.handleClick} />
             <img src={require("../images/background-top-right.png")} alt='' id="background-top-right" onClick={this.handleClick} />
+            <div id="home-menu">
+              <NavLink to='/createschedule'>
+                <button className="menu-buttons">Create Schedule</button>
+              </NavLink>
+              <NavLink to='/schedule'>
+                <button className="menu-buttons">See Today's Schedule</button>
+              </NavLink>
+              <NavLink to='/profile'>
+                <button className="menu-buttons"> View Profile</button>
+              </NavLink>
+            </div>
           </div>
         :
           <div id="home-div">

@@ -26,21 +26,17 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <div id="profile">
+      <div id="profile-div">
         {this.state.showUpdateProfile === true ? <UpdateProfileModal handleClick={this.handleClick} handleUpdateSubmit={this.handleUpdateSubmit} /> : null }
         {this.state.showUpdateRelaxationCategoryPreferences === true ? <UpdateRelaxationCategoryPreferencesModal handleClick={this.handleClick} /> : null }
         {this.state.showTasks === true ? <TasksModal handleClick={this.handleClick} /> : null }
         {this.state.showDeleteProfile === true ? <DeleteProfileModal handleClick={this.handleClick} /> : null }
-          <h2>Welcome, {this.props.user.username}</h2>
-          <div>
-            <button name="showUpdateProfile" onClick={this.handleClick}>Update Profile</button>
-            <button name="showUpdateRelaxationCategoryPreferences" onClick={this.handleClick}>Update Relaxation Preferences</button>
-            <button name="showTasks" onClick={this.handleClick}>Update Tasks</button>
-            <div className="profile-divs">
-              <img src={require("../images/delete-profile-logo.png")} alt='' className="profile-logos" name="showDeleteProfile" onClick={this.handleClick} />
-              <h2 className="profile-headers" name="showDeleteProfile" onClick={this.handleClick}>Delete Profile</h2>
-            </div>
-          </div>
+        <div id="profile-menu" >
+          <button name="showUpdateProfile" className="menu-buttons" onClick={this.handleClick}>Update Profile</button>
+          <button name="showUpdateRelaxationCategoryPreferences" className="menu-buttons" onClick={this.handleClick}>Update Relaxation Preferences</button>
+          <button name="showTasks" className="menu-buttons" onClick={this.handleClick} >Update Tasks</button>
+          <button name="showDeleteProfile" className="menu-buttons" onClick={this.handleClick}>Delete Profile</button>
+        </div>
       </div>
     );
   }

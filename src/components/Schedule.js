@@ -130,7 +130,7 @@ class Schedule extends React.Component {
                     {
                         this.props.currentSchedule.id !== ""
                         ?
-                            <div>
+                            <div id="schedule">
                                 <h2 className="form-headers">Schedule for {this.day}, {this.month} {this.date}, {this.year}</h2>
                                 {this.returnSchedule()}
                             </div>
@@ -138,7 +138,7 @@ class Schedule extends React.Component {
                             <div>
                                 <h2> You haven't created a schedule yet </h2>
                                 <Link to='/createschedule' >
-                                    <button>Create a Schedule</button>
+                                    <button className="buttons" >Create a Schedule</button>
                                 </Link>
                             </div>
                     }

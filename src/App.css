@@ -88,12 +88,6 @@ html, body {
     float: left;
 }
 
-#back-button {
-    position: absolute;
-    left: 0%;
-    margin: 20px;
-}
-
 /* Home Styling */
 
 #home-div {
@@ -101,6 +95,13 @@ html, body {
     height: 110%;
     width: 100%;
     position: relative;
+}
+
+#home-menu {
+    width: 400px;
+    position: absolute;
+    left: 36.5%;
+    margin-top: 100px;
 }
 
 #background-bottom-left {
@@ -116,25 +117,27 @@ html, body {
     width: 500px;
 }
 
-/* Sign Up and Login Styling  */
+/* Form Styling  */
 
 .form-containers {
     margin-top: 20px;
     text-align: center;
-    width: 500px;
+    width: 550px;
     position: absolute;
-    left: 33%;
+    left: 30%;
     overflow: scroll;
     overflow-y: auto;
     border: solid;
     border-radius: 5px;
     border-color: #BDDFCC;
     border-width: 5px;
-    height: 500px;
+    height: 450px;
+    padding-top: 20px;
+    background-color: #FFFAF0;
 }
 
 .form-headers {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 .form-labels {
@@ -156,21 +159,16 @@ html, body {
     border-color: #BDDFCC;     
 }
 
-.signup-and-login-divs {
-    background-color: #BDDFCC;
-    width: 150px;
-    border-radius: 5px;
-    border-width: 5px;
-    right: 400px;
-}
-
-.signup-and-login-buttons {
-    height: 300px;
-}
-
 .choose-relaxation-categories-form {
     font-family: Palatino, URW Palladio L, serif;
 }
+
+#create-task-form-div {
+    position: absolute;
+    right: 0%;
+}
+
+/* Button Styling */
 
 .buttons {
     height: 35px;
@@ -185,6 +183,45 @@ html, body {
     background-color: #DDEBE4;
     font-size: 15px;
     opacity: 100%;
+    color: #2F4F4F;
+}
+
+.menu-buttons {
+    height: 50px;
+    width: 300px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    border: solid;
+    border-color: #BDDFCC;
+    font-family: Palatino, URW Palladio L, serif;
+    background-color: #DDEBE4;
+    font-size: 20px;
+    opacity: 100%;
+    color: #2F4F4F;
+    cursor: pointer;
+}
+
+#back-button {
+    position: absolute;
+    left: 0%;
+    margin: 20px;
+}
+
+.task-button {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    border: solid;
+    border-color: #BDDFCC;
+    font-family: Palatino, URW Palladio L, serif;
+    background-color: #DDEBE4;
+    float: right;
+    color: #2F4F4F;
 }
 
 .show-tasks {
@@ -194,11 +231,12 @@ html, body {
     text-align: center;
     height: 480px;
     border-radius: 5px;
-    height: 500px;
+    height: 450px;
     overflow: scroll;
     border: solid;
     border-color: #DDEBE4;
     border-width: 5px;
+    padding-top: 20px;
 }
 
 #existing-tasks-div {
@@ -215,21 +253,6 @@ html, body {
 
 .task {
     display: inline;
-}
-
-.task-button {
-    height: 30px;
-    width: 30px;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 22px;
-    font-weight: bold;
-    border: solid;
-    border-color: #BDDFCC;
-    font-family: Palatino, URW Palladio L, serif;
-    background-color: #DDEBE4;
-    float: right;
-    color: #2F4F4F;
 }
 
 /* Schedule Styling  */
@@ -255,13 +278,15 @@ html, body {
     left: 0%;
 }
 
+/* Modals  */
+
 .modal {
     width: 100%;
     height: 100%;
     background-color: #FFFAF0;
     position: absolute;
     left: 50%;
-    top: 86%;
+    /* top: 70%; */
     transform: translate(-50%, -50%);
     overflow: scroll;
     padding: 20px;
@@ -280,7 +305,7 @@ html, body {
     background-color:#2F4F4F;
     opacity: 80%;
     font-weight: bold;
-    color: white;
+    color: #FFFAF0;
     justify-content: center;
     padding-top: 50px;
 }
@@ -295,25 +320,6 @@ html, body {
     margin-top: 0px;
 }
 
-.profile-logos {
-    width: 200px;
-}
-
-.profile-divs {
-    justify-content: center;
-    text-align: center;
-    cursor: pointer;
-}
-
-.profile-headers {
-    cursor: pointer;
-}
-
-#create-task-form-div {
-    position: absolute;
-    right: 0%;
-}
-
 .slotActive {
     color: #6495ED;
 }
@@ -321,6 +327,23 @@ html, body {
 .info-divs {
     text-align: center;
     width: 400px;
-    position: relative;
+    position: absolute;
     left: 37%;
+    margin-top: 50px;
+}
+
+/* Profile Styling */
+
+#profile-div {
+    text-align: center;
+    height: 110%;
+    width: 100%;
+    position: relative;
+}
+
+#profile-menu {
+    width: 400px;
+    position: absolute;
+    left: 36.5%;
+    margin-top: 100px;
 }

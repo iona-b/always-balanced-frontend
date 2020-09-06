@@ -38,6 +38,8 @@ class SignUpContainer extends React.Component {
         <Link to='/' >
           <button className="buttons" id="back-button">Go Back</button>
         </Link>
+        <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left" />
+        <img src={require("../images/background-top-right.png")} alt='' id="background-top-right" />
         <div className="form-containers">
           { this.state.profileCreated === false ? <SignUpForm /> : null }
           { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === false ? <ChooseRelaxationCategories /> : null }

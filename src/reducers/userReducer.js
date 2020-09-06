@@ -289,6 +289,7 @@ const userReducer = (state=initialState,action) => {
           date: action.currentSchedule.date,
           user_id: action.currentSchedule.user_id,
 
+
           schedule_activities: [...action.currentSchedule.schedule_activities],
           activities: [...action.currentSchedule.activities],
           schedule_tasks: [...action.currentSchedule.schedule_tasks],
