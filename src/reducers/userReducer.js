@@ -358,7 +358,7 @@ const userReducer = (state=initialState,action) => {
     case 'REMOVE_TASK_FROM_SIP':
       console.log('REMOVE_TASK_FROM_SIP')
       console.log(state)
-      let updatedSIP = state.scheduleInProgress.filter (task => task.id !== action.task)
+      let updatedSIP = state.scheduleInProgress.filter (task => task.id != action.task)
       return {
         ...state,
         token: state.token,
@@ -458,6 +458,7 @@ const userReducer = (state=initialState,action) => {
       case 'ADD_USER_RELAXATION_CATEGORY':
         console.log('ADD_USER_RELAXATION_CATEGORY')
         console.log(state)
+
         return {
           ...state,
           token: state.token,
@@ -468,12 +469,12 @@ const userReducer = (state=initialState,action) => {
             start_work_time: state.user.start_work_time,
             min_num_hours: state.user.min_num_hours,
             max_num_hours: state.user.max_num_hours,
-            relaxation_categories: state.user.relaxation_categories.concat(action.userRelaxationCategory),
+            relaxation_categories: state.user.relaxation_categories.concat(action.relaxationCategory),
             schedule_activities: [...state.user.schedule_activities],
             schedule_tasks: [...state.user.schedule_tasks],
             schedules: [...state.user.schedules],
             tasks: [...state.user.tasks],
-            user_relaxation_categories: [...state.user.user_relaxation_categories],
+            user_relaxation_categories: state.user.user_relaxation_categories.concat(action.userRelaxationCategory),
           },
           userTasks: state.user.tasks,
           userSchedules: [...state.userSchedules],
@@ -492,7 +493,7 @@ const userReducer = (state=initialState,action) => {
             tasks: [...state.postedSchedule.tasks]
           },
           allRelaxationCategories: [...state.allRelaxationCategories],
-          relaxationCategories: state.relaxationCategories.concat(action.userRelaxationCategory)
+          relaxationCategories: state.relaxationCategories.concat(action.relaxationCategory)
         }
       case 'DELETE_OLD_RELAXATION_PREFERENCES':
         let updatedUserRelaxationCategories =  state.user.user_relaxation_categories.filter (category => category.id !== action.relaxationCategory.id)

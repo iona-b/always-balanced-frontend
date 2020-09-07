@@ -15,7 +15,7 @@ export const addUserRelaxationCategory = (userId, relaxationCategory) => {
         .then(response => response.json())
         .then(responseJSON => {
             if(!responseJSON.error){
-                dispatch({ type: 'ADD_USER_RELAXATION_CATEGORY', userRelaxationCategory: relaxationCategory })
+                dispatch({ type: 'ADD_USER_RELAXATION_CATEGORY', userRelaxationCategory: responseJSON, relaxationCategory: relaxationCategory })
             } else {
                 alert(responseJSON.error)
             }

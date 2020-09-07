@@ -83,8 +83,8 @@ class CreateSchedule extends Component {
     return (
         <div className="form-containers">
             <h2 className="form-headers">Select 2 Relaxation Categories</h2>
-            <select className="input-fields" name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select>
-            <select className="input-fields" name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
+            <select className="input-fields" key="1" name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option >{relaxationCategory.category_name}</option>)}</select>
+            <select className="input-fields" key="2" name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option >{relaxationCategory.category_name}</option>)}</select><br></br>
             { this.props.scheduleInProgress.length < 10 ?
               <div>
                 <h2 className="form-headers" id="add-up-to-x-tasks">Add Up to 10 Tasks</h2>
