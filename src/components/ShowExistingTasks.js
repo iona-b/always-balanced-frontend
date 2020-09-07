@@ -27,7 +27,7 @@ class ShowExisitingTasks extends React.Component {
 
     render() {
         return (
-            <div className="show-tasks" id="existing-tasks-div">
+            <div className="form-headers" className="show-tasks" id="existing-tasks-div">
                 <h2> Existing Tasks </h2>
                 {this.listTasks()}
             </div>

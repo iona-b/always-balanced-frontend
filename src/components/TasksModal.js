@@ -5,13 +5,18 @@ import { deleteTask } from '../actions/deleteTask';
 
 class TasksModal extends React.Component {
 
+    state = {
+        showAddTaskForm: false
+    }
+
     listTasks = () => {
         if (this.props.tasks) {
             return this.props.tasks.map((task) => {
                 return (
-                    <div>
-                        <p key={task.id}>{task.task_description}: {task.task_notes}</p>
-                        <button name={task.id} onClick={this.handleRemoveTask}>Remove</button>
+                    <div className="tasks-items">
+                        <p className="task" key={task.id}>{task.task_description}: {task.task_notes}</p>
+                        <button className="task-button" name={task.id} onClick={this.handleRemoveTask}>-</button>
+                        <br></br>
                     </div>
                 ) 
             })
@@ -24,33 +29,38 @@ class TasksModal extends React.Component {
         this.props.deleteTask(event.target.name)
     }
 
+    handleToggleAddTaskForm = () => {
+        this.setState ({
+            showAddTaskForm: !this.state.showAddTaskForm
+        })
+    }
+
     render() {
 
         return (
-            <div className="form-containers">
-                <button className="buttons" id="back-button" name="showTasks" onClick={this.props.handleClick}>Go Back</button>
-                <div>
-                    {this.props.tasks.length > 0 ?
+            <div>
+                <button className="buttons back-buttons" name="showTasks" onClick={this.props.handleClick}>⬅</button>
+                <div className="form-containers">
+                    {this.state.showAddTaskForm === false ?
                         <div>
-                            <div>
-                                <h2> Your Tasks </h2>
-                                {this.listTasks()}
-                            </div>
-                            <div id="create-task-form-div">
-                                <CreateTaskForm id="create-task-form"/>
-                            </div>
+                            {this.props.tasks.length > 0 ?
+                                <div>
+                                    <h2> Your Tasks </h2>
+                                    {this.listTasks()}
+                                    <button className="buttons" name="addTasks" onClick={this.handleToggleAddTaskForm}>Add Tasks</button>
+                                </div>
+                            :
+                                <div>
+                                    <h2> Your Tasks </h2>
+                                    <p> You haven't added any tasks yet </p>
+                                    <button className="buttons" name="addTasks" onClick={this.handleToggleAddTaskForm}>Add Tasks</button>
+                                </div>
+                            }
                         </div>
                     :
-                        <div>
-                            <h2> Your Tasks </h2>
-                            <p> You haven't added any tasks yet </p>
-                            <div class="form-containers" id="create-task-form-div">
-                                <CreateTaskForm />
-                            </div>
-                        </div>
+                        <CreateTaskForm handleToggleAddTaskForm={this.handleToggleAddTaskForm} />
                     }
                 </div>
-                
             </div>
         )
     }

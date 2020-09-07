@@ -138,7 +138,7 @@ class Schedule extends React.Component {
                             <div>
                                 <h2> You haven't created a schedule yet </h2>
                                 <Link to='/createschedule' >
-                                    <button className="buttons" >Create a Schedule</button>
+                                    <button className="menu-buttons" >Create Schedule</button>
                                 </Link>
                             </div>
                     }

@@ -41,7 +41,7 @@ export default class AlertModal extends React.Component {
         const { minutes, seconds } = this.state
         return (
             <div id="alert-modal">
-                <button className="buttons" id="back-button" onClick={this.handleClick}>Go Back</button>
+                <button className="buttons back-buttons" onClick={this.handleClick}>⬅</button>
                 <div>
                     { minutes === 0 && seconds === 0
                         ? <img src={require("../images/next-task.png")} alt='' />

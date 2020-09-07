@@ -82,18 +82,21 @@ class CreateSchedule extends Component {
   render() {
     return (
         <div className="form-containers">
-            <h1 className="form-headers">Create Today's Schedule</h1>
             <h2 className="form-headers">Select 2 Relaxation Categories</h2>
             <select className="input-fields" name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select>
             <select className="input-fields" name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
             { this.props.scheduleInProgress.length < 10 ?
               <div>
-                <h2 className="form-headers">Add Up to 10 Tasks</h2>
+                <h2 className="form-headers" id="add-up-to-x-tasks">Add Up to 10 Tasks</h2>
                 <form onSubmit={this.handleSubmit}>
-                    <h4 className="form-labels">Task Description</h4>
-                    <input className="input-fields" name="taskDescription" onChange={this.handleChange} value={this.state.taskDescription}/>
-                    <h4 className="form-labels">Task Notes</h4>
-                    <input className="input-fields" name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/><br></br>
+                  <div id="task-description-div">
+                    <h4 className="form-labels" id="task-description" >Task Description</h4>
+                    <input className="input-fields" id="task-description" name="taskDescription" onChange={this.handleChange} value={this.state.taskDescription}/>
+                  </div>
+                  <div id="task-notes-div">
+                    <h4 className="form-labels" id="task-notes" >Task Notes</h4>
+                    <input className="input-fields" id="task-notes" name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/><br></br>
+                  </div>
                   <input  className="buttons" type="submit" value="Add Task"/>
                 </form>
               </div>
@@ -101,7 +104,7 @@ class CreateSchedule extends Component {
               null
             }
             <br></br>
-            <button className="buttons" onClick={this.handleCreateSchedule}>Create Schedule</button>
+            <button className="menu-buttons" onClick={this.handleCreateSchedule}>Create Schedule</button>
         </div>
     );
   }

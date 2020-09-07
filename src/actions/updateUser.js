@@ -5,6 +5,12 @@ export const updateUser = (event, user) => {
         min_num_hours: event.target.minNumHours.value,
         max_num_hours: event.target.maxNumHours.value
     }
+    let data2 = {
+        username: event.target.username.value,
+        start_work_time: `2000-01-01T${event.target.startWorkTime.value}:00.000Z`,
+        min_num_hours: event.target.minNumHours.value,
+        max_num_hours: event.target.maxNumHours.value
+    }
     return (dispatch) => {
     dispatch({ type: 'LOADING_USER'})
     fetch(`http://localhost:3000/users/${user.id}`,{
@@ -19,7 +25,7 @@ export const updateUser = (event, user) => {
         if(!responseJSON.error){
             if(responseJSON.user){
                 localStorage.token = responseJSON.token
-                dispatch({ type: 'UPDATE_USER', user: data }) 
+                dispatch({ type: 'UPDATE_USER', user: data2 }) 
             }else {
     
                 alert(responseJSON.error)

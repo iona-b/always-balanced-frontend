@@ -21,7 +21,8 @@ class CreateTask extends Component {
       task_notes: this.state.taskNotes,
       user_id: this.props.user.id
     }
-    this.props.addTask(task);
+    this.props.addTask(task)
+    this.props.handleToggleAddTaskForm()
   };
  
   render() {
@@ -29,14 +30,13 @@ class CreateTask extends Component {
       <div>
         <form className="forms" onSubmit={this.handleSubmit}>
             <h2 className="form-headers">Add Tasks</h2>
-            <p>Add some tasks that you work on regularly, for instance a certain project that you dedicate time to every day. Each task should be something that takes between an hour and an hour-and-a-half to complete.</p>
+            <p>Add any tasks that you work on regularly. Each task should take between forty-five minutes and an hour to complete.</p>
+            <p>You can always add any subtasks in the Task Notes.</p>
               <h4 className="form-labels">Task Description</h4>
-              <p>Enter a general description of your task here.</p>
-              <input type="text" name="taskDescription" value={this.state.taskDescription} onChange={this.handleChange} />
+              <input type="text" className="input-fields" name="taskDescription" value={this.state.taskDescription} onChange={this.handleChange} />
               <h4 className="form-labels">Task Notes</h4>
-              <p>Add any information you think is relevant. This is a good place to make a note of any sub-tasks.</p>
-              <input type="text" name="taskNotes" value={this.state.taskNotes} onChange={this.handleChange} />
-          <input type="submit" />
+              <input type="text" className="input-fields" name="taskNotes" value={this.state.taskNotes} onChange={this.handleChange} /><br></br>
+          <input type="submit" className="buttons" />
         </form>
       </div>
     );

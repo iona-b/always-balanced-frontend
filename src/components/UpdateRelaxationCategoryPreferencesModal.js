@@ -32,7 +32,7 @@ class UpdateRelaxationPreferencesModal extends React.Component {
         });
     };
      
-    handleSubmit = () => {
+    handleSubmit = event => {
         this.props.user.user_relaxation_categories.forEach (category => this.props.deleteOldRelaxationPreferences(category))
         let relaxationCategory1 = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory1)[0]
         let relaxationCategory2 = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory2)[0]
@@ -40,23 +40,25 @@ class UpdateRelaxationPreferencesModal extends React.Component {
         this.props.updateUserRelaxationCategory(this.props.user.id, relaxationCategory1)
         this.props.updateUserRelaxationCategory(this.props.user.id, relaxationCategory2)
         this.props.updateUserRelaxationCategory(this.props.user.id, relaxationCategory3)
+        this.props.handleClick(event)
     };
 
     render() {
         return (
-            <div className="form-containers">
-                <button className="buttons" id="back-button" name="showUpdateRelaxationCategoryPreferences" onClick={this.props.handleClick}>Go Back</button>
+          <div>
+            <button className="buttons back-buttons" name="showUpdateRelaxationCategoryPreferences" onClick={this.props.handleClick}>⬅</button>
+              <div className="form-containers">
                 <div className="choose-relaxation-categories-form">
-                    <h2 className="form-headers">Select 3 Relaxation Categories</h2>
-                    <select name="relaxationCategory1" className="input-fields" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
-                    <select name="relaxationCategory2" className="input-fields" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
-                    <select name="relaxationCategory3" className="input-fields" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
-                    <button className="buttons" onClick={this.handleSubmit}>Confirm</button>
+                  <h2 className="form-headers">Select 3 Relaxation Categories</h2>
+                  <select name="relaxationCategory1" className="input-fields" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
+                  <select name="relaxationCategory2" className="input-fields" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
+                  <select name="relaxationCategory3" className="input-fields" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key={relaxationCategory.id}>{relaxationCategory.category_name}</option>)}</select><br></br>
+                  <button name="showUpdateRelaxationCategoryPreferences" className="buttons" onClick={this.handleSubmit}>Confirm</button>
                 </div>
+              </div>
             </div>
         )
     }
-
 }
 
 const mapStateToProps = state => {

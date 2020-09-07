@@ -32,11 +32,15 @@ class SignUpContainer extends React.Component {
     }
   }
 
+  handleToggleAddTaskForm = () => {
+    console.log("I don't do anything")
+  }
+
   render() {
     return (
       <div>
         <Link to='/' >
-          <button className="buttons" id="back-button">Go Back</button>
+          <button className="buttons back-buttons">⬅</button>
         </Link>
         <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left" />
         <img src={require("../images/background-top-right.png")} alt='' id="background-top-right" />
@@ -45,18 +49,18 @@ class SignUpContainer extends React.Component {
           { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === false ? <ChooseRelaxationCategories /> : null }
           { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === true && this.state.initialToDosCreated === false ?
             <div>           
-                <CreateTaskForm id="create-task-form" />
-                <div id="task-list">{this.handleLoading()}</div>
+                <CreateTaskForm id="create-task-form" handleToggleAddTaskForm={this.handleToggleAddTaskForm} />
+                {/* <div id="task-list">{this.handleLoading()}</div> */}
             </div>
           : 
             null
           }
           { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === true && this.state.initialToDosCreated === true ? 
             <div>
-              <CreateTaskForm id="create-task-form" />
-              <div id="task-list">{this.handleLoading()}</div>
+              <CreateTaskForm id="create-task-form" handleToggleAddTaskForm={this.handleToggleAddTaskForm} />
+              {/* <div id="task-list">{this.handleLoading()}</div> */}
               <Link to='/' >
-                  <button className="buttons">Go to Home</button>
+                  <button className="buttons">Home</button>
               </Link>
             </div>
           :

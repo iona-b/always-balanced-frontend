@@ -9,6 +9,7 @@ import NotFound from './containers/NotFound'
 import ProfileContainer from './containers/ProfileContainer'
 import ScheduleContainer from './containers/ScheduleContainer'
 import SignUpContainer from './containers/SignUpContainer'
+import About from './components/About'
 import Clock from './components/Clock';
 import { logOutUser } from './actions/logOutUser'
 import { fetchUser } from './actions/fetchUser';
@@ -75,10 +76,14 @@ class App extends React.Component {
               <NavLink to='/schedule' className="nav-bar-headings" >Schedule</NavLink>
             </div>
             <div className="nav-bar-divs">
+              <NavLink to='/about' exact className="nav-bar-headings" >About</NavLink>
+            </div>
+            <div className="nav-bar-divs">
               <NavLink to='/' onClick={this.handleLogOut} className="nav-bar-headings" >Log Out</NavLink>
             </div>
           </div>
           <div id="lower-nav-bar">
+            <a id="link-to-github" href="https://github.com/iona-b/always-balanced-frontend">Copyright &copy; Iona Brabender 2020</a> 
           </div>
         </div>
         :
@@ -98,6 +103,7 @@ class App extends React.Component {
             </div>
           </div>
           <div id="lower-nav-bar">
+            <a id="link-to-github" href="https://github.com/iona-b/always-balanced-frontend">Copyright &copy; Iona Brabender 2020</a>
           </div>
         </div>
         }
@@ -108,6 +114,7 @@ class App extends React.Component {
           <Route path='/createschedule' component={CreateScheduleContainer}/>
           <Route path='/profile' component={ProfileContainer}/>
           <Route path='/schedule' component={ScheduleContainer}/>
+          <Route path='/about' component={About}/>
           <Route component={NotFound}/>
         </Switch>
       </div>
