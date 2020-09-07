@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addSchedule } from '../actions/addSchedule'
 import { addTaskToSIP } from '../actions/addTaskToSIP';
 import { addTaskToPostedSchedule } from '../actions/addTaskToPostedSchedule';
+import { addExistingTaskToPostedSchedule } from '../actions/addExistingTaskToPostedSchedule';
 import { finaliseScheduleTasks } from '../actions/finaliseScheduleTasks';
 import { finaliseScheduleActivities } from '../actions/finaliseScheduleActivities';
  
@@ -57,7 +58,12 @@ class CreateSchedule extends Component {
   handleCreateSchedule = () => {
     this.props.addSchedule(this.props.user.id, this.props.token)
     setTimeout(this.props.scheduleInProgress.forEach ((task) => { 
-      this.props.addTaskToPostedSchedule(task)}), 2000 )
+      if (task.id) {
+        this.props.addExistingTaskToPostedSchedule(task)
+      } else {
+        this.props.addTaskToPostedSchedule(task)
+      }
+    }), 2000)
     this.setState({
       readyToPostTasks: true
     })
@@ -126,6 +132,7 @@ const mapDispatchToProps = dispatch => {
     addSchedule: (schedule, token) => dispatch(addSchedule(schedule, token)),
     addTaskToSIP: (task) => dispatch(addTaskToSIP(task)),
     addTaskToPostedSchedule: (task) => dispatch(addTaskToPostedSchedule(task)),
+    addExistingTaskToPostedSchedule: (task) => dispatch(addExistingTaskToPostedSchedule(task)),
     finaliseScheduleTasks: (taskId) => dispatch(finaliseScheduleTasks(taskId)),
     finaliseScheduleActivities: (relaxationCategoryId, activityLength) => dispatch(finaliseScheduleActivities(relaxationCategoryId, activityLength)),
   };

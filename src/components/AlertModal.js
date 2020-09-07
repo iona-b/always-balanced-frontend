@@ -8,7 +8,6 @@ export default class AlertModal extends React.Component {
     }
 
     componentDidMount() {
-        debugger
         this.myInterval = setInterval(() => {
             const { seconds, minutes } = this.state
             if (seconds > 0) {

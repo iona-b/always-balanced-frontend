@@ -140,7 +140,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.user.tasks],
           user_relaxation_categories: [...state.user.user_relaxation_categories],
         },
-        userTasks: state.userTasks,
+        userTasks: [...state.userTasks],
         userSchedules: state.userSchedules,
         currentSchedule: {
           id: state.currentSchedule.id,
@@ -220,6 +220,32 @@ const userReducer = (state=initialState,action) => {
         allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories]
       }
+    case 'ADD_EXISTING_TASK_TO_POSTED_SCHEDULE':
+      console.log('ADD_EXISTING_TASK_TO_POSTED_SCHEDULE')
+      console.log(state)
+      return {
+        ...state,
+        token: state.token,
+        userId: state.userId,
+        user: {...state.user},
+        userTasks: [...state.userTasks],
+        userSchedules: [...state.user.schedules],
+        currentSchedule: {
+          id: state.currentSchedule.id,
+          date: state.currentSchedule.date,
+          user_id: state.currentSchedule.user_id,
+          schedule_activities: [...state.currentSchedule.schedule_activities],
+          activities: [...state.currentSchedule.activities],
+          schedule_tasks: [...state.currentSchedule.schedule_tasks],
+          tasks: [...state.currentSchedule.tasks]
+        },
+        scheduleInProgress: [...state.scheduleInProgress],
+        postedSchedule: {
+          tasks: [...state.postedSchedule.tasks.concat(action.task)]
+        },
+        allRelaxationCategories: [...state.allRelaxationCategories],
+        relaxationCategories: [...state.relaxationCategories]
+      }
   // USER SCHEDULE CASES
     case 'ADD_SCHEDULE':
       console.log('ADD_SCHEDULE')
@@ -282,7 +308,7 @@ const userReducer = (state=initialState,action) => {
         token: state.token,
         userId: state.userId,
         user: {...state.user},
-        userTasks: state.user.tasks,
+        userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
         currentSchedule: {
           id: action.currentSchedule.id,
@@ -311,7 +337,7 @@ const userReducer = (state=initialState,action) => {
         token: state.token,
         userId: state.userId,
         user: {...state.user},
-        userTasks: state.user.tasks,
+        userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
         currentSchedule: {
           id: action.schedule.schedule_id,
@@ -337,7 +363,7 @@ const userReducer = (state=initialState,action) => {
         token: state.token,
         userId: state.userId,
         user: {...state.user},
-        userTasks: state.user.tasks,
+        userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
         currentSchedule: {
           id: state.currentSchedule.id,
@@ -364,7 +390,7 @@ const userReducer = (state=initialState,action) => {
         token: state.token,
         userId: state.userId,
         user: {...state.user},
-        userTasks: state.user.tasks,
+        userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
         currentSchedule: {
           id: state.currentSchedule.id,
@@ -385,7 +411,7 @@ const userReducer = (state=initialState,action) => {
     case 'DELETE_TASK':
       console.log('DELETE_TASK')
       console.log(state)
-      let updatedTasks = state.user.tasks.filter (task => task.id !== action.task.id)
+      let updatedTasks = state.userTasks.filter (task => task.id !== action.task.id)
       return {
         ...state,
         token: state.token,
@@ -418,7 +444,7 @@ const userReducer = (state=initialState,action) => {
           token: state.token,
           userId: state.userId,
           user: {...state.user},
-          userTasks: state.user.tasks,
+          userTasks: [...state.userTasks],
           userSchedules: updatedSchedules,
           currentSchedule: initialState.currentSchedule,
           scheduleInProgress: [],
@@ -437,7 +463,7 @@ const userReducer = (state=initialState,action) => {
         token: state.token,
         userId: state.userId,
         user: {...state.user},
-        userTasks: state.user.tasks,
+        userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
         currentSchedule: {
           id: state.currentSchedule.id,
@@ -476,7 +502,7 @@ const userReducer = (state=initialState,action) => {
             tasks: [...state.user.tasks],
             user_relaxation_categories: state.user.user_relaxation_categories.concat(action.userRelaxationCategory),
           },
-          userTasks: state.user.tasks,
+          userTasks: [...state.userTasks],
           userSchedules: [...state.userSchedules],
           currentSchedule: {
             id: state.currentSchedule.id,
@@ -517,7 +543,7 @@ const userReducer = (state=initialState,action) => {
             tasks: [...state.user.tasks],
             user_relaxation_categories: updatedUserRelaxationCategories,
           },
-          userTasks: state.user.tasks,
+          userTasks: [...state.userTasks],
           userSchedules: [...state.userSchedules],
           currentSchedule: {
             id: state.currentSchedule.id,
