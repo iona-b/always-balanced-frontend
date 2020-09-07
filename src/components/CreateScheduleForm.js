@@ -96,6 +96,7 @@ class CreateSchedule extends Component {
             <select className="input-fields" key="2" name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option >{relaxationCategory.category_name}</option>)}</select><br></br>
             { this.props.scheduleInProgress.length < maximumNumberOfTasks ?
               <div>
+                {minimumNumberOfTasks === maximumNumberOfTasks ? <h2 className="form-headers" id="add-up-to-x-tasks">Add Up To {maximumNumberOfTasks} Tasks</h2> : <h2 className="form-headers" id="add-up-to-x-tasks">Add Between {minimumNumberOfTasks} and {maximumNumberOfTasks} Tasks</h2>}
                 <h2 className="form-headers" id="add-up-to-x-tasks">Add Between {minimumNumberOfTasks} and {maximumNumberOfTasks} Tasks</h2>
                 <form onSubmit={this.handleSubmit}>
                   <div id="task-description-div">
