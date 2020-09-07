@@ -86,14 +86,17 @@ class CreateSchedule extends Component {
   }
 
   render() {
+    let minimumNumberOfTasks = this.props.user.min_num_hours
+    let maximumNumberOfTasks = this.props.user.max_num_hours
+
     return (
         <div className="form-containers">
             <h2 className="form-headers">Select 2 Relaxation Categories</h2>
             <select className="input-fields" key="1" name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option >{relaxationCategory.category_name}</option>)}</select>
             <select className="input-fields" key="2" name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option >{relaxationCategory.category_name}</option>)}</select><br></br>
-            { this.props.scheduleInProgress.length < 10 ?
+            { this.props.scheduleInProgress.length < maximumNumberOfTasks ?
               <div>
-                <h2 className="form-headers" id="add-up-to-x-tasks">Add Up to 10 Tasks</h2>
+                <h2 className="form-headers" id="add-up-to-x-tasks">Add Between {minimumNumberOfTasks} and {maximumNumberOfTasks} Tasks</h2>
                 <form onSubmit={this.handleSubmit}>
                   <div id="task-description-div">
                     <h4 className="form-labels" id="task-description" >Task Description</h4>
