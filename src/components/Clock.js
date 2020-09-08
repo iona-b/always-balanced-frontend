@@ -37,7 +37,7 @@ class Clock extends React.Component {
     }
     render() {
       return (
-        <p id="clock">
+        <p id="clock" className="landing-page-elements">
           {this.state.day}, {this.state.month} {this.state.date}, {this.state.year}<br></br>
           {this.state.hour}:{this.state.minutes < 10 ? 0 : null}{this.state.minutes}:{this.state.seconds < 10 ? 0 : null}{this.state.seconds}
         </p>

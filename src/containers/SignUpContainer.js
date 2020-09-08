@@ -50,7 +50,6 @@ class SignUpContainer extends React.Component {
           { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === true && this.state.initialToDosCreated === false ?
             <div>           
                 <CreateTaskForm id="create-task-form" handleToggleAddTaskForm={this.handleToggleAddTaskForm} />
-                {/* <div id="task-list">{this.handleLoading()}</div> */}
             </div>
           : 
             null
@@ -58,10 +57,6 @@ class SignUpContainer extends React.Component {
           { this.state.profileCreated === true && this.state.relaxationCategoriesChosen === true && this.state.initialToDosCreated === true ? 
             <div>
               <CreateTaskForm id="create-task-form" handleToggleAddTaskForm={this.handleToggleAddTaskForm} />
-              {/* <div id="task-list">{this.handleLoading()}</div> */}
-              <Link to='/' >
-                  <button className="buttons">Home</button>
-              </Link>
             </div>
           :
             null

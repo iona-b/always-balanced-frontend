@@ -22,6 +22,11 @@ html, body {
     margin-top: 10px;
     position: absolute;
     left: 38%;
+    animation: fadeIn ease 5s;
+    -webkit-animation: fadeIn ease 5s;
+    -moz-animation: fadeIn ease 5s;
+    -o-animation: fadeIn ease 5s;
+    -ms-animation: fadeIn ease 5s;
 }
 
 #clock {
@@ -83,9 +88,9 @@ html, body {
 #link-to-github {
     text-decoration: none;
     color: #FFFAF0;
-    font-size: 20px;
+    font-size: 15px;
     position: relative;
-    bottom: -10px;
+    bottom: -15px;
 }
 
 /* Home Styling */
@@ -102,13 +107,34 @@ html, body {
     position: absolute;
     left: 36.5%;
     margin-top: 100px;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+.landing-page-elements {
+    animation: fadeIn ease 4s;
+    -webkit-animation: fadeIn ease 4s;
+    -moz-animation: fadeIn ease 4s;
+    -o-animation: fadeIn ease 4s;
+    -ms-animation: fadeIn ease 4s;
+}
+
+.landing-page-background {
+    animation: fadeIn ease 7s;
+    -webkit-animation: fadeIn ease 7s;
+    -moz-animation: fadeIn ease 7s;
+    -o-animation: fadeIn ease 7s;
+    -ms-animation: fadeIn ease 7s;
 }
 
 #background-bottom-left {
     position: fixed;
     left: 0%;
     width: 450px;
-    top: 35%
+    top: 35%;
 }
 
 #background-top-right {
@@ -134,10 +160,16 @@ html, body {
     height: 450px;
     padding-top: 20px;
     background-color: #FFFAF0;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
 }
 
 .form-headers {
     margin-bottom: 30px;
+    
 }
 
 #add-up-to-x-tasks {
@@ -152,6 +184,11 @@ html, body {
     overflow: scroll;
     padding-left: 15px;
     padding-right: 15px;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
 }
 
 .input-fields {
@@ -253,6 +290,11 @@ html, body {
     border-color: #DDEBE4;
     border-width: 5px;
     padding-top: 20px;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
 }
 
 #existing-tasks-div {
@@ -293,6 +335,11 @@ html, body {
     width: 500px;
     position: absolute;
     left: 33%;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
 }
 
 #schedule {
@@ -320,29 +367,33 @@ html, body {
 /* Modals  */
 
 #alert-modal {
-    width: 101vw;
-    position: absolute;
-    margin-left: -740px;
-    /* margin-top: -54vw; */
-    margin-top: -775px;
-    height: 51vw;
-    left: 50%;
+    top: 0%;
+    height: 1000px;
+    width: 550px;
     background-color:#2F4F4F;
-    opacity: 80%;
-    font-weight: bold;
-    color: #FFFAF0;
-    justify-content: center;
-    padding-top: 50px;
+    opacity: 90%;
+    position: absolute;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
 }
 
 .countdown-header {
+    margin-top: 100px;
+    margin-right: 20px;
+    margin-left: 20px;
     font-size: 50px;
-    vertical-align: middle;
+    position: relative;
+    color: #FFFAF0;
 }
 
 .countdown-timer {
     font-size: 80px;
-    margin-top: 0px;
+    margin-top: 50px;
+    color: #FFFAF0;
+    position: relative;
 }
 
 .slotActive {
@@ -355,6 +406,11 @@ html, body {
     position: absolute;
     left: 37%;
     margin-top: 50px;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
 }
 
 /* Profile Styling */
@@ -364,6 +420,11 @@ html, body {
     height: 110%;
     width: 100%;
     position: relative;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
 }
 
 #profile-menu {
@@ -371,4 +432,32 @@ html, body {
     position: absolute;
     left: 36.5%;
     margin-top: 100px;
+}
+
+
+/* Key Frames */
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+    
+@-moz-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
 }

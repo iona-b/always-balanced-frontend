@@ -61,7 +61,7 @@ class Schedule extends React.Component {
     getBreaks = () => {
         let schedule = this.getScheduleSlots()
         if (this.state.breakTime === false) {
-            return schedule.forEach (slot => (this.state.hour * 60 + this.state.minutes) === slot[3].break && this.state.seconds === 0 ? this.setState({breakTime: true, breakLength: (slot[5].nextStartTime - slot[3].break)}) : null)
+            return schedule.forEach (slot => (this.state.hour * 60 + this.state.minutes) === 760 && this.state.seconds === 0 ? this.setState({breakTime: true, breakLength: (slot[5].nextStartTime - slot[3].break)}) : null)
         }
     }
 
@@ -133,6 +133,7 @@ class Schedule extends React.Component {
     }
     
     render() {
+        // debugger
         return (
             <div>
                 <div className="schedule">
@@ -164,7 +165,10 @@ class Schedule extends React.Component {
                     {
                         this.state.breakTime === true
                         ?
+                        <div>
                             <AlertModal breakLength={this.state.breakLength} handleClick={this.handleClick}/>
+                        </div>
+                            
                         :
                         null
                     }
@@ -178,7 +182,7 @@ const mapStateToProps = state => {
     return {
         user: state.user,
         schedules: state.userSchedules,
-        currentSchedule: state.currentSchedule,
+        currentSchedule: state.currentSchedule
     }
 }
 

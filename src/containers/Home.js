@@ -28,10 +28,9 @@ class Home extends React.Component {
           </div>
         :
           <div id="home-div">
-            <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left"/>
-            <img src={require("../images/background-top-right.png")} alt='' id="background-top-right"/>
-            <div id="home-menu">
-              
+            <img className="landing-page-background" src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left"/>
+            <img className="landing-page-background" src={require("../images/background-top-right.png")} alt='' id="background-top-right"/>
+            <div className="landing-page-elements" id="home-menu">
               <h2>Welcome to Always Balanced</h2>
               <NavLink to='/login'>
                 <button className="menu-buttons">Login</button>

@@ -96,10 +96,10 @@ class App extends React.Component {
           </div>
           <div id="nav-bar">
             <div className="nav-bar-divs">
-              <NavLink to='/login' exact className="nav-bar-headings  login-nav-bar-heading" >Login</NavLink>
+              <NavLink to='/login' exact className="nav-bar-headings  login-nav-bar-heading landing-page-elements" >Login</NavLink>
             </div>
             <div className="nav-bar-divs">
-              <NavLink to='/signup' exact className="nav-bar-headings signup-nav-bar-heading" >Sign Up</NavLink>
+              <NavLink to='/signup' exact className="nav-bar-headings signup-nav-bar-heading landing-page-elements" >Sign Up</NavLink>
             </div>
           </div>
           <div id="lower-nav-bar">

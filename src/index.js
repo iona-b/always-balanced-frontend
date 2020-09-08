@@ -9,11 +9,6 @@ import thunk from 'redux-thunk';
 import userReducer from './reducers/userReducer'
 import * as serviceWorker from './serviceWorker';
 
-// const rootReducer = combineReducers({
-//   user: userReducer,
-//   schedule: scheduleReducer
-// })
-
 const store = createStore(userReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
