@@ -384,7 +384,7 @@ const userReducer = (state=initialState,action) => {
     case 'REMOVE_TASK_FROM_SIP':
       console.log('REMOVE_TASK_FROM_SIP')
       console.log(state)
-      let updatedSIP = state.scheduleInProgress.filter (task => task.id != action.task)
+      let updatedSIP = state.scheduleInProgress.filter (task => task.task_notes != action.taskNotes)
       return {
         ...state,
         token: state.token,
@@ -446,7 +446,15 @@ const userReducer = (state=initialState,action) => {
           user: {...state.user},
           userTasks: [...state.userTasks],
           userSchedules: updatedSchedules,
-          currentSchedule: initialState.currentSchedule,
+          currentSchedule: {
+            id: '',
+            date: '',
+            user_id: '',
+            schedule_activities: [],
+            activities: [],
+            schedule_tasks: [],
+            tasks: []
+          },
           scheduleInProgress: [],
           postedSchedule: {
             tasks: []

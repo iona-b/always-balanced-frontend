@@ -97,7 +97,6 @@ class CreateSchedule extends Component {
             { this.props.scheduleInProgress.length < maximumNumberOfTasks ?
               <div>
                 {minimumNumberOfTasks === maximumNumberOfTasks ? <h2 className="form-headers" id="add-up-to-x-tasks">Add Up To {maximumNumberOfTasks} Tasks</h2> : <h2 className="form-headers" id="add-up-to-x-tasks">Add Between {minimumNumberOfTasks} and {maximumNumberOfTasks} Tasks</h2>}
-                <h2 className="form-headers" id="add-up-to-x-tasks">Add Between {minimumNumberOfTasks} and {maximumNumberOfTasks} Tasks</h2>
                 <form onSubmit={this.handleSubmit}>
                   <div id="task-description-div">
                     <h4 className="form-labels" id="task-description" >Task Description</h4>

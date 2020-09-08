@@ -4,6 +4,7 @@ import { fetchSchedule } from '../actions/fetchSchedule'
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom'
 import AlertModal from "./AlertModal";
+import FocusModeSchedule from "./FocusModeSchedule";
 
 class Schedule extends React.Component {
 
@@ -12,7 +13,8 @@ class Schedule extends React.Component {
         minutes: new Date().getMinutes(),
         seconds: new Date().getSeconds(),
         breakTime: false,
-        breakLength: 0
+        breakLength: 0,
+        showFocusModeSchedule: false
     };
 
     componentDidMount() {
@@ -59,12 +61,19 @@ class Schedule extends React.Component {
     getBreaks = () => {
         let schedule = this.getScheduleSlots()
         if (this.state.breakTime === false) {
-            return schedule.forEach (slot => (this.state.hour * 60 + this.state.minutes) === 1151 && this.state.seconds === 0 ? this.setState({breakTime: true, breakLength: (slot[5].nextStartTime - slot[3].break)}) : null)
+            return schedule.forEach (slot => (this.state.hour * 60 + this.state.minutes) === slot[3].break && this.state.seconds === 0 ? this.setState({breakTime: true, breakLength: (slot[5].nextStartTime - slot[3].break)}) : null)
         }
     }
 
     handleClick = () => {
         this.setState({breakTime: false, breakLength: 0})
+    }
+
+    handleToggleFocusMode = () => {
+        this.setState ({
+            showFocusModeSchedule: !this.state.showFocusModeSchedule
+        })
+        console.log(this.state.showFocusModeSchedule)
     }
     
     getScheduleSlots = () => {
@@ -131,8 +140,16 @@ class Schedule extends React.Component {
                         this.props.currentSchedule.id !== ""
                         ?
                             <div id="schedule">
-                                <h2 className="form-headers">Schedule for {this.day}, {this.month} {this.date}, {this.year}</h2>
-                                {this.returnSchedule()}
+                                <button className="buttons" id="focus-mode-button" onClick={this.handleToggleFocusMode}>🔍</button>    
+                                {
+                                    this.state.showFocusModeSchedule === false ?
+                                    <div>
+                                        <h2 className="form-headers">Schedule for {this.day}, {this.month} {this.date}, {this.year}</h2>
+                                        {this.returnSchedule()}
+                                    </div>
+                                    :
+                                    <FocusModeSchedule scheduleSlots={this.getScheduleSlots}/>
+                                }     
                             </div>
                         :
                             <div>
@@ -140,7 +157,7 @@ class Schedule extends React.Component {
                                 <Link to='/createschedule' >
                                     <button className="menu-buttons" >Create Schedule</button>
                                 </Link>
-                            </div>
+                            </div>  
                     }
                 </div>
                 <div>

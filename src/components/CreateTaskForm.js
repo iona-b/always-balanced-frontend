@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTask } from '../actions/addTask'
-import { v4 as uuidv4 } from 'uuid';
  
 class CreateTask extends Component {
   state = {

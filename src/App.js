@@ -67,13 +67,13 @@ class App extends React.Component {
               <NavLink to='/' exact className="nav-bar-headings" >Home</NavLink>
             </div>
             <div className="nav-bar-divs">
-              <NavLink to='/createschedule' className="nav-bar-headings" >Create Schedule</NavLink>
-            </div>
-            <div className="nav-bar-divs">
               <NavLink to='/profile' className="nav-bar-headings" >Profile</NavLink>
             </div>
             <div className="nav-bar-divs">
-              <NavLink to='/schedule' className="nav-bar-headings" >Schedule</NavLink>
+              <NavLink to='/createschedule' className="nav-bar-headings" >Create Schedule</NavLink>
+            </div>
+            <div className="nav-bar-divs">
+              <NavLink to='/schedule' className="nav-bar-headings" >View Schedule</NavLink>
             </div>
             <div className="nav-bar-divs">
               <NavLink to='/about' exact className="nav-bar-headings" >About</NavLink>

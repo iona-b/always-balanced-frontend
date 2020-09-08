@@ -231,6 +231,13 @@ html, body {
     color: #2F4F4F;
 }
 
+#focus-mode-button {
+    width: 40px;
+    position: absolute;
+    right: 0%;
+    top: -1%;
+}
+
 /* Task Related Styling */
 
 .show-tasks {
@@ -288,6 +295,11 @@ html, body {
     left: 33%;
 }
 
+#schedule {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 #create-schedule-container {
     margin-top: 10px;
     position: absolute;
@@ -299,6 +311,10 @@ html, body {
 #create-schedule-form-container {
     position: absolute;
     left: 0%;
+}
+
+#focus-mode-div {
+    margin-top: 90px;
 }
 
 /* Modals  */
