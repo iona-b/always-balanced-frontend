@@ -122,8 +122,8 @@ class Schedule extends React.Component {
             return completeSchedule = schedule.map ((scheduleSlot) => {
                 return (
                     <div>
-                        <p className={this.currentTimeInMinutes > scheduleSlot[0].task &&  this.currentTimeInMinutes < scheduleSlot[3].break ? "slotActive" : "slotNotActive"} key={uuidv4()} > {this.convertToHoursAndMinutes(scheduleSlot[0].task)}: {scheduleSlot[1].task_description}: {scheduleSlot[1].task_notes} </p>
-                        <p className={this.currentTimeInMinutes > scheduleSlot[3].break && this.currentTimeInMinutes < scheduleSlot[5].nextStartTime ? "slotActive" : "slotNotActive"} key={uuidv4()} > {this.convertToHoursAndMinutes(scheduleSlot[3].break)}: {scheduleSlot[4].activity_description} </p>
+                        <p className={this.currentTimeInMinutes >= scheduleSlot[0].task &&  this.currentTimeInMinutes < scheduleSlot[3].break ? "slotActive" : "slotNotActive"} key={uuidv4()} > {this.convertToHoursAndMinutes(scheduleSlot[0].task)}: {scheduleSlot[1].task_description}: {scheduleSlot[1].task_notes} </p>
+                        <p className={this.currentTimeInMinutes >= scheduleSlot[3].break && this.currentTimeInMinutes < scheduleSlot[5].nextStartTime ? "slotActive" : "slotNotActive"} key={uuidv4()} > {this.convertToHoursAndMinutes(scheduleSlot[3].break)}: {scheduleSlot[4].activity_description} </p>
                     </div>
                 )
             })
@@ -133,7 +133,6 @@ class Schedule extends React.Component {
     }
     
     render() {
-        // debugger
         return (
             <div>
                 <div className="schedule">

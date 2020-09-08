@@ -14,8 +14,15 @@ import Clock from './components/Clock';
 import { logOutUser } from './actions/logOutUser'
 import { fetchUser } from './actions/fetchUser';
 import { fetchSchedule } from './actions/fetchSchedule'
+import whiteNoiseAudio from './images/white-noise.mp3';
 
 class App extends React.Component {
+
+  state = {
+    whiteNoisePlaying: false
+  }
+
+  whiteNoise = new Audio(whiteNoiseAudio);
 
   componentDidMount() {
     if(localStorage.token) {
@@ -30,12 +37,6 @@ class App extends React.Component {
       })
     }
   }
-  
-  handleAuthResponse = (json) => {
-    if (json.user){
-      localStorage.token = json.token
-    } 
-  }
 
   componentDidUpdate() {
     if (this.props.token && !this.props.user.id) {
@@ -44,6 +45,20 @@ class App extends React.Component {
     if (this.props.currentSchedule.loaded === false && this.props.currentSchedule.id !== "") {
       this.props.fetchSchedule(this.props.currentSchedule.id)
     }
+    return this.state.whiteNoisePlaying === true ? this.whiteNoise.play() : this.whiteNoise.pause()
+  }
+  
+  handleAuthResponse = (json) => {
+    if (json.user){
+      localStorage.token = json.token
+    } 
+  }
+
+  handleToggleWhiteNoisePlaying = () => {
+    this.setState({
+      whiteNoisePlaying: !this.state.whiteNoisePlaying
+    })
+    console.log(this.state.whiteNoisePlaying)
   }
 
   handleLogOut = () => {
@@ -57,6 +72,11 @@ class App extends React.Component {
         {this.props.token ?
         <div>
           <div id="top-nav-bar">
+            {this.state.whiteNoisePlaying === true ? 
+              <button className="buttons" id="stop-button" onClick={this.handleToggleWhiteNoisePlaying}>◼</button>
+            :
+              <button className="buttons" id="play-button" onClick={this.handleToggleWhiteNoisePlaying}>►</button>
+            }
             <Link to='/' >
               <img src={require("./images/always-balanced-long.png")} alt='' id="always-balanced-long" />
             </Link>
