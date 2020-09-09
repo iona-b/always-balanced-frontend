@@ -1,16 +1,18 @@
-export const finaliseScheduleActivities = (relaxationCategoryId) => {
+export const finaliseScheduleActivities = (relaxationCategoryId, activityLength) => {
+
     let data = {
-        relaxation_category_id: relaxationCategoryId
+        relaxation_category_id: relaxationCategoryId,
+        activity_length: activityLength
     }
+
     return (dispatch) => {
-        // dispatch({ type: 'LOADING_USER'})
         fetch('http://localhost:3000/schedule_activities',{
-        method:"POST",
-        headers:{
-        'Content-Type':'application/json'
-        },
-    body:JSON.stringify(data)
-    })
+            method:"POST",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(data)
+        })
     .then(response => response.json())
     .then(responseJSON => {
         if(!responseJSON.error){
@@ -19,6 +21,7 @@ export const finaliseScheduleActivities = (relaxationCategoryId) => {
             alert(responseJSON.error)
         }
     })
-    .catch(err => console.log('App.js Login Error:', err))
+    .catch(err => console.log('finaliseScheduleActivities error:', err))
     }
+
 }

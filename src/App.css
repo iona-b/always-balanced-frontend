@@ -1,76 +1,179 @@
-body {
+html, body {
     font-family: Palatino, URW Palladio L, serif;
     position: relative;
     font-weight: bold;
     background-color: #FFFAF0;
     color: #2F4F4F;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
-
 
 /* Nav Bar Styling  */
 
-#nav-bar {
-    height: 120px;
-    background-color: #95C8AB;
+#top-nav-bar {
+    height: 100px;
+    background-color: #BDDFCC;
 }
 
-#lower-nav-bar {
-    height: 50px;
-    background-color: #95C8AB;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    overflow: hidden;
-    z-index: 9999;
+#always-balanced-long {
+    height: 80px;
+    margin-top: 10px;
+    position: absolute;
+    left: 38%;
+    animation: fadeIn ease 5s;
+    -webkit-animation: fadeIn ease 5s;
+    -moz-animation: fadeIn ease 5s;
+    -o-animation: fadeIn ease 5s;
+    -ms-animation: fadeIn ease 5s;
 }
 
 #clock {
-    float: right;
+    position: absolute;
+    right: 0%;
+    top: 0%;
     font-size: 30px;
     text-align: right;
     margin-right: 20px;
     color: #FFFAF0;
 }
 
-#always-balanced-navbar-logo {
-    height: 120px;
-    padding-left: 20px;
+#nav-bar {
+    height:50px;
+    background-color: #BDDFCC;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .nav-bar-divs {
-    float: left;
+    margin-top: 15px;
+    width: 200px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
 }
 
-#back-button {
+.nav-bar-headings {
+    text-decoration: none;
+    color: #FFFAF0;
+    font-size: 20px;
+}
+
+.nav-bar-headings.login-nav-bar-heading {
     position: absolute;
-    left: 0%;
-    margin: 20px;
+    left: 42%;
+}
+
+.nav-bar-headings.signup-nav-bar-heading {
+    position: absolute;
+    left: 52%;
+}
+
+.nav-bar-divs:hover {
+    opacity: 50;
+}
+
+#lower-nav-bar {
+    height: 50px;
+    background-color: #BDDFCC;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 9999;
+    text-align: center;
+}
+
+#link-to-github {
+    text-decoration: none;
+    color: #FFFAF0;
+    font-size: 15px;
+    position: relative;
+    bottom: -15px;
 }
 
 /* Home Styling */
 
 #home-div {
-    margin-top: 20px;
+    text-align: center;
+    height: 110%;
+    width: 100%;
+    position: relative;
 }
 
-/* Sign Up and Login Styling  */
+#home-menu {
+    width: 400px;
+    position: absolute;
+    left: 36.5%;
+    margin-top: 100px;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+.landing-page-elements {
+    animation: fadeIn ease 4s;
+    -webkit-animation: fadeIn ease 4s;
+    -moz-animation: fadeIn ease 4s;
+    -o-animation: fadeIn ease 4s;
+    -ms-animation: fadeIn ease 4s;
+}
+
+.landing-page-background {
+    animation: fadeIn ease 7s;
+    -webkit-animation: fadeIn ease 7s;
+    -moz-animation: fadeIn ease 7s;
+    -o-animation: fadeIn ease 7s;
+    -ms-animation: fadeIn ease 7s;
+}
+
+#background-bottom-left {
+    position: fixed;
+    left: 0%;
+    width: 450px;
+    top: 35%;
+}
+
+#background-top-right {
+    position: absolute;
+    right: 0%;
+    width: 500px;
+}
+
+/* Form Styling  */
 
 .form-containers {
     margin-top: 20px;
     text-align: center;
-    width: 500px;
+    width: 550px;
     position: absolute;
-    left: 33%;
+    left: 30%;
     overflow: scroll;
     overflow-y: auto;
     border: solid;
     border-radius: 5px;
-    border-color: #95C8AB;
-    height: 500px;
+    border-color: #BDDFCC;
+    border-width: 5px;
+    height: 450px;
+    padding-top: 20px;
+    background-color: #FFFAF0;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
 }
 
 .form-headers {
     margin-bottom: 30px;
+    
+}
+
+#add-up-to-x-tasks {
+    margin-bottom: 10px;
 }
 
 .form-labels {
@@ -79,6 +182,13 @@ body {
 
 .forms {
     overflow: scroll;
+    padding-left: 15px;
+    padding-right: 15px;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
 }
 
 .input-fields {
@@ -89,19 +199,19 @@ body {
     text-align: center;
     border: solid;
     border-radius: 5px;
-    border-color: #95C8AB;     
+    border-color: #BDDFCC;     
 }
 
-.signup-and-login-divs {
-    background-color: #95C8AB;
-    width: 150px;
-    border-radius: 5px;
-    right: 400px;
+.choose-relaxation-categories-form {
+    font-family: Palatino, URW Palladio L, serif;
 }
 
-.signup-and-login-buttons {
-    height: 300px;
+#create-task-form-div {
+    position: absolute;
+    right: 0%;
 }
+
+/* Button Styling */
 
 .buttons {
     height: 35px;
@@ -111,47 +221,135 @@ body {
     border-radius: 5px;
     font-weight: bold;
     border: solid;
-    border-color: #95C8AB;
+    border-color: #BDDFCC;
     font-family: Palatino, URW Palladio L, serif;
     background-color: #DDEBE4;
     font-size: 15px;
     opacity: 100%;
+    color: #2F4F4F;
 }
 
-#create-schedule-container {
-    margin-top: 10px;
-    position: absolute;
-    left: 37%;
-    width: 1000px;
+.menu-buttons {
+    height: 50px;
+    width: 300px;
+    margin: 5px;
     text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    border: solid;
+    border-color: #BDDFCC;
+    font-family: Palatino, URW Palladio L, serif;
+    background-color: #DDEBE4;
+    font-size: 20px;
+    opacity: 100%;
+    color: #2F4F4F;
+    cursor: pointer;
 }
 
-#show-existing-tasks {
+.back-buttons {
+    width: 50px;
+    position: absolute;
+    left: 0%;
+    margin: 20px;
+}
+
+.task-button {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    border: solid;
+    border-color: #BDDFCC;
+    font-family: Palatino, URW Palladio L, serif;
+    background-color: #DDEBE4;
+    float: right;
+    color: #2F4F4F;
+}
+
+#focus-mode-button {
+    width: 40px;
+    position: absolute;
+    right: 0%;
+    top: -1%;
+}
+
+#edit-schedule-button {
+    width: 40px;
+    position: absolute;
+    right: 0%;
+    top: 7%;
+}
+
+#timer-button {
+    width: 40px;
+    position: absolute;
+    right: 0%;
+    top: 15%;
+}
+
+#play-button {
+    width: 40px;
+    border-color: #FFFAF0;
+}
+
+#stop-button {
+    width: 40px;
+    font-size:18px;
+    border-color: #FFFAF0;
+}
+
+/* Task Related Styling */
+
+.show-tasks {
     margin-top: 20px;
     position: absolute;
-    right: 1%;
     width: 400px;
     text-align: center;
     height: 480px;
     border-radius: 5px;
-    height: 500px;
+    height: 450px;
     overflow: scroll;
     border: solid;
     border-color: #DDEBE4;
     border-width: 5px;
+    padding-top: 20px;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
 }
 
-#schedule-in-progress{
-    margin-top: 20px;
-    position: absolute;
+#existing-tasks-div {
+    right: 1%;
+}
+
+#schedule-in-progress-div {
     left: 1%;
-    width: 400px;
-    text-align: center;
-    height: 500px;
-    border-radius: 5px;
-    border: solid;
-    border-color: #DDEBE4;
-    border-width: 5px;
+}
+
+.tasks-items {
+    margin: 15px;
+    vertical-align: center;
+    line-height: 35px;
+}
+
+.task {
+    display: inline;
+}
+
+#task-description-div {
+    display: block;
+    float: left;
+    margin-left: 40px;
+}
+
+#task-notes-div {
+    display: block;
+    float: right;
+    margin-right: 40px;
 }
 
 /* Schedule Styling  */
@@ -162,6 +360,24 @@ body {
     width: 500px;
     position: absolute;
     left: 33%;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+#schedule {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#create-schedule-container {
+    margin-top: 10px;
+    position: absolute;
+    left: 37%;
+    width: 1000px;
+    text-align: center;
 }
 
 #create-schedule-form-container {
@@ -169,61 +385,119 @@ body {
     left: 0%;
 }
 
-.modal {
+#focus-mode {
+    background-color:#2F4F4F;
+    height: 100%;
     width: 100%;
-    height: 500px;
-    background-color: #FFFAF0;
+    color: #FFFAF0;
     position: absolute;
-    left: 50%;
-    top: 86%;
-    transform: translate(-50%, -50%);
-    overflow: scroll;
-    padding: 20px;
-    justify-content: center;
-    text-align: center;
+    right: 0%;
+    top: 0%;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
 }
+
+#focus-mode-div {
+    margin-top: 90px;
+}
+
+/* Modals  */
 
 #alert-modal {
-    width: 80vw;
-    position: relative;
-    margin-left: -40vw;
-    margin-top: -50vw;
-    height: 100vw;
-    left: 50%;
+    top: 0%;
+    height: 1000px;
+    width: 550px;
     background-color:#2F4F4F;
-    opacity: 80%;
-    font-weight: bold;
-    color: white;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    opacity: 90%;
+    position: absolute;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
 }
 
-
 .countdown-header {
+    margin-top: 100px;
+    margin-right: 20px;
+    margin-left: 20px;
     font-size: 50px;
-    vertical-align: middle;
+    position: relative;
+    color: #FFFAF0;
 }
 
 .countdown-timer {
     font-size: 80px;
+    margin-top: 50px;
+    color: #FFFAF0;
+    position: relative;
 }
 
-.profile-logos {
-    width: 200px;
+.slotActive {
+    color: #6495ED;
 }
 
-.profile-divs {
-    justify-content: center;
+.info-divs {
     text-align: center;
-    cursor: pointer;
+    width: 400px;
+    position: absolute;
+    left: 37%;
+    margin-top: 50px;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+/* Profile Styling */
+
+#profile-div {
+    text-align: center;
+    height: 110%;
+    width: 100%;
+    position: relative;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+#profile-menu {
+    width: 400px;
+    position: absolute;
+    left: 36.5%;
+    margin-top: 100px;
+}
+
+
+/* Key Frames */
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
     
+@-moz-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
 }
 
-.profile-headers {
-    cursor: pointer;
+@-webkit-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
 }
 
-#task-list {
-    overflow: scroll;
+@-o-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
 }

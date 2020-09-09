@@ -55,8 +55,8 @@ const userReducer = (state=initialState,action) => {
         allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: action.user.relaxation_categories
       }
-    case 'LOADING_USER':
-      console.log('LOADING_USER')
+    case 'LOADING':
+      console.log('LOADING')
       console.log(state)
       return {
         ...state,
@@ -140,7 +140,7 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.user.tasks],
           user_relaxation_categories: [...state.user.user_relaxation_categories],
         },
-        userTasks: state.userTasks,
+        userTasks: [...state.userTasks],
         userSchedules: state.userSchedules,
         currentSchedule: {
           id: state.currentSchedule.id,
@@ -220,6 +220,32 @@ const userReducer = (state=initialState,action) => {
         allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories]
       }
+    case 'ADD_EXISTING_TASK_TO_POSTED_SCHEDULE':
+      console.log('ADD_EXISTING_TASK_TO_POSTED_SCHEDULE')
+      console.log(state)
+      return {
+        ...state,
+        token: state.token,
+        userId: state.userId,
+        user: {...state.user},
+        userTasks: [...state.userTasks],
+        userSchedules: [...state.user.schedules],
+        currentSchedule: {
+          id: state.currentSchedule.id,
+          date: state.currentSchedule.date,
+          user_id: state.currentSchedule.user_id,
+          schedule_activities: [...state.currentSchedule.schedule_activities],
+          activities: [...state.currentSchedule.activities],
+          schedule_tasks: [...state.currentSchedule.schedule_tasks],
+          tasks: [...state.currentSchedule.tasks]
+        },
+        scheduleInProgress: [...state.scheduleInProgress],
+        postedSchedule: {
+          tasks: [...state.postedSchedule.tasks.concat(action.task)]
+        },
+        allRelaxationCategories: [...state.allRelaxationCategories],
+        relaxationCategories: [...state.relaxationCategories]
+      }
   // USER SCHEDULE CASES
     case 'ADD_SCHEDULE':
       console.log('ADD_SCHEDULE')
@@ -248,8 +274,8 @@ const userReducer = (state=initialState,action) => {
         relaxationCategories: [...state.relaxationCategories]
       }
   // SCHEDULE CASES
-    case 'LOADING_SCHEDULE':
-      console.log('LOADING_SCHEDULE')
+    case 'FETCH_SCHEDULE':
+      console.log('FETCH_SCHEDULE')
       console.log(state)
       return {
         ...state,
@@ -259,35 +285,11 @@ const userReducer = (state=initialState,action) => {
         userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
         currentSchedule: {
-          id: state.currentSchedule.id,
-          date: state.currentSchedule.date,
-          user_id: state.currentSchedule.user_id,
-          schedule_activities: [...state.currentSchedule.schedule_activities],
-          activities: [...state.currentSchedule.activities],
-          schedule_tasks: [...state.currentSchedule.schedule_tasks],
-          tasks: [...state.currentSchedule.tasks]
-        },
-        scheduleInProgress: [...state.scheduleInProgress],
-        postedSchedule: {
-          tasks: [...state.postedSchedule.tasks]
-        },
-        allRelaxationCategories: [...state.allRelaxationCategories],
-        relaxationCategories: [...state.relaxationCategories]
-      }
-    case 'FETCH_SCHEDULE':
-      console.log('FETCH_SCHEDULE')
-      console.log(state)
-      return {
-        ...state,
-        token: state.token,
-        userId: state.userId,
-        user: {...state.user},
-        userTasks: state.user.tasks,
-        userSchedules: [...state.userSchedules],
-        currentSchedule: {
           id: action.currentSchedule.id,
           date: action.currentSchedule.date,
           user_id: action.currentSchedule.user_id,
+
+
           schedule_activities: [...action.currentSchedule.schedule_activities],
           activities: [...action.currentSchedule.activities],
           schedule_tasks: [...action.currentSchedule.schedule_tasks],
@@ -309,7 +311,7 @@ const userReducer = (state=initialState,action) => {
         token: state.token,
         userId: state.userId,
         user: {...state.user},
-        userTasks: state.user.tasks,
+        userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
         currentSchedule: {
           id: action.schedule.schedule_id,
@@ -335,7 +337,7 @@ const userReducer = (state=initialState,action) => {
         token: state.token,
         userId: state.userId,
         user: {...state.user},
-        userTasks: state.user.tasks,
+        userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
         currentSchedule: {
           id: state.currentSchedule.id,
@@ -353,10 +355,37 @@ const userReducer = (state=initialState,action) => {
         allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories]
       }
+    case 'REMOVE_TASK_FROM_SIP':
+      console.log('REMOVE_TASK_FROM_SIP')
+      console.log(state)
+      let updatedSIP = state.scheduleInProgress.filter (task => task.task_notes != action.taskNotes)
+      return {
+        ...state,
+        token: state.token,
+        userId: state.userId,
+        user: {...state.user},
+        userTasks: [...state.userTasks],
+        userSchedules: [...state.userSchedules],
+        currentSchedule: {
+          id: state.currentSchedule.id,
+          date: state.currentSchedule.date,
+          user_id: state.currentSchedule.user_id,
+          schedule_activities: [...state.currentSchedule.schedule_activities],
+          activities: [...state.currentSchedule.activities],
+          schedule_tasks: [...state.currentSchedule.schedule_tasks],
+          tasks: [...state.currentSchedule.tasks]
+        },
+        scheduleInProgress: updatedSIP,
+        postedSchedule: {
+          tasks: [...state.postedSchedule.tasks]
+        },
+        allRelaxationCategories: [...state.allRelaxationCategories],
+        relaxationCategories: [...state.relaxationCategories]
+      }
     case 'DELETE_TASK':
       console.log('DELETE_TASK')
       console.log(state)
-      let updatedTasks = state.user.tasks.filter (task => task.id !== action.task.id)
+      let updatedTasks = state.userTasks.filter (task => task.id !== action.task.id)
       return {
         ...state,
         token: state.token,
@@ -373,7 +402,7 @@ const userReducer = (state=initialState,action) => {
           schedule_tasks: [...state.currentSchedule.schedule_tasks],
           tasks: [...state.currentSchedule.tasks]
         },
-        scheduleInProgress: state.scheduleInProgress.concat(action.task),
+        scheduleInProgress: [...state.scheduleInProgress],
         postedSchedule: {
           tasks: [...state.postedSchedule.tasks]
         },
@@ -389,9 +418,17 @@ const userReducer = (state=initialState,action) => {
           token: state.token,
           userId: state.userId,
           user: {...state.user},
-          userTasks: state.user.tasks,
+          userTasks: [...state.userTasks],
           userSchedules: updatedSchedules,
-          currentSchedule: initialState.currentSchedule,
+          currentSchedule: {
+            id: '',
+            date: '',
+            user_id: '',
+            schedule_activities: [],
+            activities: [],
+            schedule_tasks: [],
+            tasks: []
+          },
           scheduleInProgress: [],
           postedSchedule: {
             tasks: []
@@ -399,6 +436,33 @@ const userReducer = (state=initialState,action) => {
           allRelaxationCategories: [...state.allRelaxationCategories],
           relaxationCategories: [...state.relaxationCategories],
       }
+    case 'EDIT_CURRENT_SCHEDULE':
+      console.log('EDIT_CURRENT_SCHEDULE')
+      console.log(state)
+      let updatedSchedules2 = state.user.schedules.filter (schedule => schedule.id !== action.currentSchedule.id)
+      return {
+        ...state,
+        token: state.token,
+        userId: state.userId,
+        user: {...state.user},
+        userTasks: [...state.userTasks],
+        userSchedules: updatedSchedules2,
+        currentSchedule: {
+          id: '',
+          date: '',
+          user_id: '',
+          schedule_activities: [],
+          activities: [],
+          schedule_tasks: [],
+          tasks: []
+        },
+        scheduleInProgress: [...state.currentSchedule.tasks],
+        postedSchedule: {
+          tasks: []
+        },
+        allRelaxationCategories: [...state.allRelaxationCategories],
+        relaxationCategories: [...state.relaxationCategories],
+    }
       // RELAXATION CATEGORIES
     case 'FETCH_RELAXATION_CATEGORIES':
       console.log('FETCH_RELAXATION_CATEGORIES')
@@ -408,7 +472,7 @@ const userReducer = (state=initialState,action) => {
         token: state.token,
         userId: state.userId,
         user: {...state.user},
-        userTasks: state.user.tasks,
+        userTasks: [...state.userTasks],
         userSchedules: [...state.userSchedules],
         currentSchedule: {
           id: state.currentSchedule.id,
@@ -429,12 +493,25 @@ const userReducer = (state=initialState,action) => {
       case 'ADD_USER_RELAXATION_CATEGORY':
         console.log('ADD_USER_RELAXATION_CATEGORY')
         console.log(state)
+
         return {
           ...state,
           token: state.token,
           userId: state.userId,
-          user: {...state.user},
-          userTasks: state.user.tasks,
+          user: {
+            id: state.user.id,
+            username: state.user.username,
+            start_work_time: state.user.start_work_time,
+            min_num_hours: state.user.min_num_hours,
+            max_num_hours: state.user.max_num_hours,
+            relaxation_categories: state.user.relaxation_categories.concat(action.relaxationCategory),
+            schedule_activities: [...state.user.schedule_activities],
+            schedule_tasks: [...state.user.schedule_tasks],
+            schedules: [...state.user.schedules],
+            tasks: [...state.user.tasks],
+            user_relaxation_categories: state.user.user_relaxation_categories.concat(action.userRelaxationCategory),
+          },
+          userTasks: [...state.userTasks],
           userSchedules: [...state.userSchedules],
           currentSchedule: {
             id: state.currentSchedule.id,
@@ -451,7 +528,48 @@ const userReducer = (state=initialState,action) => {
             tasks: [...state.postedSchedule.tasks]
           },
           allRelaxationCategories: [...state.allRelaxationCategories],
-          relaxationCategories: state.relaxationCategories.concat(action.userRelaxationCategory)
+          relaxationCategories: state.relaxationCategories.concat(action.relaxationCategory)
+        }
+      case 'DELETE_OLD_RELAXATION_PREFERENCES':
+        let updatedUserRelaxationCategories =  state.user.user_relaxation_categories.filter (category => category.id !== action.relaxationCategory.id)
+        let updatedRelaxationCategories = state.relaxationCategories.filter (category => category.id !== action.relaxationCategory.relaxation_category_id)
+        console.log('DELETE_OLD_RELAXATION_PREFERENCES')
+        console.log(state)
+        return {
+          ...state,
+          token: state.token,
+          userId: state.userId,
+          user: {
+            id: state.user.id,
+            username: state.user.username,
+            start_work_time: state.user.start_work_time,
+            min_num_hours: state.user.min_num_hours,
+            max_num_hours: state.user.max_num_hours,
+            relaxation_categories: updatedRelaxationCategories,
+            schedule_activities: [...state.user.schedule_activities],
+            schedule_tasks: [...state.user.schedule_tasks],
+            schedules: [...state.user.schedules],
+            tasks: [...state.user.tasks],
+            user_relaxation_categories: updatedUserRelaxationCategories,
+          },
+          userTasks: [...state.userTasks],
+          userSchedules: [...state.userSchedules],
+          currentSchedule: {
+            id: state.currentSchedule.id,
+            date: state.currentSchedule.date,
+            user_id: state.currentSchedule.user_id,
+            schedule_activities: [...state.currentSchedule.schedule_activities],
+            activities: [...state.currentSchedule.activities],
+            schedule_tasks: [...state.currentSchedule.schedule_tasks],
+            tasks: [...state.currentSchedule.tasks]
+          },
+          scheduleInProgress: [...state.scheduleInProgress],
+          postedSchedule: {
+
+            tasks: [...state.postedSchedule.tasks]
+          },
+          allRelaxationCategories: [...state.allRelaxationCategories],
+          relaxationCategories: updatedRelaxationCategories
         }
       // DEFAULT CASES
     default:

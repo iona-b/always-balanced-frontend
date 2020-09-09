@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import { deleteCurrentSchedule } from '../actions/deleteCurrentSchedule'
+import { editCurrentSchedule } from '../actions/editCurrentSchedule'
 import { fetchSchedule } from '../actions/fetchSchedule'
-import CreateScheduleFormContainer from '../containers/CreateScheduleFormContainer'
 import ShowExistingTasks from '../components/ShowExistingTasks';
 import ScheduleInProgress from '../components/ScheduleInProgress';
 import CreateScheduleForm from '../components/CreateScheduleForm'
@@ -14,6 +14,10 @@ class CreateScheduleContainer extends React.Component {
     this.props.deleteCurrentSchedule(this.props.currentSchedule.id)
   }
 
+  handleEdit = () => {
+    this.props.editCurrentSchedule(this.props.currentSchedule.id)
+  }
+
   fetchSchedule = () => {
     this.props.fetchSchedule(this.props.currentSchedule.id)
   }
@@ -21,43 +25,52 @@ class CreateScheduleContainer extends React.Component {
   render() {
     return (
       <div> 
-        <div className="">
-          {this.props.user.id && this.props.currentSchedule.id === ""?
-            <div>
-                <ScheduleInProgress />
-                <CreateScheduleForm updateCurrentSchedule={this.props.updateCurrentSchedule}/>
-                <ShowExistingTasks />
-            </div>
-          :
-            null
-          }
-        </div>
-        <div >
-          {this.props.user.id && this.props.currentSchedule.id !== "" ?
-            <div>
+        {this.props.user.id && this.props.currentSchedule.id === ""?
+          <div>
+            <ScheduleInProgress />
+            <CreateScheduleForm updateCurrentSchedule={this.props.updateCurrentSchedule}/>
+            <ShowExistingTasks />
+          </div>
+        :
+          null
+        }
+        {this.props.user.id && this.props.currentSchedule.id !== "" ?
+          <div>
+            <Link to='/' >
+              <button className="buttons back-buttons">⬅</button>
+            </Link>
+            <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left" />
+            <img src={require("../images/background-top-right.png")} alt='' id="background-top-right" />
+            <div className="info-divs">
               <h2>You've already created a schedule for today.</h2>
               <p>You can either view today's schedule or delete your current schedule and create a new one</p>
               <Link to='/schedule' >
-                <button>View Current Schedule</button>
+                <button className="buttons">View</button>
               </Link>
-              <button onClick={this.handleClick}>Delete Current Schedule</button>
+              <button className="buttons" onClick={this.handleEdit}>Edit</button>
+              <button className="buttons" onClick={this.handleClick}>Delete</button>
             </div>
-          :
-            null
-          }  
-        </div>
-        <div> 
-          {!this.props.user.id ?   
-          <div >
-            <h2> Please log in to create your schedule </h2>
-            <Link to='/' >
-              <button onClick={this.fetchSchedule}>Home</button>
-            </Link>
           </div>
           :
             null
+          }  
+          {!this.props.user.id ?  
+          <div>
+            <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left" />
+            <img src={require("../images/background-top-right.png")} alt='' id="background-top-right" />
+            <div className="info-divs"> 
+              <div >
+                <h2> Please log in to create your schedule </h2>
+                <Link to='/' >
+                  <button className="buttons" 
+                  onClick={this.fetchSchedule}>Home</button>
+                </Link>
+              </div>
+            </div>
+          </div> 
+          :
+            null
           } 
-        </div>
       </div> 
     );
   }
@@ -74,6 +87,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
       deleteCurrentSchedule: (scheduleId) => dispatch(deleteCurrentSchedule(scheduleId)),
+      editCurrentSchedule: (scheduleId) => dispatch(editCurrentSchedule(scheduleId)),
       fetchSchedule: (schedule) => dispatch(fetchSchedule(schedule))
   }
 }

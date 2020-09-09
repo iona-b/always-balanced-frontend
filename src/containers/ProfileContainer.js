@@ -5,27 +5,28 @@ import Profile from '../components/Profile';
 
 class ProfileContainer extends React.Component {
 
-  // componentDidUpdate() {
-  //   if (!this.props.userId) {
-  //     this.props.history.push('/')
-  //   }
-  // }
-
   render() {
     return (
       <div>
-        {this.props.user.id ?
-          <div className="profile-container">
-            <Profile />
-          </div>
-        :
+        <Link to='/' >
+          <button className="buttons back-buttons">⬅</button>
+        </Link>
+        <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left"/>
+        <img src={require("../images/background-top-right.png")} alt='' id="background-top-right"/>
           <div>
-            <h2> Please log in to view your profile </h2>
-            <Link to='/' >
-              <button>Home</button>
-            </Link>
+          {this.props.user.id ?
+            <div className="profile-container">
+              <Profile />
+            </div>
+          :
+            <div className="info-divs">
+              <h2> Please log in to view your profile </h2>
+              <Link to='/' >
+                <button className="buttons">Home</button>
+              </Link>
+            </div>
+          }
           </div>
-        }
       </div>
     );
   }

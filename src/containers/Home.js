@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 class Home extends React.Component {
 
@@ -9,19 +9,39 @@ class Home extends React.Component {
       <div>
         {this.props.token ?
           <div id="home-div">
-            <NavLink to='/createschedule'>Create Schedule</NavLink>
-            <NavLink to='/profile'>Profile</NavLink>
-            <NavLink to='/schedule'>Schedule</NavLink>
+            <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left"/>
+            <img src={require("../images/background-top-right.png")} alt='' id="background-top-right"/>
+            <div id="home-menu">
+              <NavLink to='/createschedule'>
+                <button className="menu-buttons">Create Schedule</button>
+              </NavLink>
+              <NavLink to='/schedule'>
+                <button className="menu-buttons">See Today's Schedule</button>
+              </NavLink>
+              <NavLink to='/profile'>
+                <button className="menu-buttons">View Profile</button>
+              </NavLink>
+              <NavLink to='/about'>
+                <button className="menu-buttons">About</button>
+              </NavLink>
+            </div>
           </div>
         :
           <div id="home-div">
-            <div className="signup-and-login-divs">
-              <Link to='/login' >
-                <img src={require("../images/login-button.png")} alt='' className="signup-and-login-divs" />
-              </Link>
+            <img className="landing-page-background" src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left"/>
+            <img className="landing-page-background" src={require("../images/background-top-right.png")} alt='' id="background-top-right"/>
+            <div className="landing-page-elements" id="home-menu">
+              <h2>Welcome to Always Balanced</h2>
+              <NavLink to='/login'>
+                <button className="menu-buttons">Login</button>
+              </NavLink>
+              <NavLink to='/signup'>
+                <button className="menu-buttons">Sign Up</button>
+              </NavLink>
+              <NavLink to='/about'>
+                <button className="menu-buttons">About</button>
+              </NavLink>
             </div>
-            <NavLink to='/login'>Login</NavLink>
-            <NavLink to='/signup'>Sign Up</NavLink>
           </div>
         }
     </div>

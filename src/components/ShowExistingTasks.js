@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux'
 import { addTaskToSIP } from '../actions/addTaskToSIP';
 
@@ -8,9 +9,10 @@ class ShowExisitingTasks extends React.Component {
         if (this.props.tasks) {
             return this.props.tasks.map((task) => {
                 return (
-                    <div>
-                        <p key={task.id}>{task.task_description}: {task.task_notes} Labs</p>
-                        <button name={task.id} onClick={this.handleAddTask}>Add</button>
+                    <div className="tasks-items" key={uuidv4()}>
+                        <p className="task" key={task.id}>{task.task_description}: {task.task_notes} </p>
+                        <button className="task-button" name={task.id} onClick={this.handleAddTask}>+</button>
+                        <br></br>
                     </div>
                 ) 
             })
@@ -26,7 +28,7 @@ class ShowExisitingTasks extends React.Component {
 
     render() {
         return (
-            <div id="show-existing-tasks">
+            <div className="form-headers show-tasks" id="existing-tasks-div">
                 <h2> Existing Tasks </h2>
                 {this.listTasks()}
             </div>

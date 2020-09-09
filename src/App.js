@@ -9,12 +9,20 @@ import NotFound from './containers/NotFound'
 import ProfileContainer from './containers/ProfileContainer'
 import ScheduleContainer from './containers/ScheduleContainer'
 import SignUpContainer from './containers/SignUpContainer'
+import About from './components/About'
 import Clock from './components/Clock';
 import { logOutUser } from './actions/logOutUser'
 import { fetchUser } from './actions/fetchUser';
 import { fetchSchedule } from './actions/fetchSchedule'
+import whiteNoiseAudio from './images/white-noise.mp3';
 
 class App extends React.Component {
+
+  state = {
+    whiteNoisePlaying: false
+  }
+
+  whiteNoise = new Audio(whiteNoiseAudio);
 
   componentDidMount() {
     if(localStorage.token) {
@@ -29,12 +37,6 @@ class App extends React.Component {
       })
     }
   }
-  
-  handleAuthResponse = (json) => {
-    if (json.user){
-      localStorage.token = json.token
-    } 
-  }
 
   componentDidUpdate() {
     if (this.props.token && !this.props.user.id) {
@@ -43,6 +45,20 @@ class App extends React.Component {
     if (this.props.currentSchedule.loaded === false && this.props.currentSchedule.id !== "") {
       this.props.fetchSchedule(this.props.currentSchedule.id)
     }
+    return this.state.whiteNoisePlaying === true ? this.whiteNoise.play() : this.whiteNoise.pause()
+  }
+  
+  handleAuthResponse = (json) => {
+    if (json.user){
+      localStorage.token = json.token
+    } 
+  }
+
+  handleToggleWhiteNoisePlaying = () => {
+    this.setState({
+      whiteNoisePlaying: !this.state.whiteNoisePlaying
+    })
+    console.log(this.state.whiteNoisePlaying)
   }
 
   handleLogOut = () => {
@@ -55,45 +71,59 @@ class App extends React.Component {
       <div className="App">
         {this.props.token ?
         <div>
-          <div id="nav-bar">
-            <div className="nav-bar-divs">
-              <Link to='/' >
-                <img src={require("./images/always-balanced-navbar-logo.png")} alt='' id="always-balanced-navbar-logo" />
-              </Link>
-            </div>
-            <div className="nav-bar-divs">
-              <NavLink to='/' exact >Home</NavLink>
-            </div>
-            <div className="nav-bar-divs">
-              <NavLink to='/createschedule'>Create Schedule</NavLink>
-            </div>
-            <div className="nav-bar-divs">
-              <NavLink to='/profile'>Profile</NavLink>
-            </div>
-            <div className="nav-bar-divs">
-              <NavLink to='/schedule'>Schedule</NavLink>
-            </div>
-            <div className="nav-bar-divs">
-              <NavLink to='/' onClick={this.handleLogOut}>Log Out</NavLink>
-            </div>
+          <div id="top-nav-bar">
+            {this.state.whiteNoisePlaying === true ? 
+              <button className="buttons" id="stop-button" onClick={this.handleToggleWhiteNoisePlaying}>◼</button>
+            :
+              <button className="buttons" id="play-button" onClick={this.handleToggleWhiteNoisePlaying}>►</button>
+            }
+            <Link to='/' >
+              <img src={require("./images/always-balanced-long.png")} alt='' id="always-balanced-long" />
+            </Link>
             <Clock />
           </div>
+          <div id="nav-bar">
+            <div className="nav-bar-divs">
+              <NavLink to='/' exact className="nav-bar-headings" >Home</NavLink>
+            </div>
+            <div className="nav-bar-divs">
+              <NavLink to='/profile' className="nav-bar-headings" >Profile</NavLink>
+            </div>
+            <div className="nav-bar-divs">
+              <NavLink to='/createschedule' className="nav-bar-headings" >Create Schedule</NavLink>
+            </div>
+            <div className="nav-bar-divs">
+              <NavLink to='/schedule' className="nav-bar-headings" >View Schedule</NavLink>
+            </div>
+            <div className="nav-bar-divs">
+              <NavLink to='/about' exact className="nav-bar-headings" >About</NavLink>
+            </div>
+            <div className="nav-bar-divs">
+              <NavLink to='/' onClick={this.handleLogOut} className="nav-bar-headings" >Log Out</NavLink>
+            </div>
+          </div>
           <div id="lower-nav-bar">
+            <a id="link-to-github" href="https://github.com/iona-b/always-balanced-frontend">Copyright &copy; Iona Brabender 2020</a> 
           </div>
         </div>
         :
         <div>
-          <div id="nav-bar">
-            <div>
-              <div className="nav-bar-divs">
-                <Link to='/' >
-                  <img src={require("./images/always-balanced-navbar-logo.png")} alt='' id="always-balanced-navbar-logo" />
-                </Link>
-              </div>
-            </div>
+          <div id="top-nav-bar">
+            <Link to='/' >
+              <img src={require("./images/always-balanced-long.png")} alt='' id="always-balanced-long" />
+            </Link>
             <Clock />
           </div>
+          <div id="nav-bar">
+            <div className="nav-bar-divs">
+              <NavLink to='/login' exact className="nav-bar-headings  login-nav-bar-heading landing-page-elements" >Login</NavLink>
+            </div>
+            <div className="nav-bar-divs">
+              <NavLink to='/signup' exact className="nav-bar-headings signup-nav-bar-heading landing-page-elements" >Sign Up</NavLink>
+            </div>
+          </div>
           <div id="lower-nav-bar">
+            <a id="link-to-github" href="https://github.com/iona-b/always-balanced-frontend">Copyright &copy; Iona Brabender 2020</a>
           </div>
         </div>
         }
@@ -104,6 +134,7 @@ class App extends React.Component {
           <Route path='/createschedule' component={CreateScheduleContainer}/>
           <Route path='/profile' component={ProfileContainer}/>
           <Route path='/schedule' component={ScheduleContainer}/>
+          <Route path='/about' component={About}/>
           <Route component={NotFound}/>
         </Switch>
       </div>
