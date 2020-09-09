@@ -282,6 +282,13 @@ html, body {
     top: 7%;
 }
 
+#timer-button {
+    width: 40px;
+    position: absolute;
+    right: 0%;
+    top: 15%;
+}
+
 #play-button {
     width: 40px;
     border-color: #FFFAF0;
@@ -376,6 +383,21 @@ html, body {
 #create-schedule-form-container {
     position: absolute;
     left: 0%;
+}
+
+#focus-mode {
+    background-color:#2F4F4F;
+    height: 100%;
+    width: 100%;
+    color: #FFFAF0;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
 }
 
 #focus-mode-div {

@@ -75,6 +75,13 @@ class Schedule extends React.Component {
             showFocusModeSchedule: !this.state.showFocusModeSchedule
         })
     }
+
+    handleTimerMode = () => {
+        this.setState ({
+            breakTime: true,
+            breakLength: 5
+        })
+    }
     
     getScheduleSlots = () => {
         let startTime = (parseInt(this.props.user.start_work_time.slice(11, 13)) * 60) + parseInt(this.props.user.start_work_time.slice(14, 16))
@@ -134,8 +141,8 @@ class Schedule extends React.Component {
     
     render() {
         return (
-            <div>
-                <div className="schedule">
+            <div className="form-containers">
+                <div className="schedule" id={this.state.showFocusModeSchedule === true ? "focus-mode" : "regular-mode"}>
                     {
                         this.props.currentSchedule.id !== ""
                         ?
@@ -143,11 +150,12 @@ class Schedule extends React.Component {
                                 <button className="buttons" id="focus-mode-button" onClick={this.handleToggleFocusMode}>🔎</button> 
                                 <Link to='/createschedule' >
                                     <button className="buttons" id="edit-schedule-button" >🖋️</button>
-                                </Link>   
+                                </Link>
+                                <button className="buttons" id="timer-button" onClick={this.handleTimerMode}>⏰</button>    
                                 {
                                     this.state.showFocusModeSchedule === false ?
                                     <div>
-                                        <h2 className="form-headers">Schedule for {this.day}, {this.month} {this.date}, {this.year}</h2>
+                                        <h2 className="form-headers">{this.day}, {this.month} {this.date}, {this.year}</h2>
                                         {this.returnSchedule()}
                                     </div>
                                     :

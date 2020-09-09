@@ -12,7 +12,7 @@ export default class AlertModal extends React.Component {
     alarm = new UIFx(alarmAudio);
 
     componentDidMount() {
-        this.alarm.play()
+        this.alarm.setVolume(0.1).play()
         this.myInterval = setInterval(() => {
             const { seconds, minutes } = this.state
             if (seconds > 0) {
