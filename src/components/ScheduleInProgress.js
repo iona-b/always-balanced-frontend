@@ -37,8 +37,8 @@ class ScheduleInProgress extends React.Component {
 
 const mapStateToProps = state => {
     return {
-      user: state.user,
-      scheduleInProgress: state.scheduleInProgress
+      user: state.userReducer.user,
+      scheduleInProgress: state.userReducer.scheduleInProgress
     }
 }
 

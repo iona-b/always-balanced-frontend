@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class Clock extends React.Component {
 
@@ -36,14 +37,22 @@ class Clock extends React.Component {
       });
     }
     render() {
+      debugger
       return (
-        <p id="clock" className="landing-page-elements">
+        <p id="clock" className={this.props.user.id ? "landing-page-elements" : "pre-login"} >
           {this.state.day}, {this.state.month} {this.state.date}, {this.state.year}<br></br>
           {this.state.hour}:{this.state.minutes < 10 ? 0 : null}{this.state.minutes}:{this.state.seconds < 10 ? 0 : null}{this.state.seconds}
         </p>
       );
+
     }
 
 }
 
-export default Clock
+const mapStateToProps = state => {
+  return {
+      user: state.userReducer.user
+  }
+}
+
+export default connect(mapStateToProps, null)(Clock);

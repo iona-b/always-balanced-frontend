@@ -87,11 +87,13 @@ class CreateSchedule extends Component {
   }
 
   render() {
+    
     let minimumNumberOfTasks = this.props.user.min_num_hours
     let maximumNumberOfTasks = this.props.user.max_num_hours
 
     return (
-        <div className="form-containers">
+
+        <div className="form-containers" id="create-schedule-form-container">
             <h2 className="form-headers">Select 2 Relaxation Categories</h2>
             <select className="input-fields" key="1" name="relaxationCategory1" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option >{relaxationCategory.category_name}</option>)}</select>
             <select className="input-fields" key="2" name="relaxationCategory2" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option >{relaxationCategory.category_name}</option>)}</select><br></br>
@@ -116,18 +118,19 @@ class CreateSchedule extends Component {
             <br></br>
             <button className="menu-buttons" onClick={this.handleCreateSchedule}>Create Schedule</button>
         </div>
+
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
-    currentSchedule: state.currentSchedule,
-    scheduleInProgress: state.scheduleInProgress,
-    postedSchedule: state.postedSchedule,
-    relaxationCategories: state.relaxationCategories,
-    token: state.token
+    user: state.userReducer.user,
+    currentSchedule: state.userReducer.currentSchedule,
+    scheduleInProgress: state.userReducer.scheduleInProgress,
+    postedSchedule: state.userReducer.postedSchedule,
+    relaxationCategories: state.userReducer.relaxationCategories,
+    token: state.userReducer.token
   }
 }
  

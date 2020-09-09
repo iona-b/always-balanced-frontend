@@ -59,13 +59,6 @@ class Schedule extends React.Component {
         return `${hours < 10 ? 0 : ""}${hours}:${minutes < 10 ? 0 : ""}${minutes}`
     }
 
-    getBreaks = () => {
-        let schedule = this.getScheduleSlots()
-        if (this.state.breakTime === false) {
-            return schedule.forEach (slot => (this.state.hour * 60 + this.state.minutes) === slot[3].break && this.state.seconds === 0 ? this.setState({breakTime: true, breakLength: (slot[5].nextStartTime - slot[3].break)}) : null)
-        }
-    }
-
     handleClick = () => {
         this.setState({breakTime: false, breakLength: 0})
     }
@@ -81,6 +74,13 @@ class Schedule extends React.Component {
             breakTime: true,
             breakLength: 5
         })
+    }
+
+    getBreaks = () => {
+        let schedule = this.getScheduleSlots()
+        if (this.state.breakTime === false) {
+            return schedule.forEach (slot => (this.state.hour * 60 + this.state.minutes) === slot[3].break && this.state.seconds === 0 ? this.setState({breakTime: true, breakLength: (slot[5].nextStartTime - slot[3].break)}) : null)
+        }
     }
     
     getScheduleSlots = () => {
@@ -110,7 +110,6 @@ class Schedule extends React.Component {
             } else if (startTime >= 700 &&  startTime < 760){
                 scheduleSlot.push({break: startTime}, {activity_description: "Enjoy a healthy, nutritious lunch"}, {nextStartTime: startTime += 45})
             } else if (i % 2 === 0) {
-                // Create array of short break instructions? e.g. get a coffee, etc.
                 scheduleSlot.push({break: startTime}, {activity_description: "Take a short break"}, {nextStartTime: startTime += 5})
             } else {
                 scheduleSlot.push({break: startTime}, activities[j], {nextStartTime: startTime += 15})
@@ -125,8 +124,7 @@ class Schedule extends React.Component {
     returnSchedule = () => {
         if (this.props.currentSchedule.activities.length > 0) {
             let schedule = this.getScheduleSlots()
-            let completeSchedule = []
-            return completeSchedule = schedule.map ((scheduleSlot) => {
+            let completeSchedule = schedule.map ((scheduleSlot) => {
                 return (
                     <div key={uuidv4()}>
                         <p className={this.currentTimeInMinutes >= scheduleSlot[0].task &&  this.currentTimeInMinutes < scheduleSlot[3].break ? "slotActive" : "slotNotActive"} key={uuidv4()} > {this.convertToHoursAndMinutes(scheduleSlot[0].task)}: {scheduleSlot[1].task_description}: {scheduleSlot[1].task_notes} </p>
@@ -134,24 +132,27 @@ class Schedule extends React.Component {
                     </div>
                 )
             })
+            return completeSchedule
         } else {
             return this.props.fetchSchedule(this.props.currentSchedule.id)
         }
     }
     
     render() {
+
         return (
+
             <div className="form-containers">
                 <div className="schedule" id={this.state.showFocusModeSchedule === true ? "focus-mode" : "regular-mode"}>
                     {
                         this.props.currentSchedule.id !== ""
                         ?
                             <div id="schedule">
-                                <button className="buttons" id="focus-mode-button" onClick={this.handleToggleFocusMode}>🔎</button> 
+                                <button className="buttons" id="focus-mode-button" onClick={this.handleToggleFocusMode}><span role="img" aria-label="magnifying-glass">🔎</span></button> 
                                 <Link to='/createschedule' >
-                                    <button className="buttons" id="edit-schedule-button" >🖋️</button>
+                                    <button className="buttons" id="edit-schedule-button" ><span role="img" aria-label="fountain-pen">🖋️</span></button>
                                 </Link>
-                                <button className="buttons" id="timer-button" onClick={this.handleTimerMode}>⏰</button>    
+                                <button className="buttons" id="timer-button" onClick={this.handleTimerMode}><span role="img" aria-label="alarm-clock">⏰</span></button>    
                                 {
                                     this.state.showFocusModeSchedule === false ?
                                     <div>
@@ -184,16 +185,18 @@ class Schedule extends React.Component {
                     }
                 </div>
             </div>
+
         );
+
     }
 }
   
 const mapStateToProps = state => {
     return {
-        user: state.user,
-        schedules: state.userSchedules,
-        currentSchedule: state.currentSchedule,
-        postedSchedule: state.postedSchedule
+        user: state.userReducer.user,
+        schedules: state.userReducer.userSchedules,
+        currentSchedule: state.userReducer.currentSchedule,
+        postedSchedule: state.userReducer.postedSchedule
     }
 }
 

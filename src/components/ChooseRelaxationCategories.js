@@ -32,17 +32,18 @@ class ChooseRelaxationCategories extends React.Component {
     };
      
     handleSubmit = () => {
-      let relaxationCategory1 = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory1)[0]
-      let relaxationCategory2 = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory2)[0]
-      let relaxationCategory3 = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory3)[0]
-      this.props.addUserRelaxationCategory(this.props.user.id, relaxationCategory1)
-      this.props.addUserRelaxationCategory(this.props.user.id, relaxationCategory2)
-      this.props.addUserRelaxationCategory(this.props.user.id, relaxationCategory3)
+      let relaxationCategoriesArray = [this.state.relaxationCategory1, this.state.relaxationCategory2, this.state.relaxationCategory3]
+      relaxationCategoriesArray.forEach (relaxationCategory => {
+        let category = this.props.relaxationCategories.filter(category => category.category_name === relaxationCategory)
+        this.props.addUserRelaxationCategory(this.props.user.id, category[0])
+      })
     };
 
 
     render() {
+
         return (
+
             <div className="choose-relaxation-categories-form">
               <h2 className="form-headers">Select 3 Relaxation Categories</h2>
               <p>In order to help us create a schedule which truly suits your needs, please let us know what type of activities help you relax.</p>
@@ -51,15 +52,17 @@ class ChooseRelaxationCategories extends React.Component {
               <select name="relaxationCategory3" className="input-fields" onChange={this.handleChange}>{this.props.relaxationCategories.map(relaxationCategory => <option key="3">{relaxationCategory.category_name}</option>)}</select><br></br>
               <button className="buttons" onClick={this.handleSubmit}>Confirm</button>
             </div>
+
           );
+          
     }
   
 }
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
-    relaxationCategories: state.allRelaxationCategories
+    user: state.userReducer.user,
+    relaxationCategories: state.userReducer.allRelaxationCategories
   }
 }
  

@@ -70,9 +70,9 @@ class SignUpContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
-    relaxationCategories: state.relaxationCategories,
-    tasks: state.userTasks
+    user: state.userReducer.user,
+    relaxationCategories: state.userReducer.relaxationCategories,
+    tasks: state.userReducer.userTasks
   }
 }
 

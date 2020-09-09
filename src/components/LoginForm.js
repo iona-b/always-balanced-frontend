@@ -27,7 +27,9 @@ class Login extends React.Component{
     }
 
     render(){
+
         return (
+            
             <div>
                 <h2 className="form-headers" >Log In</h2>
                 <form onSubmit={this.handleLogin}>
@@ -37,17 +39,19 @@ class Login extends React.Component{
                     <h4 className="form-labels">Password</h4>
                     <input type="password" name="password" value={this.state.password} className="input-fields" onChange={this.handleChange}/>
                     <br/>
-                    <input className="buttons" type="submit" value="Submit" />
+                    <input className="buttons" type="submit" value="Confirm" />
                 </form>
             </div>
+
         );
+
     }
 }
 
 const mapStateToProps = state => {
     return {
-      user: state.user,
-      userTasks: state.userTasks
+      user: state.userReducer.user,
+      userTasks: state.userReducer.userTasks
     }
 }
   

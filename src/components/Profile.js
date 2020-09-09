@@ -49,7 +49,7 @@ class Profile extends React.Component {
 
 const mapStateToProps = state => {
     return {
-      user: state.user
+      user: state.userReducer.user
     }
 }
 

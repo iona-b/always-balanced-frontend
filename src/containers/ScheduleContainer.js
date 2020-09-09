@@ -6,7 +6,9 @@ import Schedule from '../components/Schedule'
 class ScheduleContainer extends React.Component {
 
   render() {
+
     return (
+
       <div>
         {this.props.user.id ?
           <div>
@@ -32,14 +34,16 @@ class ScheduleContainer extends React.Component {
           </div>
         }
       </div>
+
     );
+    
   }
 
 }
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.userReducer.user
   }
 }
 

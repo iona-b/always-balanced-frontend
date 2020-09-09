@@ -12,7 +12,9 @@ class LoginContainer extends React.Component {
   }
 
   render() {
+
     return (
+
       <div>
         <Link to='/' >
           <button className="buttons back-buttons">⬅</button>
@@ -24,14 +26,16 @@ class LoginContainer extends React.Component {
             <br></br>
         </div>
       </div>
+
     );
+    
   }
 
 }
 
 const mapStateToProps = state => {
   return {
-    userId: state.userId
+    userId: state.userReducer.userId
   }
 }
 
