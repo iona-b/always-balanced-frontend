@@ -277,11 +277,13 @@ html, body {
 
 #play-button {
     width: 40px;
+    border-color: #2F4F4F;
 }
 
 #stop-button {
     width: 40px;
     font-size: 20px;
+    border-color: #2F4F4F;
 }
 
 /* Task Related Styling */

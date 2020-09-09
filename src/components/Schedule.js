@@ -61,7 +61,7 @@ class Schedule extends React.Component {
     getBreaks = () => {
         let schedule = this.getScheduleSlots()
         if (this.state.breakTime === false) {
-            return schedule.forEach (slot => (this.state.hour * 60 + this.state.minutes) === 760 && this.state.seconds === 0 ? this.setState({breakTime: true, breakLength: (slot[5].nextStartTime - slot[3].break)}) : null)
+            return schedule.forEach (slot => (this.state.hour * 60 + this.state.minutes) === slot[3].break && this.state.seconds === 0 ? this.setState({breakTime: true, breakLength: (slot[5].nextStartTime - slot[3].break)}) : null)
         }
     }
 
@@ -121,7 +121,7 @@ class Schedule extends React.Component {
             let completeSchedule = []
             return completeSchedule = schedule.map ((scheduleSlot) => {
                 return (
-                    <div>
+                    <div key={uuidv4()}>
                         <p className={this.currentTimeInMinutes >= scheduleSlot[0].task &&  this.currentTimeInMinutes < scheduleSlot[3].break ? "slotActive" : "slotNotActive"} key={uuidv4()} > {this.convertToHoursAndMinutes(scheduleSlot[0].task)}: {scheduleSlot[1].task_description}: {scheduleSlot[1].task_notes} </p>
                         <p className={this.currentTimeInMinutes >= scheduleSlot[3].break && this.currentTimeInMinutes < scheduleSlot[5].nextStartTime ? "slotActive" : "slotNotActive"} key={uuidv4()} > {this.convertToHoursAndMinutes(scheduleSlot[3].break)}: {scheduleSlot[4].activity_description} </p>
                     </div>
@@ -181,7 +181,8 @@ const mapStateToProps = state => {
     return {
         user: state.user,
         schedules: state.userSchedules,
-        currentSchedule: state.currentSchedule
+        currentSchedule: state.currentSchedule,
+        postedSchedule: state.postedSchedule
     }
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
 import { addSchedule } from '../actions/addSchedule'
 import { addTaskToSIP } from '../actions/addTaskToSIP';
@@ -69,11 +70,12 @@ class CreateSchedule extends Component {
     })
   }
 
-  handleFinaliseScheduleTasks = () => {this.props.postedSchedule.tasks.forEach ((task) => { 
+  handleFinaliseScheduleTasks = () => { 
     this.setState({
       readyToPostTasks: false
     })
-    this.props.finaliseScheduleTasks(task.id)})}
+    this.props.postedSchedule.tasks.forEach (task => (this.props.finaliseScheduleTasks(task.id)))
+  }
 
   handleFinaliseScheduleActivities = () => {
     let relaxationCategory1Id = this.props.relaxationCategories.filter(category => category.category_name === this.state.relaxationCategory1)[0].id

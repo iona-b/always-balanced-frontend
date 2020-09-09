@@ -2,7 +2,9 @@ export const finaliseScheduleTasks = (taskId) => {
     let data = {
         task_id: taskId
     }
+    console.log(data)
     return (dispatch) => {
+        dispatch({ type: 'LOADING_USER'})
         fetch('http://localhost:3000/schedule_tasks',{
         method:"POST",
         headers:{

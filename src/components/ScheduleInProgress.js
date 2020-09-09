@@ -14,7 +14,7 @@ class ScheduleInProgress extends React.Component {
             return (
                 <div className="tasks-items">
                     <p className="task" key={uuidv4()}>{task.task_description}: {task.task_notes}</p>
-                    <button className="task-button" name={task.task_notes} onClick={this.handleRemoveTask}>-</button>
+                    <button className="task-button" key={uuidv4()} name={task.task_notes} onClick={this.handleRemoveTask}>-</button>
                     <br></br>
                 </div>
             )
