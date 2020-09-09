@@ -275,6 +275,13 @@ html, body {
     top: -1%;
 }
 
+#edit-schedule-button {
+    width: 40px;
+    position: absolute;
+    right: 0%;
+    top: 7%;
+}
+
 #play-button {
     width: 40px;
     border-color: #2F4F4F;

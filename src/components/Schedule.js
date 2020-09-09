@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom'
 import AlertModal from "./AlertModal";
 import FocusModeSchedule from "./FocusModeSchedule";
+import { deleteCurrentSchedule } from '../actions/deleteCurrentSchedule'
 
 class Schedule extends React.Component {
 
@@ -73,7 +74,6 @@ class Schedule extends React.Component {
         this.setState ({
             showFocusModeSchedule: !this.state.showFocusModeSchedule
         })
-        console.log(this.state.showFocusModeSchedule)
     }
     
     getScheduleSlots = () => {
@@ -140,7 +140,10 @@ class Schedule extends React.Component {
                         this.props.currentSchedule.id !== ""
                         ?
                             <div id="schedule">
-                                <button className="buttons" id="focus-mode-button" onClick={this.handleToggleFocusMode}>🔍</button>    
+                                <button className="buttons" id="focus-mode-button" onClick={this.handleToggleFocusMode}>🔎</button> 
+                                <Link to='/createschedule' >
+                                    <button className="buttons" id="edit-schedule-button" >🖋️</button>
+                                </Link>   
                                 {
                                     this.state.showFocusModeSchedule === false ?
                                     <div>
@@ -188,7 +191,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-      fetchSchedule: (scheduleId) => dispatch(fetchSchedule(scheduleId))
+      fetchSchedule: (scheduleId) => dispatch(fetchSchedule(scheduleId)),
+      deleteCurrentSchedule: (scheduleId) => dispatch(deleteCurrentSchedule(scheduleId))
     };
   };
 

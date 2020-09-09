@@ -462,6 +462,33 @@ const userReducer = (state=initialState,action) => {
           allRelaxationCategories: [...state.allRelaxationCategories],
           relaxationCategories: [...state.relaxationCategories],
       }
+    case 'EDIT_CURRENT_SCHEDULE':
+      console.log('EDIT_CURRENT_SCHEDULE')
+      console.log(state)
+      let updatedSchedules2 = state.user.schedules.filter (schedule => schedule.id !== action.currentSchedule.id)
+      return {
+        ...state,
+        token: state.token,
+        userId: state.userId,
+        user: {...state.user},
+        userTasks: [...state.userTasks],
+        userSchedules: updatedSchedules2,
+        currentSchedule: {
+          id: '',
+          date: '',
+          user_id: '',
+          schedule_activities: [],
+          activities: [],
+          schedule_tasks: [],
+          tasks: []
+        },
+        scheduleInProgress: [...state.currentSchedule.tasks],
+        postedSchedule: {
+          tasks: []
+        },
+        allRelaxationCategories: [...state.allRelaxationCategories],
+        relaxationCategories: [...state.relaxationCategories],
+    }
       // RELAXATION CATEGORIES
     case 'FETCH_RELAXATION_CATEGORIES':
       console.log('FETCH_RELAXATION_CATEGORIES')

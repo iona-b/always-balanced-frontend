@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import { deleteCurrentSchedule } from '../actions/deleteCurrentSchedule'
+import { editCurrentSchedule } from '../actions/editCurrentSchedule'
 import { fetchSchedule } from '../actions/fetchSchedule'
 import ShowExistingTasks from '../components/ShowExistingTasks';
 import ScheduleInProgress from '../components/ScheduleInProgress';
@@ -11,6 +12,10 @@ class CreateScheduleContainer extends React.Component {
 
   handleClick = () => {
     this.props.deleteCurrentSchedule(this.props.currentSchedule.id)
+  }
+
+  handleEdit = () => {
+    this.props.editCurrentSchedule(this.props.currentSchedule.id)
   }
 
   fetchSchedule = () => {
@@ -42,6 +47,7 @@ class CreateScheduleContainer extends React.Component {
               <Link to='/schedule' >
                 <button className="buttons">View</button>
               </Link>
+              <button className="buttons" onClick={this.handleEdit}>Edit</button>
               <button className="buttons" onClick={this.handleClick}>Delete</button>
             </div>
           </div>
@@ -81,6 +87,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
       deleteCurrentSchedule: (scheduleId) => dispatch(deleteCurrentSchedule(scheduleId)),
+      editCurrentSchedule: (scheduleId) => dispatch(editCurrentSchedule(scheduleId)),
       fetchSchedule: (schedule) => dispatch(fetchSchedule(schedule))
   }
 }
