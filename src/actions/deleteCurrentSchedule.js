@@ -1,4 +1,5 @@
 export const deleteCurrentSchedule = (scheduleId) => {
+
     return (dispatch) => {
         fetch(`http://localhost:3000/schedules/${scheduleId}`, {
         method:'DELETE'
@@ -11,6 +12,7 @@ export const deleteCurrentSchedule = (scheduleId) => {
             alert(responseJSON.error)
         }
     })
-    .catch(err => console.log('deleteCurrentSchedule Error:', err))
+    .catch(err => console.log('deleteCurrentSchedule error:', err))
     }
+
 }

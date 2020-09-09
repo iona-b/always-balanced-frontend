@@ -24,7 +24,7 @@ class ScheduleContainer extends React.Component {
             <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left"/>
             <img src={require("../images/background-top-right.png")} alt='' id="background-top-right"/>
             <div className="info-divs">
-              <h2> Please log in to view your Schedule </h2>
+              <h2> Please log in to view your schedule </h2>
               <Link to='/' >
                 <button className="buttons">Home</button>
               </Link>

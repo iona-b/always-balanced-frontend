@@ -1,10 +1,11 @@
 export const finaliseScheduleTasks = (taskId) => {
+
     let data = {
         task_id: taskId
     }
-    console.log(data)
+
     return (dispatch) => {
-        dispatch({ type: 'LOADING_USER'})
+        dispatch({ type: 'LOADING'})
         fetch('http://localhost:3000/schedule_tasks',{
         method:"POST",
         headers:{
@@ -20,6 +21,7 @@ export const finaliseScheduleTasks = (taskId) => {
                 alert(responseJSON.error)
             }
         })
-        .catch(err => console.log('App.js Login Error:', err))
+        .catch(err => console.log('finaliseScheduleTasks error:', err))
     }
+
 }

@@ -1,4 +1,5 @@
 export const deleteOldRelaxationPreferences = (category) => {
+
     return (dispatch) => {
         fetch(`http://localhost:3000/user_relaxation_categories/${category.id}`, {
         method:'DELETE'
@@ -11,6 +12,7 @@ export const deleteOldRelaxationPreferences = (category) => {
             alert(responseJSON.error)
         }
     })
-    .catch(err => console.log('deleteCurrentSchedule Error:', err))
+    .catch(err => console.log('deleteOldRelaxationPreferences error:', err))
     }
+    
 }

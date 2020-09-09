@@ -55,8 +55,8 @@ const userReducer = (state=initialState,action) => {
         allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: action.user.relaxation_categories
       }
-    case 'LOADING_USER':
-      console.log('LOADING_USER')
+    case 'LOADING':
+      console.log('LOADING')
       console.log(state)
       return {
         ...state,
@@ -274,32 +274,6 @@ const userReducer = (state=initialState,action) => {
         relaxationCategories: [...state.relaxationCategories]
       }
   // SCHEDULE CASES
-    case 'LOADING_SCHEDULE':
-      console.log('LOADING_SCHEDULE')
-      console.log(state)
-      return {
-        ...state,
-        token: state.token,
-        userId: state.userId,
-        user: {...state.user},
-        userTasks: [...state.userTasks],
-        userSchedules: [...state.userSchedules],
-        currentSchedule: {
-          id: state.currentSchedule.id,
-          date: state.currentSchedule.date,
-          user_id: state.currentSchedule.user_id,
-          schedule_activities: [...state.currentSchedule.schedule_activities],
-          activities: [...state.currentSchedule.activities],
-          schedule_tasks: [...state.currentSchedule.schedule_tasks],
-          tasks: [...state.currentSchedule.tasks]
-        },
-        scheduleInProgress: [...state.scheduleInProgress],
-        postedSchedule: {
-          tasks: [...state.postedSchedule.tasks]
-        },
-        allRelaxationCategories: [...state.allRelaxationCategories],
-        relaxationCategories: [...state.relaxationCategories]
-      }
     case 'FETCH_SCHEDULE':
       console.log('FETCH_SCHEDULE')
       console.log(state)
