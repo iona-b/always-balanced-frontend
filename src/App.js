@@ -58,7 +58,6 @@ class App extends React.Component {
     this.setState({
       whiteNoisePlaying: !this.state.whiteNoisePlaying
     })
-    console.log(this.state.whiteNoisePlaying)
   }
 
   handleLogOut = () => {
@@ -73,9 +72,9 @@ class App extends React.Component {
         <div>
           <div id="top-nav-bar">
             {this.state.whiteNoisePlaying === true ? 
-              <button className="buttons" id="stop-button" onClick={this.handleToggleWhiteNoisePlaying}>◼</button>
+              <button className="buttons" id="stop-button" onClick={this.handleToggleWhiteNoisePlaying}><span role="img" aria-label="mute-sound">🔇</span></button>
             :
-              <button className="buttons" id="play-button" onClick={this.handleToggleWhiteNoisePlaying}>►</button>
+              <button className="buttons" id="play-button" onClick={this.handleToggleWhiteNoisePlaying}><span role="img" aria-label="musical-note">🎵</span></button>
             }
             <Link to='/' >
               <img src={require("./images/always-balanced-long.png")} alt='' id="always-balanced-long" />

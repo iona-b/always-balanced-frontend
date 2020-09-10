@@ -187,6 +187,10 @@ html, body {
     margin-bottom: 10px;
 }
 
+#video {
+    width: 500px;
+}
+
 .forms {
     overflow: scroll;
     padding-left: 15px;
@@ -305,6 +309,12 @@ html, body {
     width: 40px;
     font-size:18px;
     border-color: #FFFAF0;
+}
+
+#on-demo-page {
+    position: relative;
+    left: 45%;
+    top: 420px;
 }
 
 /* Task Related Styling */
@@ -479,6 +489,15 @@ html, body {
     position: absolute;
     left: 36.5%;
     margin-top: 100px;
+}
+
+.react-player {
+    position: absolute;
+    left: 27.5%;
+    bottom: 20%;
+    border: solid;
+    border-color: #BDDFCC;
+    background-color: #BDDFCC;
 }
 
 

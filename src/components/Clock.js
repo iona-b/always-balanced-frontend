@@ -37,7 +37,7 @@ class Clock extends React.Component {
       });
     }
     render() {
-      debugger
+      
       return (
         <p id="clock" className={this.props.user.id ? "landing-page-elements" : "pre-login"} >
           {this.state.day}, {this.state.month} {this.state.date}, {this.state.year}<br></br>
