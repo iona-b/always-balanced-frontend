@@ -58,7 +58,6 @@ class App extends React.Component {
     this.setState({
       whiteNoisePlaying: !this.state.whiteNoisePlaying
     })
-    console.log(this.state.whiteNoisePlaying)
   }
 
   handleLogOut = () => {
@@ -73,9 +72,9 @@ class App extends React.Component {
         <div>
           <div id="top-nav-bar">
             {this.state.whiteNoisePlaying === true ? 
-              <button className="buttons" id="stop-button" onClick={this.handleToggleWhiteNoisePlaying}>◼</button>
+              <button className="buttons" id="stop-button" onClick={this.handleToggleWhiteNoisePlaying}><span role="img" aria-label="mute-sound">🔇</span></button>
             :
-              <button className="buttons" id="play-button" onClick={this.handleToggleWhiteNoisePlaying}>►</button>
+              <button className="buttons" id="play-button" onClick={this.handleToggleWhiteNoisePlaying}><span role="img" aria-label="musical-note">🎵</span></button>
             }
             <Link to='/' >
               <img src={require("./images/always-balanced-long.png")} alt='' id="always-balanced-long" />
@@ -84,22 +83,22 @@ class App extends React.Component {
           </div>
           <div id="nav-bar">
             <div className="nav-bar-divs">
-              <NavLink to='/' exact className="nav-bar-headings" >Home</NavLink>
+              <NavLink to='/' exact className="nav-bar-headings landing-page-elements" >Home</NavLink>
             </div>
             <div className="nav-bar-divs">
-              <NavLink to='/profile' className="nav-bar-headings" >Profile</NavLink>
+              <NavLink to='/profile' className="nav-bar-headings landing-page-elements" >Profile</NavLink>
             </div>
             <div className="nav-bar-divs">
-              <NavLink to='/createschedule' className="nav-bar-headings" >Create Schedule</NavLink>
+              <NavLink to='/createschedule' className="nav-bar-headings landing-page-elements" >Create Schedule</NavLink>
             </div>
             <div className="nav-bar-divs">
-              <NavLink to='/schedule' className="nav-bar-headings" >View Schedule</NavLink>
+              <NavLink to='/schedule' className="nav-bar-headings landing-page-elements" >View Schedule</NavLink>
             </div>
             <div className="nav-bar-divs">
-              <NavLink to='/about' exact className="nav-bar-headings" >About</NavLink>
+              <NavLink to='/about' exact className="nav-bar-headings landing-page-elements" >About</NavLink>
             </div>
             <div className="nav-bar-divs">
-              <NavLink to='/' onClick={this.handleLogOut} className="nav-bar-headings" >Log Out</NavLink>
+              <NavLink to='/' onClick={this.handleLogOut} className="nav-bar-headings landing-page-elements" >Log Out</NavLink>
             </div>
           </div>
           <div id="lower-nav-bar">
@@ -110,20 +109,20 @@ class App extends React.Component {
         <div>
           <div id="top-nav-bar">
             <Link to='/' >
-              <img src={require("./images/always-balanced-long.png")} alt='' id="always-balanced-long" />
+              <img src={require("./images/always-balanced-long.png")} alt='' id="always-balanced-long" className="pre-login"/>
             </Link>
             <Clock />
           </div>
           <div id="nav-bar">
             <div className="nav-bar-divs">
-              <NavLink to='/login' exact className="nav-bar-headings  login-nav-bar-heading landing-page-elements" >Login</NavLink>
+              <NavLink to='/login' exact className="nav-bar-headings login-nav-bar-heading pre-login" >Login</NavLink>
             </div>
             <div className="nav-bar-divs">
-              <NavLink to='/signup' exact className="nav-bar-headings signup-nav-bar-heading landing-page-elements" >Sign Up</NavLink>
+              <NavLink to='/signup' exact className="nav-bar-headings signup-nav-bar-heading pre-login" >Sign Up</NavLink>
             </div>
           </div>
           <div id="lower-nav-bar">
-            <a id="link-to-github" href="https://github.com/iona-b/always-balanced-frontend">Copyright &copy; Iona Brabender 2020</a>
+            <a id="link-to-github" className="pre-login" href="https://github.com/iona-b/always-balanced-frontend">Copyright &copy; Iona Brabender 2020</a>
           </div>
         </div>
         }
@@ -144,10 +143,10 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-      userId: state.userId,
-      user: state.user,
-      token: state.token,
-      currentSchedule: state.currentSchedule
+      userId: state.userReducer.userId,
+      user: state.userReducer.user,
+      token: state.userReducer.token,
+      currentSchedule: state.userReducer.currentSchedule
   }
 }
 

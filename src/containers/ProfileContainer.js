@@ -6,7 +6,9 @@ import Profile from '../components/Profile';
 class ProfileContainer extends React.Component {
 
   render() {
+
     return (
+
       <div>
         <Link to='/' >
           <button className="buttons back-buttons">⬅</button>
@@ -28,14 +30,16 @@ class ProfileContainer extends React.Component {
           }
           </div>
       </div>
+
     );
+    
   }
 
 }
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.userReducer.user
   }
 }
 

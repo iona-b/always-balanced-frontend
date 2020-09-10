@@ -32,11 +32,15 @@ class FocusModeSchedule extends React.Component {
     }
 
     render() {
+
         return (
+
             <div id="focus-mode-div">
                 {this.getCurrentActivity()}
             </div>
+            
         );
+
     }
 
 }

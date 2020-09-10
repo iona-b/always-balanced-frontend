@@ -267,9 +267,6 @@ const userReducer = (state=initialState,action) => {
           tasks: [...state.currentSchedule.tasks]
         },
         scheduleInProgress: [...state.scheduleInProgress],
-        // postedSchedule: {
-        //   tasks: [...state.postedSchedule.tasks]
-        // },
         allRelaxationCategories: [...state.allRelaxationCategories],
         relaxationCategories: [...state.relaxationCategories]
       }
@@ -288,8 +285,6 @@ const userReducer = (state=initialState,action) => {
           id: action.currentSchedule.id,
           date: action.currentSchedule.date,
           user_id: action.currentSchedule.user_id,
-
-
           schedule_activities: [...action.currentSchedule.schedule_activities],
           activities: [...action.currentSchedule.activities],
           schedule_tasks: [...action.currentSchedule.schedule_tasks],

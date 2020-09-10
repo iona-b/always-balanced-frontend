@@ -25,7 +25,9 @@ class UpdateProfileModal extends React.Component {
     }
 
     render() {
+
         return (
+            
             <div>
                 <button className="buttons back-buttons" name="showUpdateProfile" onClick={this.props.handleClick}>⬅</button>
                 <div className="form-containers">
@@ -44,20 +46,22 @@ class UpdateProfileModal extends React.Component {
                             <h4 className="form-labels">And what's the maximum number of hours you like to work? </h4>
                             <input type="number" name="maxNumHours" value={this.state.maxNumHours} className="input-fields" onChange={this.handleChange}/>
                             <br/>
-                            <input className="buttons" type="submit" value="Submit" />
+                            <input className="buttons" type="submit" value="Confirm" />
                         </form>
                     </div>
                 </div>
             </div>
+
         )
+
     }
 
 }
 
 const mapStateToProps = state => {
     return {
-      user: state.user,
-      userTasks: state.userTasks
+      user: state.userReducer.user,
+      userTasks: state.userReducer.userTasks
     }
 }
   

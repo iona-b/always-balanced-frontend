@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addTask } from '../actions/addTask'
  
 class CreateTask extends Component {
+
   state = {
     text: ''
   };
@@ -25,26 +26,30 @@ class CreateTask extends Component {
   };
  
   render() {
+
     return (
+
       <div>
         <form className="forms" onSubmit={this.handleSubmit}>
             <h2 className="form-headers">Add Tasks</h2>
             <p>Add any tasks that you work on regularly. Each task should take between forty-five minutes and an hour to complete.</p>
             <p>You can always add any subtasks in the Task Notes.</p>
-              <h4 className="form-labels">Task Description</h4>
-              <input type="text" className="input-fields" name="taskDescription" value={this.state.taskDescription} onChange={this.handleChange} />
-              <h4 className="form-labels">Task Notes</h4>
-              <input type="text" className="input-fields" name="taskNotes" value={this.state.taskNotes} onChange={this.handleChange} /><br></br>
+            <h4 className="form-labels">Task Description</h4>
+            <input type="text" className="input-fields" name="taskDescription" value={this.state.taskDescription} onChange={this.handleChange} />
+            <h4 className="form-labels">Task Notes</h4>
+            <input type="text" className="input-fields" name="taskNotes" value={this.state.taskNotes} onChange={this.handleChange} /><br></br>
           <input type="submit" className="buttons" />
         </form>
       </div>
     );
+
   }
+
 }
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
+    user: state.userReducer.user,
   }
 }
  

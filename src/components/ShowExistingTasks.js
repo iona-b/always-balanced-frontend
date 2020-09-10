@@ -27,19 +27,23 @@ class ShowExisitingTasks extends React.Component {
     }
 
     render() {
+
         return (
+
             <div className="form-headers show-tasks" id="existing-tasks-div">
                 <h2> Existing Tasks </h2>
                 {this.listTasks()}
             </div>
+            
         );
+
     }
 
 }
 
 const mapStateToProps = state => {
     return {
-      tasks: state.userTasks
+      tasks: state.userReducer.userTasks
     }
 }
 

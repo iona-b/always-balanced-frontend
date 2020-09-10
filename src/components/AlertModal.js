@@ -42,8 +42,11 @@ export default class AlertModal extends React.Component {
     }
 
     render() {
+
         const { minutes, seconds } = this.state
+
         return (
+
             <div id="alert-modal">
                 <button className="buttons back-buttons" onClick={this.handleClick}>⬅</button>
                 <div>
@@ -57,6 +60,7 @@ export default class AlertModal extends React.Component {
                     }
                 </div>
             </div>
+            
         )
     }
 
