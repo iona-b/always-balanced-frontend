@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import ReactPlayer from 'react-player'
-import Demo from "../images/demo-part-1.mp4"
+import Demo from "../images/always-balanced-demo.mp4"
 
 
 class About extends React.Component {

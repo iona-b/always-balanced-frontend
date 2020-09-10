@@ -66,11 +66,11 @@ html, body {
 }
 
 .pre-login{
-    animation: menuFadeIn ease 7s;
-    -webkit-animation: menuFadeIn ease 7s;
-    -moz-animation: menuFadeIn ease 7s;
-    -o-animation: menuFadeIn ease 7s;
-    -ms-animation: menuFadeIn ease 7s;
+    animation: menuFadeIn ease 5s;
+    -webkit-animation: menuFadeIn ease 5s;
+    -moz-animation: menuFadeIn ease 5s;
+    -o-animation: menuFadeIn ease 5s;
+    -ms-animation: menuFadeIn ease 5s;
 }
 
 .nav-bar-divs:hover {
@@ -110,8 +110,8 @@ html, body {
     width: 1100px;
     left: 11.5%;
     top: 50px;
-    -webkit-animation: fadeinout 6s linear forwards;
-    animation: fadeinout 6s linear forwards;
+    -webkit-animation: fadeinout 4s linear forwards;
+    animation: fadeinout 4s linear forwards;
 }
 
 #home-menu {
@@ -130,11 +130,11 @@ html, body {
 }
 
 .landing-page-background {
-    animation: fadeIn ease 7s;
-    -webkit-animation: fadeIn ease 7s;
-    -moz-animation: fadeIn ease 7s;
-    -o-animation: fadeIn ease 7s;
-    -ms-animation: fadeIn ease 7s;
+    animation: fadeIn ease 5s;
+    -webkit-animation: fadeIn ease 5s;
+    -moz-animation: fadeIn ease 5s;
+    -o-animation: fadeIn ease 5s;
+    -ms-animation: fadeIn ease 5s;
 }
 
 #background-bottom-left {
@@ -238,6 +238,7 @@ html, body {
     font-size: 15px;
     opacity: 100%;
     color: #2F4F4F;
+    cursor: pointer;
 }
 
 .menu-buttons {
@@ -262,6 +263,7 @@ html, body {
     position: absolute;
     left: 0%;
     margin: 20px;
+    cursor: pointer;
 }
 
 .task-button {
@@ -277,6 +279,7 @@ html, body {
     background-color: #DDEBE4;
     float: right;
     color: #2F4F4F;
+    cursor: pointer;
 }
 
 #focus-mode-button {
