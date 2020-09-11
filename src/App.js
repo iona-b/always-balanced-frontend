@@ -102,7 +102,7 @@ class App extends React.Component {
             </div>
           </div>
           <div id="lower-nav-bar">
-            <a id="link-to-github" href="https://github.com/iona-b/always-balanced-frontend">Copyright &copy; Iona Brabender 2020</a> 
+            <a id="link-to-github" href="https://github.com/iona-b/always-balanced-frontend/blob/master/README.md">Copyright &copy; Iona Brabender 2020</a> 
           </div>
         </div>
         :
@@ -122,7 +122,7 @@ class App extends React.Component {
             </div>
           </div>
           <div id="lower-nav-bar">
-            <a id="link-to-github" className="pre-login" href="https://github.com/iona-b/always-balanced-frontend">Copyright &copy; Iona Brabender 2020</a>
+            <a id="link-to-github" className="pre-login" href="https://github.com/iona-b/always-balanced-frontend/blob/master/README.md">Copyright &copy; Iona Brabender 2020</a>
           </div>
         </div>
         }
