@@ -4,6 +4,8 @@
 
 Always Balanced is a React and Redux Application, with a Rails backend which allows users to create a personalised schedule with the aim of helping them to better balance their work and home life. Always Balanced was created by Iona Brabender for her Mod 5 Project as part of Flatiron School's immersive Software Engineering Program.
 
+**To see the full demo, click [here](https://www.youtube.com/watch?v=qA_5IIvbeGw).**
+
 
 ## Installation
 
