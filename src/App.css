@@ -15,6 +15,10 @@ html, body {
 #top-nav-bar {
     height: 100px;
     background-color: #BDDFCC;
+    width: 100%;
+    position: fixed;
+    min-width: 1200px;
+    z-index: 9999;
 }
 
 #always-balanced-long {
@@ -32,6 +36,8 @@ html, body {
     text-align: right;
     margin-right: 20px;
     color: #FFFAF0;
+    min-width: 300px;
+    
 }
 
 #nav-bar {
@@ -39,6 +45,11 @@ html, body {
     background-color: #BDDFCC;
     display: flex;
     justify-content: space-evenly;
+    width: 100%;
+    position: fixed;
+    top: 100px;
+    min-width: 1200px;
+    z-index: 9999;
 }
 
 .nav-bar-divs {
@@ -109,7 +120,7 @@ html, body {
     position: absolute;
     width: 1100px;
     left: 11.5%;
-    top: 50px;
+    top: 200px;
     -webkit-animation: fadeinout 4s linear forwards;
     animation: fadeinout 4s linear forwards;
 }
@@ -118,7 +129,7 @@ html, body {
     width: 400px;
     position: absolute;
     left: 36.5%;
-    margin-top: 100px;
+    margin-top: 200px;
 }
 
 .landing-page-elements {
@@ -140,20 +151,23 @@ html, body {
 #background-bottom-left {
     position: fixed;
     left: 0%;
-    width: 450px;
-    top: 35%;
+    width: 30%;
+    bottom: 50px;
+    min-width: 400px;
 }
 
 #background-top-right {
     position: absolute;
     right: 0%;
-    width: 500px;
+    width: 36%;
+    top: 150px;
+    min-width: 400px;
 }
 
 /* Form Styling  */
 
 .form-containers {
-    margin-top: 20px;
+    margin-top: 165px;
     text-align: center;
     width: 550px;
     position: absolute;
@@ -344,10 +358,12 @@ html, body {
 
 #existing-tasks-div {
     right: 1%;
+    top: 150px;
 }
 
 #schedule-in-progress-div {
     left: 1%;
+    top: 150px;
 }
 
 .tasks-items {
@@ -392,17 +408,30 @@ html, body {
     padding-right: 20px;
 }
 
-#create-schedule-container {
-    margin-top: 10px;
-    position: absolute;
-    left: 37%;
-    width: 1000px;
-    text-align: center;
+#loading-div {
+    animation: fadeinout ease 5s;
+    -webkit-animation: fadeinout ease 5s;
+    -moz-animation: fadeinout ease 5s;
+    -o-animation: fadeinout ease 5s;
+    -ms-animation: fadeinout ease 5s;
+    z-index: 9999;
 }
+
+#view-edit-delete-div {
+    animation: menuFadeIn ease 5s;
+    -webkit-animation: menuFadeIn ease 5s;
+    -moz-animation: menuFadeIn ease 5s;
+    -o-animation: menuFadeIn ease 5s;
+    -ms-animation: menuFadeIn ease 5s;
+    z-index: 9999;
+    background-color: #FFFAF0;
+}
+
 
 #create-schedule-form-container {
     position: absolute;
     left: 30.5%;
+    margin-top: 170px;
 }
 
 #focus-mode {
@@ -465,7 +494,7 @@ html, body {
     width: 400px;
     position: absolute;
     left: 37%;
-    margin-top: 50px;
+    top: 165px;
     animation: fadeIn ease 1s;
     -webkit-animation: fadeIn ease 1s;
     -moz-animation: fadeIn ease 1s;
@@ -491,7 +520,7 @@ html, body {
     width: 400px;
     position: absolute;
     left: 36.5%;
-    margin-top: 100px;
+    margin-top: 200px;
 }
 
 .react-player {
