@@ -17,6 +17,7 @@ cd into the always-balanced-frontend directory and run the following commands in
 
 ```
 bundle install          # to track and install the exact versions of ruby gems needed for Always Balanced
+rails db:create         # to create PostgreSQL database
 rails db:migrate        # to run table migrations
 rails db:seed           # to seed your database
 rails server            # to start up your rails server
