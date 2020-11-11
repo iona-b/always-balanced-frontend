@@ -2,7 +2,7 @@ export const addTask = (task) => {
 
     return (dispatch) => {
         dispatch({ type: 'LOADING'})
-        fetch('http://localhost:3000/tasks',{
+        fetch('https://dashboard.heroku.com/apps/always-balanced-backend/tasks',{
             method:"POST",
             headers:{
                 'Content-Type':'application/json'

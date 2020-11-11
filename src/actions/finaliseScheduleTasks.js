@@ -6,7 +6,7 @@ export const finaliseScheduleTasks = (taskId) => {
 
     return (dispatch) => {
         dispatch({ type: 'LOADING'})
-        fetch('http://localhost:3000/schedule_tasks',{
+        fetch('https://dashboard.heroku.com/apps/always-balanced-backend/schedule_tasks',{
         method:"POST",
         headers:{
         'Content-Type':'application/json'

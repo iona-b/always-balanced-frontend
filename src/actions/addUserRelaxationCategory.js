@@ -6,7 +6,7 @@ export const addUserRelaxationCategory = (userId, relaxationCategory) => {
     }
 
     return (dispatch) => {
-        fetch('http://localhost:3000/user_relaxation_categories',{
+        fetch('https://dashboard.heroku.com/apps/always-balanced-backend/user_relaxation_categories',{
             method:"POST",
             headers:{
                 'Content-Type':'application/json'
