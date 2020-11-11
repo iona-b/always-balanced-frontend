@@ -16,7 +16,7 @@ export const updateUser = (event, user) => {
 
     return (dispatch) => {
         dispatch({ type: 'LOADING'})
-        fetch(`https://dashboard.heroku.com/apps/always-balanced-backend/users/${user.id}`,{
+        fetch(`https://always-balanced-backend.herokuapp.com/users/${user.id}`,{
             method:"PATCH",
             headers:{
                 'Content-Type':'application/json'

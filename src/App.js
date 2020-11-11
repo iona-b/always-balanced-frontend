@@ -26,7 +26,7 @@ class App extends React.Component {
 
   componentDidMount() {
     if(localStorage.token) {
-      fetch('https://dashboard.heroku.com/apps/always-balanced-backend/persist',{
+      fetch('https://always-balanced-backend.herokuapp.com/persist',{
         headers:{
           "Authorization": `Bearer ${localStorage.token}`
         }

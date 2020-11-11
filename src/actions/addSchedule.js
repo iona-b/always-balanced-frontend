@@ -6,7 +6,7 @@ export const addSchedule = (userId, token) => {
 
     return (dispatch) => {
         dispatch({ type: 'LOADING'})
-        fetch('https://dashboard.heroku.com/apps/always-balanced-backend/schedules',{
+        fetch('https://always-balanced-backend.herokuapp.com/schedules',{
             method:"POST",
             headers:{
                 'Content-Type':'application/json',

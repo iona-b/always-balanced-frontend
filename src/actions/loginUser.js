@@ -2,7 +2,7 @@ export const loginUser = (user) => {
 
     return (dispatch) => {
         dispatch({ type: 'LOADING'})
-        fetch('https://dashboard.heroku.com/apps/always-balanced-backend/login',{
+        fetch('https://always-balanced-backend.herokuapp.com/login',{
             method:"POST",
             headers:{
                 'Content-Type':'application/json'

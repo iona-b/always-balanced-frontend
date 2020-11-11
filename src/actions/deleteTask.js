@@ -1,7 +1,7 @@
 export const deleteTask = (taskId) => {
 
     return (dispatch) => {
-        fetch(`https://dashboard.heroku.com/apps/always-balanced-backend/tasks/${taskId}`, {
+        fetch(`https://always-balanced-backend.herokuapp.com/tasks/${taskId}`, {
             method:'DELETE'
         })
         .then(response => response.json())

@@ -1,7 +1,7 @@
 export const deleteUser = (userId) => {
 
     return (dispatch) => {
-        fetch(`https://dashboard.heroku.com/apps/always-balanced-backend/users/${userId}`, {
+        fetch(`https://always-balanced-backend.herokuapp.com/users/${userId}`, {
             method:'DELETE'
         })
         .then(response => response.json())

@@ -1,7 +1,7 @@
 export const fetchSchedule = (scheduleId) => {
 
     return (dispatch) => {
-      fetch(`https://dashboard.heroku.com/apps/always-balanced-backend/schedules/${scheduleId}`).then(response => {
+      fetch(`https://always-balanced-backend.herokuapp.com/schedules/${scheduleId}`).then(response => {
         return response.json()
       })
       .then(responseJSON => {

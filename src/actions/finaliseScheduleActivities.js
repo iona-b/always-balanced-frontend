@@ -6,7 +6,7 @@ export const finaliseScheduleActivities = (relaxationCategoryId, activityLength)
     }
 
     return (dispatch) => {
-        fetch('https://dashboard.heroku.com/apps/always-balanced-backend/schedule_activities',{
+        fetch('https://always-balanced-backend.herokuapp.com/schedule_activities',{
             method:"POST",
             headers:{
                 'Content-Type':'application/json'

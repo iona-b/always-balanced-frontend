@@ -2,7 +2,7 @@ export const addTaskToPostedSchedule = (task) => {
 
     return (dispatch) => {
         dispatch({ type: 'LOADING'})
-        fetch('https://dashboard.heroku.com/apps/always-balanced-backend/tasks',{
+        fetch('https://always-balanced-backend.herokuapp.com/tasks',{
             method:"POST",
             headers:{
                 'Content-Type':'application/json'

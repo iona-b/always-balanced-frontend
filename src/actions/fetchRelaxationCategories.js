@@ -2,7 +2,7 @@ export const fetchRelaxationCategories = () => {
 
     return (dispatch) => {
       dispatch({ type: 'LOADING'})
-      fetch(`https://dashboard.heroku.com/apps/always-balanced-backend/relaxation_categories`).then(response => {
+      fetch(`https://always-balanced-backend.herokuapp.com/relaxation_categories`).then(response => {
         return response.json()
       })
       .then(responseJSON => {

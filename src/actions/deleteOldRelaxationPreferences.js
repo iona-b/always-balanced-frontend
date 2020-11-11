@@ -1,7 +1,7 @@
 export const deleteOldRelaxationPreferences = (category) => {
 
     return (dispatch) => {
-        fetch(`https://dashboard.heroku.com/apps/always-balanced-backend/user_relaxation_categories/${category.id}`, {
+        fetch(`https://always-balanced-backend.herokuapp.com/user_relaxation_categories/${category.id}`, {
         method:'DELETE'
     })
     .then(response => response.json())

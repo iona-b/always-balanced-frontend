@@ -1,7 +1,7 @@
 export const editCurrentSchedule = (scheduleId) => {
 
     return (dispatch) => {
-        fetch(`https://dashboard.heroku.com/apps/always-balanced-backend/schedules/${scheduleId}`, {
+        fetch(`https://always-balanced-backend.herokuapp.com/schedules/${scheduleId}`, {
         method:'DELETE'
     })
     .then(response => response.json())
