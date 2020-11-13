@@ -1,7 +1,7 @@
 export const fetchUser = (userId) => {
 
   return (dispatch) => {
-    fetch(`https://always-balanced-backend.herokuapp.com/users/${userId}`).then(response => {
+    fetch(`https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/users/${userId}`).then(response => {
       return response.json()
     })
     .then(responseJSON => {

@@ -6,7 +6,7 @@ export const finaliseScheduleTasks = (taskId) => {
 
     return (dispatch) => {
         dispatch({ type: 'LOADING'})
-        fetch('https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/schedule_tasks',{
+        fetch('https://cors-anywhere.herokuapp.com/https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/schedule_tasks',{
         method:"POST",
         headers:{
         'Content-Type':'application/json'
