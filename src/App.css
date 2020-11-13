@@ -415,22 +415,22 @@ html, body {
 }
 
 #loading-div {
-    animation: fadeinout ease 5s;
-    -webkit-animation: fadeinout ease 5s;
-    -moz-animation: fadeinout ease 5s;
-    -o-animation: fadeinout ease 5s;
-    -ms-animation: fadeinout ease 5s;
-    z-index: 9999;
+    -moz-animation: fadeOut 0s ease-in 4s forwards;
+    -webkit-animation: fadeOut 0s ease-in 4s forwards;
+    -o-animation: fadeOut 0s ease-in 4s forwards;
+    animation: fadeOut 0s ease-in 4s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
 
 #view-edit-delete-div {
-    animation: menuFadeIn ease 5s;
-    -webkit-animation: menuFadeIn ease 5s;
-    -moz-animation: menuFadeIn ease 5s;
-    -o-animation: menuFadeIn ease 5s;
-    -ms-animation: menuFadeIn ease 5s;
-    z-index: 9999;
+    animation: menuFadeIn ease 4s;
+    -webkit-animation: menuFadeIn ease 4s;
+    -moz-animation: menuFadeIn ease 4s;
+    -o-animation: menuFadeIn ease 4s;
+    -ms-animation: menuFadeIn ease 4s;
     background-color: #FFFAF0;
+    margin-top: -50px;
 }
 
 #focus-mode {
@@ -582,12 +582,28 @@ html, body {
     100% {opacity:1;}
 }
 
+ 
 @-webkit-keyframes fadeinout {
     0%,100% { opacity: 0; }
     50% { opacity: 1; }
-  }
-  
-  @keyframes fadeinout {
+}
+
+@keyframes fadeinout {
     0%,100% { opacity: 0; }
     50% { opacity: 1; }
-  }
+}
+
+@keyframes fadeOut {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes fadeOut {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
+}

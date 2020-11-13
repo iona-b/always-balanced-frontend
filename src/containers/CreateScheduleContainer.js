@@ -39,7 +39,7 @@ class CreateScheduleContainer extends React.Component {
             <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left" />
             <img src={require("../images/background-top-right.png")} alt='' id="background-top-right" />
             <div className="centred-divs info-divs" id="loading-div">
-              <h2 id="loading-text">Loading...</h2>
+              <h2 id="loading-div">Loading...</h2>
             </div>
             <div className="centred-divs info-divs" id="view-edit-delete-div">
               <h2>You've already created a schedule for today.</h2>

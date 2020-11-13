@@ -25,7 +25,7 @@ class SignUpContainer extends React.Component {
 
   handleLoading = () => {
     if(this.props.loading === true) {
-      return <div>Loading...</div>
+      return <div id="loading-div">Loading...</div>
     } else {
       return <Tasks tasks={this.props.tasks} />
     }
