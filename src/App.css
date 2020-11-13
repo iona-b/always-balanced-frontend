@@ -1,38 +1,601 @@
-.App {
-  text-align: center;
+html, body {
+    font-family: Palatino, URW Palladio L, serif;
+    position: relative;
+    font-weight: bold;
+    background-color: #FFFAF0;
+    color: #2F4F4F;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Nav Bar Styling  */
+
+#top-nav-bar {
+    height: 100px;
+    background-color: #BDDFCC;
+    width: 100%;
+    position: fixed;
+    min-width: 1200px;
+    z-index: 9999;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+#always-balanced-long {
+    height: 80px;
+    margin-top: 10px;
+    position: absolute;
+    left: 38%;
+}
+
+#clock {
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    font-size: 30px;
+    text-align: right;
+    margin-right: 20px;
+    color: #FFFAF0;
+    min-width: 300px;
+    
+}
+
+#nav-bar {
+    height:50px;
+    background-color: #BDDFCC;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    position: fixed;
+    top: 100px;
+    min-width: 1200px;
+    z-index: 9999;
+}
+
+.nav-bar-divs {
+    margin-top: 15px;
+    width: 200px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.nav-bar-headings {
+    text-decoration: none;
+    color: #FFFAF0;
+    font-size: 20px;
+}
+
+.nav-bar-headings.login-nav-bar-heading {
+    position: absolute;
+    left: 42%;
+}
+
+.nav-bar-headings.signup-nav-bar-heading {
+    position: absolute;
+    left: 52%;
+}
+
+.pre-login{
+    animation: menuFadeIn ease 5s;
+    -webkit-animation: menuFadeIn ease 5s;
+    -moz-animation: menuFadeIn ease 5s;
+    -o-animation: menuFadeIn ease 5s;
+    -ms-animation: menuFadeIn ease 5s;
+}
+
+.nav-bar-divs:hover {
+    opacity: 50;
+}
+
+#lower-nav-bar {
+    height: 50px;
+    background-color: #BDDFCC;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 9999;
+    text-align: center;
+}
+
+#link-to-github {
+    text-decoration: none;
+    color: #FFFAF0;
+    font-size: 15px;
+    position: relative;
+    bottom: -15px;
+}
+
+/* Home Styling */
+
+#home-div {
+    text-align: center;
+    height: 110%;
+    width: 100%;
+    position: relative;
+}
+
+#always-balanced-welcome {
+    position: absolute;
+    width: 1100px;
+    left: 11.5%;
+    top: 200px;
+    -webkit-animation: fadeinout 4s linear forwards;
+    animation: fadeinout 4s linear forwards;
+}
+
+#home-menu {
+    width: 400px;
+    position: absolute;
+    left: 36.5%;
+    margin-top: 200px;
+}
+
+.landing-page-elements {
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+.landing-page-background {
+    animation: fadeIn ease 5s;
+    -webkit-animation: fadeIn ease 5s;
+    -moz-animation: fadeIn ease 5s;
+    -o-animation: fadeIn ease 5s;
+    -ms-animation: fadeIn ease 5s;
+}
+
+#background-bottom-left {
+    position: fixed;
+    left: 0%;
+    width: 30%;
+    bottom: 50px;
+    min-width: 400px;
+}
+
+#background-top-right {
+    position: absolute;
+    right: 0%;
+    width: 36%;
+    top: 150px;
+    min-width: 400px;
+}
+
+/* Form Styling  */
+
+.form-containers {
+    margin-top: 165px;
+    text-align: center;
+    width: 550px;
+    position: absolute;
+    left: 30%;
+    overflow: scroll;
+    overflow-y: auto;
+    border: solid;
+    border-radius: 5px;
+    border-color: #BDDFCC;
+    border-width: 5px;
+    height: 450px;
+    padding-top: 20px;
+    background-color: #FFFAF0;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+.form-headers {
+    margin-bottom: 30px;
+    
+}
+
+#add-up-to-x-tasks {
+    margin-bottom: 10px;
+}
+
+.form-labels {
+    margin-bottom: 10px;
+}
+
+#video {
+    width: 500px;
+}
+
+.forms {
+    overflow: scroll;
+    padding-left: 15px;
+    padding-right: 15px;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+.input-fields {
+    margin-bottom: 10px;
+    height: 30px;
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    border: solid;
+    border-radius: 5px;
+    border-color: #BDDFCC;     
+}
+
+.choose-relaxation-categories-form {
+    font-family: Palatino, URW Palladio L, serif;
+}
+
+#create-task-form-div {
+    position: absolute;
+    right: 0%;
+}
+
+/* Button Styling */
+
+.buttons {
+    height: 35px;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    border: solid;
+    border-color: #BDDFCC;
+    font-family: Palatino, URW Palladio L, serif;
+    background-color: #DDEBE4;
+    font-size: 15px;
+    opacity: 100%;
+    color: #2F4F4F;
+    cursor: pointer;
+}
+
+.menu-buttons {
+    height: 50px;
+    width: 300px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    border: solid;
+    border-color: #BDDFCC;
+    font-family: Palatino, URW Palladio L, serif;
+    background-color: #DDEBE4;
+    font-size: 20px;
+    opacity: 100%;
+    color: #2F4F4F;
+    cursor: pointer;
+}
+
+.back-buttons {
+    width: 50px;
+    position: absolute;
+    left: 0%;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.task-button {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    border: solid;
+    border-color: #BDDFCC;
+    font-family: Palatino, URW Palladio L, serif;
+    background-color: #DDEBE4;
+    float: right;
+    color: #2F4F4F;
+    cursor: pointer;
+}
+
+#focus-mode-button {
+    width: 40px;
+    position: absolute;
+    right: 0%;
+    top: -1%;
+}
+
+#edit-schedule-button {
+    width: 40px;
+    position: absolute;
+    right: 0%;
+    top: 7%;
+}
+
+#timer-button {
+    width: 40px;
+    position: absolute;
+    right: 0%;
+    top: 15%;
+}
+
+#play-button {
+    width: 40px;
+    border-color: #FFFAF0;
+}
+
+#stop-button {
+    width: 40px;
+    font-size:18px;
+    border-color: #FFFAF0;
+}
+
+#on-demo-page {
+    position: relative;
+    left: 45%;
+    top: 420px;
+}
+
+/* Task Related Styling */
+
+.show-tasks {
+    margin-top: 20px;
+    position: absolute;
+    width: 400px;
+    text-align: center;
+    height: 480px;
+    border-radius: 5px;
+    height: 450px;
+    overflow: scroll;
+    border: solid;
+    border-color: #DDEBE4;
+    border-width: 5px;
+    padding-top: 20px;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+#existing-tasks-div {
+    right: 1%;
+    top: 150px;
+}
+
+#schedule-in-progress-div {
+    left: 1%;
+    top: 150px;
+}
+
+.tasks-items {
+    margin: 15px;
+    vertical-align: center;
+    line-height: 35px;
+}
+
+.task {
+    display: inline;
+}
+
+#task-description-div {
+    display: block;
+    float: left;
+    margin-left: 40px;
+}
+
+#task-notes-div {
+    display: block;
+    float: right;
+    margin-right: 40px;
+}
+
+/* Schedule Styling  */
+
+#schedule-container {
+    margin-top: 20px;
+    text-align: center;
+    width: 500px;
+    position: absolute;
+    left: 33%;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+#schedule {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#loading-div {
+    animation: fadeinout ease 5s;
+    -webkit-animation: fadeinout ease 5s;
+    -moz-animation: fadeinout ease 5s;
+    -o-animation: fadeinout ease 5s;
+    -ms-animation: fadeinout ease 5s;
+    z-index: 9999;
+}
+
+#view-edit-delete-div {
+    animation: menuFadeIn ease 5s;
+    -webkit-animation: menuFadeIn ease 5s;
+    -moz-animation: menuFadeIn ease 5s;
+    -o-animation: menuFadeIn ease 5s;
+    -ms-animation: menuFadeIn ease 5s;
+    z-index: 9999;
+    background-color: #FFFAF0;
+}
+
+
+#create-schedule-form-container {
+    position: absolute;
+    left: 30.5%;
+    margin-top: 170px;
+}
+
+#focus-mode {
+    background-color:#2F4F4F;
+    height: 100%;
+    width: 100%;
+    color: #FFFAF0;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+#focus-mode-div {
+    margin-top: 90px;
+}
+
+/* Modals  */
+
+#alert-modal {
+    top: 0%;
+    height: 1000px;
+    width: 550px;
+    background-color:#2F4F4F;
+    opacity: 90%;
+    position: absolute;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+.countdown-header {
+    margin-top: 100px;
+    margin-right: 20px;
+    margin-left: 20px;
+    font-size: 50px;
+    position: relative;
+    color: #FFFAF0;
+}
+
+.countdown-timer {
+    font-size: 80px;
+    margin-top: 50px;
+    color: #FFFAF0;
+    position: relative;
+}
+
+.slotActive {
+    color: #6495ED;
+}
+
+.info-divs {
+    text-align: center;
+    width: 400px;
+    position: absolute;
+    left: 37%;
+    top: 165px;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+/* Profile Styling */
+
+#profile-div {
+    text-align: center;
+    height: 110%;
+    width: 100%;
+    position: relative;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+#profile-menu {
+    width: 400px;
+    position: absolute;
+    left: 36.5%;
+    margin-top: 200px;
+}
+
+.react-player {
+    position: absolute;
+    left: 27.5%;
+    bottom: 20%;
+    border: solid;
+    border-color: #BDDFCC;
+    background-color: #BDDFCC;
+}
+
+
+/* Key Frames */
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+    
+@-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@keyframes menuFadeIn {
+    0% {opacity:0;}
+    80%{opacity:0}
+    100% {opacity:1;}
+}
+    
+@-moz-keyframes menuFadeIn {
+    0% {opacity:0;}
+    80%{opacity:0}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes menuFadeIn {
+    0% {opacity:0;}
+    80%{opacity:0}
+    100% {opacity:1;}
+}
+
+@-o-keyframes menuFadeIn {
+    0% {opacity:0;}
+    80%{opacity:0}
+    100% {opacity:1;}
+}
+
+@-ms-keyframes menuFadeIn {
+    0% {opacity:0;}
+    80%{opacity:0}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeinout {
+    0%,100% { opacity: 0; }
+    50% { opacity: 1; }
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  @keyframes fadeinout {
+    0%,100% { opacity: 0; }
+    50% { opacity: 1; }
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
