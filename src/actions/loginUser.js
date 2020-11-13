@@ -2,7 +2,7 @@ export const loginUser = (user) => {
 
     return (dispatch) => {
         dispatch({ type: 'LOADING'})
-        fetch('https://cors-anywhere.herokuapp.com/https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/login',{
+        fetch('https://cors-anywhere.herokuapp.com/http://localhost:3000/login',{
             method:"POST",
             headers:{
                 'Content-Type':'application/json'

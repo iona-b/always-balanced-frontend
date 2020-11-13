@@ -1,7 +1,7 @@
 export const editCurrentSchedule = (scheduleId) => {
 
     return (dispatch) => {
-        fetch(`https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/schedules/${scheduleId}`, {
+        fetch(`http://localhost:3000/schedules/${scheduleId}`, {
         method:'DELETE'
     })
     .then(response => response.json())

@@ -1,7 +1,7 @@
 export const deleteTask = (taskId) => {
 
     return (dispatch) => {
-        fetch(`https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/tasks/${taskId}`, {
+        fetch(`http://localhost:3000/tasks/${taskId}`, {
             method:'DELETE'
         })
         .then(response => response.json())

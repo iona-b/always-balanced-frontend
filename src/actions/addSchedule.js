@@ -6,7 +6,7 @@ export const addSchedule = (userId, token) => {
 
     return (dispatch) => {
         dispatch({ type: 'LOADING'})
-        fetch('https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/schedules',{
+        fetch('http://localhost:3000/schedules',{
             method:"POST",
             headers:{
                 'Content-Type':'application/json',
