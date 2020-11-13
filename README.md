@@ -1,68 +1,111 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![always balanced logo](src/images/always-balanced-readme.png)
 
-## Available Scripts
+## About
 
-In the project directory, you can run:
+Always Balanced is a React and Redux Application, with a Rails backend which allows users to create a personalised schedule with the aim of helping them to better balance their work and home life. Always Balanced was created by Iona Brabender for her Mod 5 Project as part of Flatiron School's immersive Software Engineering Program.
 
-### `yarn start`
+**To see the live demo, click [here](https://always-balanced-frontend.herokuapp.com/).**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**To see the video demo, click [here](https://www.youtube.com/watch?v=qA_5IIvbeGw).**
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
+## Installation
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Please find the repositories here: https://github.com/iona-b/always-balanced-frontend and https://github.com/iona-b/always-balanced-backend.
 
-### `yarn build`
+To run Always Balanced, first clone both the front and back end repositories into a single directory. 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+cd into the always-balanced-backend directory and run the following commands in your terminal:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```
+bundle install          # to track and install the exact versions of ruby gems needed for Always Balanced
+rails db:create         # to create PostgreSQL database
+rails db:migrate        # to run table migrations
+rails db:seed           # to seed your database
+rails server            # to start up your rails server
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You should now cd into the always-balanced-frontend directory and run the following commands in your terminal:
 
-### `yarn eject`
+```
+npm install             # to download the necessary React packages and dependencies
+npm start               # to open the app in your browser
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Using Always Balanced
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Sign Up or Log In
+<ul>
+    <li>Visit the Always Balanced homepage to get started.</li>
+    <li>If this is your first time using the app, you'll need to create a profile.</li>
+    <ul>
+        <li>Select the sign up option.</li>
+        <li>You'll be asked to choose the time you'd like to start work, how many hours you want to work per day, and what types of activities you like to do to relax.</li>
+        <li>This information is used to allow you to create a schedule which completely suits you and can be updated at any time.</li>
+        <li>You'll also have the chance to enter any tasks that you do on a regular basis, for instance a certain project that you work on every day.</li>
+    </ul>
+    <li>Otherwise, just sign in with your user name and password.</li>
+</ul>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<br>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![Always Balanced Demo Gif Part 1](https://media.giphy.com/media/ftZfUNGMJkF49L5uA5/giphy.gif)
 
-## Learn More
+<br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Create Your Schedule
+<ul>
+    <li>Add new tasks or use existing tasks to create your schedule.</li>
+    <li>You can also select 2 relaxation categories from the choices you made when you signed up.</li>
+    <li>Based on how many hours you indicated that you'd like to work per day, there will be a recommended number of tasks to add to your schedule, however you're free to add fewer depending on how you feel that day.</li>
+</ul>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br>
 
-### Code Splitting
+![Always Balanced Demo Gif Part 2](https://media.giphy.com/media/SANhGIKcw3WB43l2LD/giphy.gif)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+<br>
 
-### Analyzing the Bundle Size
+### View Your Schedule
+<ul>
+    <li>Once you've created your schedule, you have the option to view it.</li>
+    <li>The task or break you're currently on will be highlighted in blue.</li>
+    <li>You can see your schedule in full, or you can use the focus mode for a clearer view.</li>
+    <li>You'll be notified at the beginning of every break and there will be a timer counting down until the next task begins.</li>
+    <li>You can also use the quick break timer if you want to catch your breath for five minutes.</li>
+    <li>Five minute or fifteen minute breaks are scheduled every hour. Activities will be suggested for the longer breaks based on your relaxation choices.</li>
+    <li>A forty-five minute lunch break is scheduled between 11:45 and 13:00 depending on when your day begins.</li>
+</ul>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Update Your Schedule
+<ul>
+    <li>Use the edit button to update your schedule at any time of the day.
+    <li>You can remove tasks, or add new ones, as well as update your relaxation choices for that day.
+</ul>
 
-### Making a Progressive Web App
+### Update Your Profile
+<ul>
+    <li>Update your profile including your username, password, start work time, and number of hours per day.
+    <li>Change your relaxation preferences.
+    <li>Add or remove tasks from your task list.
+    <li>Delete your profile.
+</ul>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+<br>
 
-### Advanced Configuration
+![Always Balanced Demo Gif Part 3](https://media.giphy.com/media/iGG0xQuGvRmQ6mF99O/giphy.gif)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+<br>
 
-### Deployment
+### Additional Features
+<ul>
+    <li>A clock with the current date and time appears in the top-right-hand corner.
+    <li>You have the option to play calming white noise by using the player in the top-left-hand corner.
+</ul>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `yarn build` fails to minify
+## Developer
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+**Iona Brabender**<br>
+https://github.com/iona-b<br>
+https://www.linkedin.com/in/iona-brabender/
