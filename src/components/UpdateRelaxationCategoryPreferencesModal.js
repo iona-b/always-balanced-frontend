@@ -47,7 +47,6 @@ class UpdateRelaxationPreferencesModal extends React.Component {
         return (
 
           <div>
-            <button className="buttons back-buttons" name="showUpdateRelaxationCategoryPreferences" onClick={this.props.handleClick}>⬅</button>
               <div className="form-containers centred-divs">
                 <div className="choose-relaxation-categories-form">
                   <h2 className="form-headers">Select 3 Relaxation Categories</h2>

@@ -103,11 +103,11 @@ class CreateSchedule extends Component {
                 <form onSubmit={this.handleSubmit}>
                   <div id="task-description-div">
                     <h4 className="form-labels" id="task-description" >Task Description</h4>
-                    <input className="input-fields" id="task-description" name="taskDescription" onChange={this.handleChange} value={this.state.taskDescription}/>
+                    <input className="input-fields-sm" id="task-description" name="taskDescription" onChange={this.handleChange} value={this.state.taskDescription}/>
                   </div>
                   <div id="task-notes-div">
                     <h4 className="form-labels" id="task-notes" >Task Notes</h4>
-                    <input className="input-fields" id="task-notes" name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/><br></br>
+                    <input className="input-fields-sm" id="task-notes" name="taskNotes" onChange={this.handleChange} value={this.state.taskNotes}/><br></br>
                   </div>
                   <input  className="buttons" type="submit" value="Add Task"/>
                 </form>

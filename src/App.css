@@ -176,7 +176,7 @@ html, body {
 .form-containers {
     text-align: center;
     width: 550px;
-    margin-top: 5%;
+    margin-top: 2%;
     overflow: scroll;
     overflow-y: auto;
     border: solid;
@@ -224,6 +224,17 @@ html, body {
     margin-bottom: 10px;
     height: 30px;
     width: 200px;
+    margin: 10px;
+    text-align: center;
+    border: solid;
+    border-radius: 5px;
+    border-color: #BDDFCC;     
+}
+
+.input-fields-sm {
+    margin-bottom: 10px;
+    height: 30px;
+    width: 190px;
     margin: 10px;
     text-align: center;
     border: solid;
@@ -341,21 +352,20 @@ html, body {
 
 #create-schedule-form-container {
     margin-top: 0%;
-    width: 38%;
-    height: 74vh;
+    width: 30%;
+    height: 65vh;
     margin-left: 1%;
     margin-right: 1%;
 }
 
 .show-tasks {
     width: 30%;
-    height: 72vh;
+    height: 65vh;
     border-radius: 5px;
     overflow: scroll;
     border: solid;
     border-color: #DDEBE4;
     border-width: 5px;
-    padding-top: 20px;
     animation: fadeIn ease 1s;
     -webkit-animation: fadeIn ease 1s;
     -moz-animation: fadeIn ease 1s;
@@ -376,13 +386,12 @@ html, body {
 #task-description-div {
     display: block;
     float: left;
-    margin-left: 40px;
+    
 }
 
 #task-notes-div {
     display: block;
     float: right;
-    margin-right: 40px;
 }
 
 /* Schedule Styling  */
@@ -430,7 +439,7 @@ html, body {
     width: 100%;
     color: #FFFAF0;
     position: absolute;
-    right: 0%;
+    left: 0%;
     top: 0%;
     animation: fadeIn ease 1s;
     -webkit-animation: fadeIn ease 1s;
@@ -446,11 +455,12 @@ html, body {
 /* Modals  */
 
 #alert-modal {
-    top: 0%;
-    height: 1000px;
-    width: 550px;
     background-color:#2F4F4F;
-    /* opacity: 90%; */
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+
     position: absolute;
     animation: fadeIn ease 1s;
     -webkit-animation: fadeIn ease 1s;
