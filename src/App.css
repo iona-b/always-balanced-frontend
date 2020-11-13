@@ -75,9 +75,9 @@ html, body {
     right: 43%;
 }
 
-.nav-bar-divs:hover {
+/* .nav-bar-divs:hover {
     opacity: 50;
-}
+} */
 
 #lower-nav-bar {
     height: 50px;
@@ -254,7 +254,7 @@ html, body {
     font-family: Palatino, URW Palladio L, serif;
     background-color: #DDEBE4;
     font-size: 15px;
-    opacity: 100%;
+    /* opacity: 100%; */
     color: #2F4F4F;
     cursor: pointer;
     outline: none;
@@ -273,7 +273,7 @@ html, body {
     font-family: Palatino, URW Palladio L, serif;
     background-color: #DDEBE4;
     font-size: 20px;
-    opacity: 100%;
+    /* opacity: 100%; */
     color: #2F4F4F;
     cursor: pointer;
 }
@@ -454,7 +454,7 @@ html, body {
     height: 1000px;
     width: 550px;
     background-color:#2F4F4F;
-    opacity: 90%;
+    /* opacity: 90%; */
     position: absolute;
     animation: fadeIn ease 1s;
     -webkit-animation: fadeIn ease 1s;
