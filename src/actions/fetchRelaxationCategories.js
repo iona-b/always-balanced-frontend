@@ -2,7 +2,7 @@ export const fetchRelaxationCategories = () => {
 
     return (dispatch) => {
       dispatch({ type: 'LOADING'})
-      fetch(`https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/relaxation_categories`).then(response => {
+      fetch(`http://localhost:3000/relaxation_categories`).then(response => {
         return response.json()
       })
       .then(responseJSON => {

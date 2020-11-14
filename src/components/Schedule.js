@@ -148,11 +148,13 @@ class Schedule extends React.Component {
                         this.props.currentSchedule.id !== ""
                         ?
                             <div id="schedule">
-                                <button className="buttons" id="focus-mode-button" onClick={this.handleToggleFocusMode}><span role="img" aria-label="magnifying-glass">🔎</span></button> 
-                                <Link to='/createschedule' >
-                                    <button className="buttons" id="edit-schedule-button" ><span role="img" aria-label="fountain-pen">🖋️</span></button>
-                                </Link>
-                                <button className="buttons" id="timer-button" onClick={this.handleTimerMode}><span role="img" aria-label="alarm-clock">⏰</span></button>    
+                                <div id="buttons-div">
+                                    <button className="buttons" id="focus-mode-button" onClick={this.handleToggleFocusMode}><span role="img" aria-label="magnifying-glass">🔎</span></button> 
+                                    <Link to='/createschedule' >
+                                        <button className="buttons" id="edit-schedule-button" ><span role="img" aria-label="fountain-pen">🖋️</span></button>
+                                    </Link>
+                                    <button className="buttons" id="timer-button" onClick={this.handleTimerMode}><span role="img" aria-label="alarm-clock">⏰</span></button>   
+                                </div> 
                                 {
                                     this.state.showFocusModeSchedule === false ?
                                     <div>

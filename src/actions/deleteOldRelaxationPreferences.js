@@ -1,7 +1,7 @@
 export const deleteOldRelaxationPreferences = (category) => {
 
     return (dispatch) => {
-        fetch(`https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/user_relaxation_categories/${category.id}`, {
+        fetch(`http://localhost:3000/user_relaxation_categories/${category.id}`, {
         method:'DELETE'
     })
     .then(response => response.json())

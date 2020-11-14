@@ -11,6 +11,10 @@ import ScheduleContainer from './containers/ScheduleContainer'
 import SignUpContainer from './containers/SignUpContainer'
 import About from './components/About'
 import Clock from './components/Clock';
+import UpdateProfile from './components/UpdateProfile';
+import UpdateRelaxationPreferences from './components/UpdateRelaxationPreferences';
+import TasksModal from './components/TasksModal';
+import DeleteProfile from './components/DeleteProfile';
 import { logOutUser } from './actions/logOutUser'
 import { fetchUser } from './actions/fetchUser';
 import { fetchSchedule } from './actions/fetchSchedule'
@@ -19,14 +23,14 @@ import whiteNoiseAudio from './images/white-noise.mp3';
 class App extends React.Component {
 
   state = {
-    whiteNoisePlaying: false
+    whiteNoisePlaying: false,
   }
 
   whiteNoise = new Audio(whiteNoiseAudio);
 
   componentDidMount() {
     if(localStorage.token) {
-      fetch('https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/persist',{
+      fetch('http://localhost:3000/persist',{
         headers:{
           "Authorization": `Bearer ${localStorage.token}`
         }
@@ -132,6 +136,10 @@ class App extends React.Component {
           <Route path='/signup' component={SignUpContainer}/>
           <Route path='/createschedule' component={CreateScheduleContainer}/>
           <Route path='/profile' component={ProfileContainer}/>
+          <Route path='/updateprofile' component={UpdateProfile}/>
+          <Route path='/updaterelaxationpreferences' component={UpdateRelaxationPreferences}/>
+          <Route path='/updatetasks' component={TasksModal}/>
+          <Route path='/deleteprofile' component={DeleteProfile}/>
           <Route path='/schedule' component={ScheduleContainer}/>
           <Route path='/about' component={About}/>
           <Route component={NotFound}/>
