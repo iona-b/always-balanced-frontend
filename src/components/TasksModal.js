@@ -39,7 +39,7 @@ class TasksModal extends React.Component {
 
         return (
 
-            <div>
+            <div className="home-div">
                 <div className="form-containers centred-divs">
                     {this.state.showAddTaskForm === false ?
                         <div>
