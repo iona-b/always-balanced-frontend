@@ -39,8 +39,7 @@ class TasksModal extends React.Component {
 
         return (
 
-            <div>
-                <button className="buttons back-buttons" name="showTasks" onClick={this.props.handleClick}>⬅</button>
+            <div className="home-div">
                 <div className="form-containers centred-divs">
                     {this.state.showAddTaskForm === false ?
                         <div>

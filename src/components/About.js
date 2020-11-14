@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import ReactPlayer from 'react-player'
 import Demo from "../images/always-balanced-demo.mp4"
 
@@ -22,9 +21,6 @@ class About extends React.Component {
     return (
 
       <div className="home-div">
-          <Link to='/' >
-            <button className="buttons back-buttons">⬅</button>
-          </Link>
           <img src={require("../images/background-bottom-left.png")} alt='' id="background-bottom-left" />
           <img src={require("../images/background-top-right.png")} alt='' id="background-top-right" />
           {this.state.showDemo === false ?

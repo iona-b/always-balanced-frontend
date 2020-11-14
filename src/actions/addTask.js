@@ -2,7 +2,7 @@ export const addTask = (task) => {
 
     return (dispatch) => {
         dispatch({ type: 'LOADING'})
-        fetch('https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/tasks',{
+        fetch('http://localhost:3000/tasks',{
             method:"POST",
             headers:{
                 'Content-Type':'application/json'

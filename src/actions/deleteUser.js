@@ -1,7 +1,7 @@
 export const deleteUser = (userId) => {
 
     return (dispatch) => {
-        fetch(`https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/users/${userId}`, {
+        fetch(`http://localhost:3000/users/${userId}`, {
             method:'DELETE'
         })
         .then(response => response.json())

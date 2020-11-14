@@ -4,7 +4,7 @@ import { fetchRelaxationCategories } from '../actions/fetchRelaxationCategories'
 import { updateUserRelaxationCategory } from '../actions/updateUserRelaxationCategory'
 import { deleteOldRelaxationPreferences } from '../actions/deleteOldRelaxationPreferences'
 
-class UpdateRelaxationPreferencesModal extends React.Component {
+class UpdateRelaxationPreferences extends React.Component {
 
     state = {
         relaxationCategory1: '',
@@ -39,15 +39,14 @@ class UpdateRelaxationPreferencesModal extends React.Component {
         let category = this.props.relaxationCategories.filter(category => category.category_name === relaxationCategory)
         this.props.updateUserRelaxationCategory(this.props.user.id, category[0])
       })
-      this.props.handleClick(event)
+      this.props.history.push('/profile');
     };
 
     render() {
 
         return (
 
-          <div>
-            <button className="buttons back-buttons" name="showUpdateRelaxationCategoryPreferences" onClick={this.props.handleClick}>⬅</button>
+          <div className="home-div">
               <div className="form-containers centred-divs">
                 <div className="choose-relaxation-categories-form">
                   <h2 className="form-headers">Select 3 Relaxation Categories</h2>
@@ -79,4 +78,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
  
-export default connect(mapStateToProps, mapDispatchToProps)(UpdateRelaxationPreferencesModal);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateRelaxationPreferences);

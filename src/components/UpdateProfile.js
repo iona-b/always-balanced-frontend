@@ -1,8 +1,9 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
 import { updateUser } from '../actions/updateUser'
 
-class UpdateProfileModal extends React.Component {
+class UpdateProfile extends React.Component {
 
     state = {
         username: this.props.user.username,
@@ -19,17 +20,16 @@ class UpdateProfileModal extends React.Component {
     }
 
     handleSubmit = event => {
-        event.preventDefault()
-        this.props.updateUser(event, this.props.user)
-        this.props.handleUpdateSubmit()
+        event.preventDefault();
+        this.props.updateUser(event, this.props.user);
+        this.props.history.push('/profile');
     }
 
     render() {
 
         return (
             
-            <div>
-                <button className="buttons back-buttons" name="showUpdateProfile" onClick={this.props.handleClick}>⬅</button>
+            <div className="home-div">
                 <div className="form-containers centred-divs">
                     <div>
                         <h2 className="form-headers">Update Your Profile</h2>
@@ -71,4 +71,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpdateProfileModal);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateProfile);

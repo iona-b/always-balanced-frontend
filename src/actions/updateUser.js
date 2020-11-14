@@ -16,7 +16,7 @@ export const updateUser = (event, user) => {
 
     return (dispatch) => {
         dispatch({ type: 'LOADING'})
-        fetch(`https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/users/${user.id}`,{
+        fetch(`http://localhost:3000/users/${user.id}`,{
             method:"PATCH",
             headers:{
                 'Content-Type':'application/json'

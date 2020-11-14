@@ -176,7 +176,7 @@ html, body {
 .form-containers {
     text-align: center;
     width: 550px;
-    margin-top: 5%;
+    margin-top: 2%;
     overflow: scroll;
     overflow-y: auto;
     border: solid;
@@ -224,6 +224,17 @@ html, body {
     margin-bottom: 10px;
     height: 30px;
     width: 200px;
+    margin: 10px;
+    text-align: center;
+    border: solid;
+    border-radius: 5px;
+    border-color: #BDDFCC;     
+}
+
+.input-fields-sm {
+    margin-bottom: 10px;
+    height: 30px;
+    width: 190px;
     margin: 10px;
     text-align: center;
     border: solid;
@@ -302,25 +313,21 @@ html, body {
     cursor: pointer;
 }
 
+#buttons-div {
+    position: absolute;
+    width: 50px;
+}
+
 #focus-mode-button {
     width: 40px;
-    position: absolute;
-    right: 0%;
-    top: -1%;
 }
 
 #edit-schedule-button {
     width: 40px;
-    position: absolute;
-    right: 0%;
-    top: 7%;
 }
 
 #timer-button {
     width: 40px;
-    position: absolute;
-    right: 0%;
-    top: 15%;
 }
 
 #play-button {
@@ -346,20 +353,19 @@ html, body {
 #create-schedule-form-container {
     margin-top: 0%;
     width: 30%;
-    height: 74vh;
+    height: 65vh;
     margin-left: 1%;
     margin-right: 1%;
 }
 
 .show-tasks {
     width: 30%;
-    height: 72vh;
+    height: 65vh;
     border-radius: 5px;
     overflow: scroll;
     border: solid;
     border-color: #DDEBE4;
     border-width: 5px;
-    padding-top: 20px;
     animation: fadeIn ease 1s;
     -webkit-animation: fadeIn ease 1s;
     -moz-animation: fadeIn ease 1s;
@@ -380,13 +386,12 @@ html, body {
 #task-description-div {
     display: block;
     float: left;
-    margin-left: 40px;
+    
 }
 
 #task-notes-div {
     display: block;
     float: right;
-    margin-right: 40px;
 }
 
 /* Schedule Styling  */
@@ -410,22 +415,22 @@ html, body {
 }
 
 #loading-div {
-    animation: fadeinout ease 5s;
-    -webkit-animation: fadeinout ease 5s;
-    -moz-animation: fadeinout ease 5s;
-    -o-animation: fadeinout ease 5s;
-    -ms-animation: fadeinout ease 5s;
-    z-index: 9999;
+    -moz-animation: fadeOut 0s ease-in 4s forwards;
+    -webkit-animation: fadeOut 0s ease-in 4s forwards;
+    -o-animation: fadeOut 0s ease-in 4s forwards;
+    animation: fadeOut 0s ease-in 4s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 }
 
 #view-edit-delete-div {
-    animation: menuFadeIn ease 5s;
-    -webkit-animation: menuFadeIn ease 5s;
-    -moz-animation: menuFadeIn ease 5s;
-    -o-animation: menuFadeIn ease 5s;
-    -ms-animation: menuFadeIn ease 5s;
-    z-index: 9999;
+    animation: menuFadeIn ease 4s;
+    -webkit-animation: menuFadeIn ease 4s;
+    -moz-animation: menuFadeIn ease 4s;
+    -o-animation: menuFadeIn ease 4s;
+    -ms-animation: menuFadeIn ease 4s;
     background-color: #FFFAF0;
+    margin-top: -50px;
 }
 
 #focus-mode {
@@ -434,7 +439,7 @@ html, body {
     width: 100%;
     color: #FFFAF0;
     position: absolute;
-    right: 0%;
+    left: 0%;
     top: 0%;
     animation: fadeIn ease 1s;
     -webkit-animation: fadeIn ease 1s;
@@ -450,11 +455,12 @@ html, body {
 /* Modals  */
 
 #alert-modal {
-    top: 0%;
-    height: 1000px;
-    width: 550px;
     background-color:#2F4F4F;
-    /* opacity: 90%; */
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+
     position: absolute;
     animation: fadeIn ease 1s;
     -webkit-animation: fadeIn ease 1s;
@@ -576,12 +582,28 @@ html, body {
     100% {opacity:1;}
 }
 
+ 
 @-webkit-keyframes fadeinout {
     0%,100% { opacity: 0; }
     50% { opacity: 1; }
-  }
-  
-  @keyframes fadeinout {
+}
+
+@keyframes fadeinout {
     0%,100% { opacity: 0; }
     50% { opacity: 1; }
-  }
+}
+
+@keyframes fadeOut {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes fadeOut {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
+}
