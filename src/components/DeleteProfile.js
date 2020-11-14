@@ -7,7 +7,8 @@ import { logOutUser } from '../actions/logOutUser'
 class DeleteProfile extends React.Component {
 
     handleClick = () => {
-        this.props.deleteUser(this.props.user.id)
+        this.props.deleteUser(this.props.user.id);
+        this.props.history.push('/');
     }
 
     render() {

@@ -22,6 +22,7 @@ class UpdateProfile extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
         this.props.updateUser(event, this.props.user);
+        this.props.history.push('/profile');
     }
 
     render() {

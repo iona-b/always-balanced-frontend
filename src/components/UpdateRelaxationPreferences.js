@@ -39,6 +39,7 @@ class UpdateRelaxationPreferences extends React.Component {
         let category = this.props.relaxationCategories.filter(category => category.category_name === relaxationCategory)
         this.props.updateUserRelaxationCategory(this.props.user.id, category[0])
       })
+      this.props.history.push('/profile');
     };
 
     render() {
