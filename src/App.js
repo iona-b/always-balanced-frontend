@@ -30,7 +30,7 @@ class App extends React.Component {
 
   componentDidMount() {
     if(localStorage.token) {
-      fetch('http://localhost:3000/persist',{
+      fetch('https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/persist',{
         headers:{
           "Authorization": `Bearer ${localStorage.token}`
         }

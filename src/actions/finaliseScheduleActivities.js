@@ -6,7 +6,7 @@ export const finaliseScheduleActivities = (relaxationCategoryId, activityLength)
     }
 
     return (dispatch) => {
-        fetch('http://localhost:3000/schedule_activities',{
+        fetch('https://cors-anywhere.herokuapp.com/https://always-balanced-backend.herokuapp.com/schedule_activities',{
             method:"POST",
             headers:{
                 'Content-Type':'application/json'
